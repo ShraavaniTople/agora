@@ -3,12 +3,13 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView, animate } from "framer-motion";
 
+/* ── Animated counter ────────────────────────────────────────────── */
 function Counter({
   target,
   prefix = "",
   suffix = "",
   inView,
-  duration = 1.8,
+  duration = 1.6,
 }: {
   target: number;
   prefix?: string;
@@ -17,26 +18,143 @@ function Counter({
   duration?: number;
 }) {
   const [value, setValue] = useState(0);
-
   useEffect(() => {
     if (!inView) return;
-    const controls = animate(0, target, {
+    const ctrl = animate(0, target, {
       duration,
       ease: [0.16, 1, 0.3, 1],
       onUpdate: (v) => setValue(Math.round(v)),
     });
-    return () => controls.stop();
+    return () => ctrl.stop();
   }, [inView, target, duration]);
+  return <>{prefix}{value}{suffix}</>;
+}
+
+/* ── Side card (left / right) ────────────────────────────────────── */
+function SideCard({
+  label,
+  number,
+  subLabel,
+  description,
+  color,
+  glowColor,
+  borderColor,
+  inView,
+  delay,
+  icon,
+}: {
+  label: string;
+  number: React.ReactNode;
+  subLabel: string;
+  description: string;
+  color: string;
+  glowColor: string;
+  borderColor: string;
+  inView: boolean;
+  delay: number;
+  icon: React.ReactNode;
+}) {
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <span>
-      {prefix}
-      {value}
-      {suffix}
-    </span>
+    <motion.div
+      initial={{ opacity: 0, y: 48 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative rounded-2xl p-7 lg:p-8 overflow-hidden flex flex-col cursor-default"
+      style={{
+        minHeight: 320,
+        background: "linear-gradient(145deg, #151020 0%, #0F0C1A 50%, #0A0810 100%)",
+        border: `1px solid ${hovered ? borderColor : "rgba(255,255,255,0.08)"}`,
+        boxShadow: hovered
+          ? `0 24px 64px ${glowColor}, 0 0 0 1px ${borderColor}`
+          : "0 4px 32px rgba(0,0,0,0.6)",
+        transform: hovered ? "translateY(-8px)" : "translateY(0)",
+        transition: "transform 0.32s cubic-bezier(0.22,1,0.36,1), box-shadow 0.32s ease, border-color 0.32s ease",
+      }}
+    >
+      {/* Colored top bar */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[2px]"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${color} 35%, ${color} 65%, transparent)`,
+          opacity: hovered ? 1 : 0.6,
+          transition: "opacity 0.3s ease",
+        }}
+      />
+      {/* Top bloom */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse at 50% 0%, ${glowColor} 0%, transparent 60%)`,
+          opacity: hovered ? 0.9 : 0.35,
+          transition: "opacity 0.3s ease",
+        }}
+      />
+
+      {/* Label */}
+      <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-white/35 relative z-10">
+        {label}
+      </p>
+
+      {/* Number */}
+      <div className="flex-1 flex flex-col justify-center py-6 relative z-10">
+        <div
+          className="font-black text-white tracking-[-0.05em] leading-none tabular-nums"
+          style={{ fontSize: "clamp(60px, 7.5vw, 84px)" }}
+        >
+          {number}
+        </div>
+        <p className="mt-2 font-semibold tracking-wide text-[14px]" style={{ color }}>
+          {subLabel}
+        </p>
+      </div>
+
+      {/* Bottom: description (hover reveal) + icon */}
+      <div
+        className="mt-auto relative z-10"
+        style={{
+          borderTop: `1px solid ${hovered ? `${color}25` : "rgba(255,255,255,0.06)"}`,
+          paddingTop: "20px",
+          transition: "border-color 0.3s ease",
+        }}
+      >
+        {/* Description — hidden until hover */}
+        <div
+          style={{
+            opacity: hovered ? 1 : 0,
+            transform: hovered ? "translateY(0)" : "translateY(8px)",
+            transition: "opacity 0.35s ease, transform 0.35s ease",
+            marginBottom: hovered ? "14px" : "0",
+            maxHeight: hovered ? "60px" : "0",
+            overflow: "hidden",
+            transitionProperty: "opacity, transform, max-height, margin-bottom",
+            transitionDuration: "0.35s",
+            transitionTimingFunction: "ease",
+          }}
+        >
+          <p className="text-[12px] text-white/40 leading-relaxed">{description}</p>
+        </div>
+
+        {/* Icon */}
+        <div
+          style={{
+            opacity: hovered ? 1 : 0.45,
+            transform: hovered ? "scale(1.1)" : "scale(1)",
+            transition: "opacity 0.3s ease, transform 0.3s ease",
+          }}
+        >
+          {icon}
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
+/* ── Main section ────────────────────────────────────────────────── */
 export default function Stats() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -48,10 +166,7 @@ export default function Stats() {
     >
       <div
         className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(99,33,238,0.6), transparent)",
-        }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(99,33,238,0.6), transparent)" }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -75,237 +190,102 @@ export default function Stats() {
           </h2>
         </motion.div>
 
-        {/* Cards */}
-        <div
-          ref={ref}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 items-stretch"
-        >
-          {/* ── Card 1: Time Eliminated ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0 }}
-            className="relative rounded-2xl p-7 lg:p-8 overflow-hidden flex flex-col min-h-[340px]"
-            style={{
-              background:
-                "linear-gradient(145deg, #18121E 0%, #110D17 60%, #0C0910 100%)",
-              border: "1px solid rgba(99,33,238,0.22)",
-              boxShadow:
-                "0 8px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)",
-            }}
-          >
-            {/* Top colored border */}
-            <div
-              className="absolute top-0 left-0 right-0 h-[2px]"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent, #6321EE 35%, #6321EE 65%, transparent)",
-              }}
-            />
-            {/* Top glow bloom */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse at 50% 0%, rgba(99,33,238,0.2) 0%, transparent 65%)",
-              }}
-            />
+        {/* Cards grid */}
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 items-stretch">
 
-            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/35 relative z-10">
-              Time Eliminated
-            </p>
-
-            <div className="flex-1 flex flex-col justify-center my-6 relative z-10">
-              <div
-                className="font-black text-white tracking-[-0.05em] leading-none tabular-nums"
-                style={{ fontSize: "clamp(64px, 8vw, 88px)" }}
-              >
-                <Counter target={6} suffix="+" inView={inView} />
-              </div>
-              <p
-                className="mt-2 font-semibold tracking-wide"
-                style={{ fontSize: 15, color: "#6321EE" }}
-              >
-                months ramp time
-              </p>
-            </div>
-
-            <div
-              className="mt-auto pt-5 flex items-end justify-between relative z-10"
-              style={{ borderTop: "1px solid rgba(99,33,238,0.14)" }}
-            >
-              <p className="text-[12px] text-white/35 leading-relaxed max-w-[170px]">
-                Typical SDR ramp eliminated. Agents deploy in days.
-              </p>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="rgba(99,33,238,0.55)"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
+          {/* Card 1 — Time Eliminated */}
+          <SideCard
+            label="Time Eliminated"
+            number={<Counter target={6} suffix="+" inView={inView} />}
+            subLabel="months ramp time"
+            description="Typical SDR ramp eliminated. AGORA agents deploy in days, not months."
+            color="#6321EE"
+            glowColor="rgba(99,33,238,0.28)"
+            borderColor="rgba(99,33,238,0.5)"
+            inView={inView}
+            delay={0}
+            icon={
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6321EE" strokeWidth="1.5" strokeLinecap="round">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
               </svg>
-            </div>
-          </motion.div>
+            }
+          />
 
-          {/* ── Card 2: Cost Avoided — FEATURED with mesh gradient ── */}
+          {/* Card 2 — Cost Avoided (FEATURED) */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 48 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{
-              duration: 0.65,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.1,
-            }}
-            className="relative rounded-2xl p-7 lg:p-8 overflow-hidden flex flex-col min-h-[360px]"
-            style={{
-              background: "#080510",
-              border: "1px solid rgba(127,255,212,0.28)",
-              boxShadow: "0 8px 60px rgba(0,0,0,0.8)",
-            }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="relative rounded-2xl p-7 lg:p-8 overflow-hidden flex flex-col cursor-default"
+            style={{ minHeight: 340, background: "#07040F", border: "1px solid rgba(127,255,212,0.3)" }}
           >
             {/* Animated mesh gradient blobs */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
               <div className="stats-mesh-blob stats-mesh-blob-1" />
               <div className="stats-mesh-blob stats-mesh-blob-2" />
               <div className="stats-mesh-blob stats-mesh-blob-3" />
-              {/* Dark overlay so text stays legible */}
-              <div
-                className="absolute inset-0"
-                style={{ background: "rgba(8,5,16,0.42)" }}
-              />
+              <div className="absolute inset-0" style={{ background: "rgba(7,4,15,0.38)" }} />
             </div>
 
-            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/50 relative z-10">
+            {/* Label */}
+            <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-white/50 relative z-10">
               Cost Avoided
             </p>
 
-            <div className="flex-1 flex flex-col justify-center my-6 relative z-10">
+            {/* Number */}
+            <div className="flex-1 flex flex-col justify-center py-6 relative z-10">
               <div
                 className="font-black text-white tracking-[-0.05em] leading-none tabular-nums"
-                style={{ fontSize: "clamp(64px, 8vw, 88px)" }}
+                style={{ fontSize: "clamp(60px, 7.5vw, 84px)" }}
               >
                 $<Counter target={150} suffix="K" inView={inView} duration={2} />
               </div>
-              <p
-                className="mt-2 font-semibold tracking-wide"
-                style={{ fontSize: 15, color: "#7FFFD4" }}
-              >
+              <p className="mt-2 font-semibold tracking-wide text-[14px]" style={{ color: "#7FFFD4" }}>
                 per head / year
               </p>
             </div>
 
+            {/* Bottom — always visible on featured card */}
             <div
-              className="mt-auto pt-5 flex items-end justify-between relative z-10"
+              className="mt-auto pt-5 relative z-10"
               style={{ borderTop: "1px solid rgba(127,255,212,0.15)" }}
             >
-              <p className="text-[12px] text-white/50 leading-relaxed max-w-[170px]">
-                Salary, benefits, tools, mgmt overhead — replaced with variable pods.
+              <p className="text-[12px] text-white/50 leading-relaxed mb-4">
+                Salary, benefits, tools, mgmt overhead — replaced with variable pods aligned to outcomes.
               </p>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="rgba(127,255,212,0.65)"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              >
-                <line x1="12" y1="1" x2="12" y2="23" />
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(127,255,212,0.65)" strokeWidth="1.5" strokeLinecap="round">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
               </svg>
             </div>
           </motion.div>
 
-          {/* ── Card 3: Revenue Impact ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{
-              duration: 0.65,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.2,
-            }}
-            className="relative rounded-2xl p-7 lg:p-8 overflow-hidden flex flex-col min-h-[340px]"
-            style={{
-              background:
-                "linear-gradient(145deg, #0E1A1A 0%, #0A1414 60%, #080F10 100%)",
-              border: "1px solid rgba(122,204,200,0.22)",
-              boxShadow:
-                "0 8px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)",
-            }}
-          >
-            <div
-              className="absolute top-0 left-0 right-0 h-[2px]"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent, #7ACCC8 35%, #7ACCC8 65%, transparent)",
-              }}
-            />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse at 50% 0%, rgba(122,204,200,0.18) 0%, transparent 65%)",
-              }}
-            />
-
-            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/35 relative z-10">
-              Revenue Impact
-            </p>
-
-            <div className="flex-1 flex flex-col justify-center my-6 relative z-10">
-              <div
-                className="font-black text-white tracking-[-0.05em] leading-none tabular-nums"
-                style={{ fontSize: "clamp(64px, 8vw, 88px)" }}
-              >
-                +<Counter target={2} suffix="%" inView={inView} duration={1.4} />
-              </div>
-              <p
-                className="mt-2 font-semibold tracking-wide"
-                style={{ fontSize: 15, color: "#7ACCC8" }}
-              >
-                conversion lift
-              </p>
-            </div>
-
-            <div
-              className="mt-auto pt-5 flex items-end justify-between relative z-10"
-              style={{ borderTop: "1px solid rgba(122,204,200,0.14)" }}
-            >
-              <p className="text-[12px] text-white/35 leading-relaxed max-w-[170px]">
-                2% lift on $10M pipeline = $200K added revenue.
-              </p>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="rgba(122,204,200,0.55)"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              >
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                <polyline points="17 6 23 6 23 12" />
+          {/* Card 3 — Revenue Impact */}
+          <SideCard
+            label="Revenue Impact"
+            number={<>+<Counter target={2} suffix="%" inView={inView} duration={1.4} /></>}
+            subLabel="conversion lift"
+            description="2% lift on a $10M pipeline = $200K added revenue. At scale, marginal gains compound fast."
+            color="#7ACCC8"
+            glowColor="rgba(122,204,200,0.22)"
+            borderColor="rgba(122,204,200,0.5)"
+            inView={inView}
+            delay={0.2}
+            icon={
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7ACCC8" strokeWidth="1.5" strokeLinecap="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
               </svg>
-            </div>
-          </motion.div>
+            }
+          />
+
         </div>
       </div>
 
       <div
         className="absolute bottom-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(127,255,212,0.2), transparent)",
-        }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(127,255,212,0.2), transparent)" }}
       />
     </section>
   );
