@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-dark: #080507;
+  --bg-dark-2: #0D0A0C;
+  --bg-dark-3: #100C0E;
+  --bg-dark-4: #0A0608;
+  --brand: #6321EE;
+  --mint: #7FFFD4;
+  --teal: #7ACCC8;
+  --text-primary: #080507;
+  --text-light: #F4F6FF;
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #080507;
+  color: #F4F6FF;
+  font-family: var(--font-geist-sans), 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080507; }
+::-webkit-scrollbar-thumb { background: #6321EE; border-radius: 2px; }
+::selection { background: rgba(99,33,238,0.4); color: #7FFFD4; }
+:focus-visible { outline: 2px solid #6321EE; outline-offset: 2px; }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(120deg, #6321EE 0%, #7FFFD4 60%, #7ACCC8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-warm {
+  background: linear-gradient(120deg, #fff 0%, #7FFFD4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Grid overlay — visible at 0.07 opacity */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(99,33,238,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,33,238,0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Dot grid */
+.dot-grid-subtle {
+  background-image: radial-gradient(circle, rgba(127,255,212,0.10) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* CSS grid lines for light-colored sections */
+.grid-overlay-light {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Noise texture */
+.noise {
+  position: relative;
+}
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Animated gradient border */
+@keyframes border-spin {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hero glow pulse — the main purple orb breathes */
+@keyframes hero-glow {
+  0%, 100% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+/* Marquee — content is doubled so we shift exactly -50% */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pulse dot for dispatch flow */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(99,33,238,0.7); }
+  50%       { opacity: 0.7; transform: scale(1.2); box-shadow: 0 0 0 6px rgba(99,33,238,0); }
+}
+
+/* Connector line shimmer */
+@keyframes line-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Flow pulse travelling along the connector */
+@keyframes flow-pulse {
+  0%   { left: 0%; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Stats counter emphasis */
+@keyframes count-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.glow-brand { box-shadow: 0 0 40px rgba(99,33,238,0.55), 0 0 80px rgba(99,33,238,0.2); }
+.glow-mint  { box-shadow: 0 0 30px rgba(127,255,212,0.35); }
+
+/* Animate marquee utility */
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
