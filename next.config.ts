@@ -4,7 +4,7 @@ const isProd = process.env.GITHUB_ACTIONS === "true";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: isProd ? "/agora-marketing" : "",
+  basePath: isProd ? "/agora" : "",
   images: {
     unoptimized: true,
   },
