@@ -4,7 +4,20 @@ import ServicesClient from "./ServicesClient";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "AGORA's revenue acceleration services — speed-to-lead coverage, dedicated outbound pods, AI coaching, and enterprise reporting.",
+    "Speed-to-lead coverage, dedicated outbound pods, real-time AI coaching, and enterprise-grade reporting. Four tools. One network.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Services | AGORA",
+    description:
+      "Speed-to-lead coverage, dedicated outbound pods, real-time AI coaching, and enterprise-grade reporting.",
+    url: "/services",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | AGORA",
+    description:
+      "Speed-to-lead coverage, dedicated outbound pods, real-time AI coaching, and enterprise-grade reporting.",
+  },
 };
 
 export default function ServicesPage() {

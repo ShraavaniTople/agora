@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { fadeUpVariants, staggerContainer } from "@/components/ui/SectionWrapper";
 

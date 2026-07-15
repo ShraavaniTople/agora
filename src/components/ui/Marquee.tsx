@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { useState } from "react";
 
 interface MarqueeProps {
   children: ReactNode;

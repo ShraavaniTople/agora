@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import type { FormEvent } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { CheckCircle2, ArrowLeft } from "lucide-react";

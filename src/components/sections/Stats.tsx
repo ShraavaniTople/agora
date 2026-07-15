@@ -39,7 +39,6 @@ function SideCard({
   color,
   glowColor,
   borderColor,
-  inView,
   delay,
   icon,
 }: {
@@ -50,7 +49,6 @@ function SideCard({
   color: string;
   glowColor: string;
   borderColor: string;
-  inView: boolean;
   delay: number;
   icon: React.ReactNode;
 }) {
@@ -202,7 +200,6 @@ export default function Stats() {
             color="#6321EE"
             glowColor="rgba(99,33,238,0.28)"
             borderColor="rgba(99,33,238,0.5)"
-            inView={inView}
             delay={0}
             icon={
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6321EE" strokeWidth="1.5" strokeLinecap="round">
@@ -270,7 +267,6 @@ export default function Stats() {
             color="#7ACCC8"
             glowColor="rgba(122,204,200,0.22)"
             borderColor="rgba(122,204,200,0.5)"
-            inView={inView}
             delay={0.2}
             icon={
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7ACCC8" strokeWidth="1.5" strokeLinecap="round">

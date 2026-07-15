@@ -1,6 +1,7 @@
 "use client";
 
-import { InputHTMLAttributes, TextareaHTMLAttributes, forwardRef } from "react";
+import type { InputHTMLAttributes, TextareaHTMLAttributes} from "react";
+import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface FormFieldProps extends InputHTMLAttributes<HTMLInputElement> {
