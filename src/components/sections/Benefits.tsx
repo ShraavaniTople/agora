@@ -88,7 +88,7 @@ export default function Benefits() {
           </motion.p>
         </motion.div>
 
-        {/* Benefits list — editorial horizontal-rule layout */}
+        {/* Benefits list */}
         <motion.div
           initial="hidden"
           whileInView="visible"

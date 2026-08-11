@@ -5,13 +5,10 @@ import { useRef } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-/* ------------------------------------------------------------------ */
-/*  Dispatch Flow — the visual centerpiece of the hero                  */
-/* ------------------------------------------------------------------ */
 function DispatchFlow() {
   return (
     <div className="flex items-center justify-center gap-0 w-full max-w-3xl mx-auto">
-      {/* ── Company box ── */}
+      {/* Company box */}
       <motion.div
         initial={{ opacity: 0, x: -24 }}
         animate={{ opacity: 1, x: 0 }}
@@ -26,7 +23,6 @@ function DispatchFlow() {
             background: "linear-gradient(135deg, rgba(122,204,200,0.12) 0%, rgba(122,204,200,0.04) 100%)",
           }}
         >
-          {/* top accent bar */}
           <div
             className="absolute top-0 left-4 right-4 h-px"
             style={{ background: "linear-gradient(90deg, transparent, #7ACCC8, transparent)" }}
@@ -37,7 +33,7 @@ function DispatchFlow() {
         <span className="text-[11px] text-white/30 tracking-wide">defines the bar</span>
       </motion.div>
 
-      {/* ── Connector left ── */}
+      {/* Connector left */}
       <motion.div
         initial={{ opacity: 0, scaleX: 0 }}
         animate={{ opacity: 1, scaleX: 1 }}
@@ -45,12 +41,10 @@ function DispatchFlow() {
         className="flex items-center relative mx-2"
         style={{ width: 80, flexShrink: 0 }}
       >
-        {/* base line */}
         <div
           className="w-full h-px"
           style={{ background: "linear-gradient(90deg, #7ACCC8, #6321EE)" }}
         />
-        {/* travelling dot */}
         <motion.div
           className="absolute w-2 h-2 rounded-full bg-[#6321EE]"
           style={{ boxShadow: "0 0 8px #6321EE, 0 0 16px rgba(99,33,238,0.6)", top: "50%", marginTop: -4 }}
@@ -59,7 +53,7 @@ function DispatchFlow() {
         />
       </motion.div>
 
-      {/* ── AGORA core box ── */}
+      {/* AGORA core box */}
       <motion.div
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -75,7 +69,6 @@ function DispatchFlow() {
             boxShadow: "0 0 28px rgba(99,33,238,0.35), inset 0 1px 0 rgba(255,255,255,0.08)",
           }}
         >
-          {/* pulsing indicator */}
           <div className="flex items-center gap-1.5 mb-0.5">
             <motion.div
               className="w-1.5 h-1.5 rounded-full bg-[#6321EE]"
@@ -86,7 +79,6 @@ function DispatchFlow() {
             <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#6321EE]">Dispatch</span>
           </div>
           <span className="text-[15px] font-black tracking-wide text-white">AGORA</span>
-          {/* inner glow sweep */}
           <div
             className="absolute inset-0 rounded-xl pointer-events-none"
             style={{ background: "linear-gradient(135deg, rgba(99,33,238,0.22) 0%, transparent 55%)" }}
@@ -95,7 +87,7 @@ function DispatchFlow() {
         <span className="text-[11px] text-[#6321EE] font-semibold tracking-wide">Performance core</span>
       </motion.div>
 
-      {/* ── Connector right ── */}
+      {/* Connector right */}
       <motion.div
         initial={{ opacity: 0, scaleX: 0 }}
         animate={{ opacity: 1, scaleX: 1 }}
@@ -107,7 +99,6 @@ function DispatchFlow() {
           className="w-full h-px"
           style={{ background: "linear-gradient(90deg, #6321EE, #7FFFD4)" }}
         />
-        {/* travelling dot — mint this time, slight delay */}
         <motion.div
           className="absolute w-2 h-2 rounded-full bg-[#7FFFD4]"
           style={{ boxShadow: "0 0 8px #7FFFD4, 0 0 16px rgba(127,255,212,0.6)", top: "50%", marginTop: -4 }}
@@ -116,7 +107,7 @@ function DispatchFlow() {
         />
       </motion.div>
 
-      {/* ── Agent box ── */}
+      {/* Agent box */}
       <motion.div
         initial={{ opacity: 0, x: 24 }}
         animate={{ opacity: 1, x: 0 }}
@@ -144,9 +135,6 @@ function DispatchFlow() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Hero section                                                         */
-/* ------------------------------------------------------------------ */
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -159,10 +147,8 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       style={{ background: "#080507", paddingTop: 68 }}
     >
-      {/* ── Grid overlay ── */}
       <div className="absolute inset-0 grid-overlay pointer-events-none" />
 
-      {/* ── Main purple radial glow — THE hero light source ── */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -178,7 +164,6 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Secondary mint orb — bottom-left ── */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -192,7 +177,6 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Tertiary violet orb — top-right ── */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -206,7 +190,6 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Content ── */}
       <motion.div
         className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
         style={{ y: textY, opacity }}
@@ -237,7 +220,6 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Headline — the big moment */}
         <motion.h1
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
@@ -254,7 +236,6 @@ export default function Hero() {
           <span className="gradient-text">Scale</span>
         </motion.h1>
 
-        {/* Sub-headline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -318,13 +299,11 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Bottom fade to next section */}
       <div
         className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
         style={{ background: "linear-gradient(to top, #080507, transparent)" }}
       />
 
-      {/* Scroll cue */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}

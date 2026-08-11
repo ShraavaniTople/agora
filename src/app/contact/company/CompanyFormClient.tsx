@@ -101,7 +101,7 @@ export default function CompanyFormClient() {
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
     setSubmitted(true);
-    // TODO: connect to backend — POST form data to /api/contact/company
+    // TODO: POST form data to /api/contact/company
   };
 
   return (

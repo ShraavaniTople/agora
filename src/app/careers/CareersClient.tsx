@@ -63,8 +63,8 @@ export default function CareersClient() {
               className="text-base sm:text-xl text-white/60 max-w-2xl leading-relaxed mb-6"
             >
               We're building the operating layer for the next generation of
-              sales teams — combining real human execution with AI that actually
-              makes people better at their jobs.
+              sales teams. Real human execution, performance coaching, and
+              full transparency into results.
             </motion.p>
             <motion.p
               variants={fadeUpVariants}

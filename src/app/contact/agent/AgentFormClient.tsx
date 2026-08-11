@@ -93,7 +93,7 @@ export default function AgentFormClient() {
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
     setSubmitted(true);
-    // TODO: connect to backend — POST form data to /api/contact/agent
+    // TODO: POST form data to /api/contact/agent
   };
 
   return (

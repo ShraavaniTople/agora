@@ -11,11 +11,11 @@ export default function FinalCTA() {
       id="book"
       className="relative overflow-hidden py-28 lg:py-40"
       style={{
-        /* Bold violet-to-deeper-violet gradient — the clear page break */
+        /* Background gradient */
         background: "linear-gradient(160deg, #6321EE 0%, #4A18B8 55%, #380F90 100%)",
       }}
     >
-      {/* CSS grid lines overlay — white on violet */}
+      {/* Grid lines overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -27,7 +27,7 @@ export default function FinalCTA() {
         }}
       />
 
-      {/* Large inner radial to add depth — darker center-bottom */}
+      {/* Inner radial depth */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -47,7 +47,7 @@ export default function FinalCTA() {
         }}
       />
 
-      {/* Top separator — from dark page into violet */}
+      {/* Top separator */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)" }}
@@ -84,7 +84,7 @@ export default function FinalCTA() {
             </div>
           </motion.div>
 
-          {/* Headline — white on violet, maximum contrast */}
+          {/* Headline */}
           <motion.h2
             variants={fadeUpVariants}
             className="font-black text-white leading-[0.96] tracking-[-0.04em] mb-7"
@@ -105,7 +105,7 @@ export default function FinalCTA() {
             </span>
           </motion.h2>
 
-          {/* Sub — white/70 on violet */}
+          {/* Subheading */}
           <motion.p
             variants={fadeUpVariants}
             className="text-white/70 text-[16px] max-w-lg mx-auto mb-14 leading-relaxed"
@@ -114,7 +114,7 @@ export default function FinalCTA() {
             from mid-market pods to enterprise programs.
           </motion.p>
 
-          {/* CTAs — reversed palette: white button on violet bg */}
+          {/* CTAs */}
           <motion.div
             variants={fadeUpVariants}
             className="flex flex-col sm:flex-row items-center justify-center gap-3"

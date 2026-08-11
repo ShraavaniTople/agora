@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView, animate } from "framer-motion";
 
-/* ── Animated counter ────────────────────────────────────────────── */
 function Counter({
   target,
   prefix = "",
@@ -30,7 +29,6 @@ function Counter({
   return <>{prefix}{value}{suffix}</>;
 }
 
-/* ── Side card (left / right) ────────────────────────────────────── */
 function SideCard({
   label,
   number,
@@ -120,7 +118,7 @@ function SideCard({
           transition: "border-color 0.3s ease",
         }}
       >
-        {/* Description — hidden until hover */}
+        {/* Description, revealed on hover */}
         <div
           style={{
             opacity: hovered ? 1 : 0,
@@ -152,7 +150,6 @@ function SideCard({
   );
 }
 
-/* ── Main section ────────────────────────────────────────────────── */
 export default function Stats() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -191,7 +188,7 @@ export default function Stats() {
         {/* Cards grid */}
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 items-stretch">
 
-          {/* Card 1 — Time Eliminated */}
+          {/* Card 1: Time Eliminated */}
           <SideCard
             label="Time Eliminated"
             number={<Counter target={6} suffix="+" inView={inView} />}
@@ -208,7 +205,7 @@ export default function Stats() {
             }
           />
 
-          {/* Card 2 — Cost Avoided (FEATURED) */}
+          {/* Card 2: Cost Avoided (featured) */}
           <motion.div
             initial={{ opacity: 0, y: 48 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -243,7 +240,7 @@ export default function Stats() {
               </p>
             </div>
 
-            {/* Bottom — always visible on featured card */}
+            {/* Bottom: always visible */}
             <div
               className="mt-auto pt-5 relative z-10"
               style={{ borderTop: "1px solid rgba(127,255,212,0.15)" }}
@@ -258,7 +255,7 @@ export default function Stats() {
             </div>
           </motion.div>
 
-          {/* Card 3 — Revenue Impact */}
+          {/* Card 3: Revenue Impact */}
           <SideCard
             label="Revenue Impact"
             number={<>+<Counter target={2} suffix="%" inView={inView} duration={1.4} /></>}

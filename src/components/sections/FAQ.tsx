@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     question: "How do you make sure messaging matches our brand?",
-    answer: "Brand alignment is baked into onboarding. We work with you to develop and approve scripts, talk tracks, and objection-handling playbooks before a single call is made. Our AI coaching layer then enforces consistency at scale — flagging deviations and scoring quality.",
+    answer: "Brand alignment is baked into onboarding. We work with you to develop and approve scripts, talk tracks, and objection-handling playbooks before a single call is made. Our coaching layer enforces consistency at scale, flagging deviations and scoring quality.",
   },
   {
     question: "How does pricing work?",

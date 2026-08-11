@@ -116,7 +116,7 @@ export default function Services() {
                 variants={fadeUpVariants}
                 className="group relative rounded-2xl overflow-hidden transition-all duration-300"
                 style={{
-                  /* Colored left border — 3px, always visible */
+                  /* Colored left border */
                   borderLeft: `3px solid ${service.color}`,
                   borderTop: "1px solid rgba(255,255,255,0.07)",
                   borderRight: "1px solid rgba(255,255,255,0.07)",
@@ -178,7 +178,7 @@ export default function Services() {
                   </p>
                 </div>
 
-                {/* Bottom line — always partially visible, full on hover */}
+                {/* Bottom accent line */}
                 <div
                   className="absolute bottom-0 left-0 h-[1px] transition-all duration-700"
                   style={{
