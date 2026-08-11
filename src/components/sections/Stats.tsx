@@ -174,15 +174,18 @@ export default function Stats() {
           className="text-center mb-16 lg:mb-20"
         >
           <p className="text-[11px] font-black tracking-[0.28em] uppercase text-[#6321EE] mb-4">
-            By The Numbers
+            Results
           </p>
           <h2
-            className="font-black text-white tracking-[-0.03em] leading-none"
+            className="font-black text-white tracking-[-0.03em] leading-none mb-4"
             style={{ fontSize: "clamp(36px, 5vw, 60px)" }}
           >
-            The numbers{" "}
-            <span className="gradient-text">don&apos;t lie</span>
+            What you save vs.{" "}
+            <span className="gradient-text">hiring in-house</span>
           </h2>
+          <p className="text-white/35 text-[15px] max-w-md mx-auto">
+            Building an in-house SDR team means months of ramp time, six-figure salaries, and fixed overhead. AGORA replaces all of that.
+          </p>
         </motion.div>
 
         {/* Cards grid */}

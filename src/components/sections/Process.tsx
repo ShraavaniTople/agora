@@ -43,7 +43,7 @@ export default function Process() {
             <span className="gradient-text">Measurable results.</span>
           </motion.h2>
           <motion.p variants={fadeUpVariants} className="text-white/40 max-w-md mx-auto text-[15px]">
-            From kickoff to scaled revenue execution in weeks, not quarters.
+            From kickoff to a team making calls for you — in two weeks, not months.
           </motion.p>
         </motion.div>
 

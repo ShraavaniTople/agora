@@ -49,14 +49,14 @@ export default function AudienceSplit() {
             variants={fadeUpVariants}
             className="text-[11px] font-black tracking-[0.28em] uppercase text-white/30 mb-3"
           >
-            Who it's for
+            Who uses AGORA
           </motion.p>
           <motion.h2
             variants={fadeUpVariants}
             className="font-black text-white tracking-tight"
             style={{ fontSize: "clamp(28px, 4vw, 44px)" }}
           >
-            Two paths. One platform.
+            Are you a company or an SDR?
           </motion.h2>
         </motion.div>
 

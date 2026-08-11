@@ -241,10 +241,11 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-white/55 font-medium mb-6 mx-auto leading-relaxed"
-          style={{ fontSize: "clamp(16px, 2vw, 20px)", maxWidth: 540 }}
+          style={{ fontSize: "clamp(16px, 2vw, 20px)", maxWidth: 560 }}
         >
-          We give companies a coached, performance-driven sales team — on demand.
-          No hiring cycles. No fixed payroll. Just results.
+          You give us the campaign. We supply the sales reps, train them on your
+          script, and have them making calls within two weeks.
+          No hiring. No managing. Just pipeline.
         </motion.p>
 
         {/* Industry strip */}

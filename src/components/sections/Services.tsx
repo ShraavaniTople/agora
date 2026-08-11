@@ -7,36 +7,36 @@ import { Zap, Users, Brain, BarChart3 } from "lucide-react";
 const services = [
   {
     icon: Zap,
-    title: "Speed-to-Lead Coverage",
+    title: "Speed-to-Lead Follow-Up",
     description:
-      "Route inbound and outbound follow-up instantly with on-demand coverage, after-hours support, and lead recovery campaigns. Your team keeps control of messaging. We handle the execution layer.",
+      "When someone fills out a form or calls in, how fast does your team respond? AGORA agents cover inbound follow-up around the clock — so leads don't go cold while your team is busy.",
     color: "#6321EE",
     tag: "Inbound",
     index: "01",
   },
   {
     icon: Users,
-    title: "Dedicated Outbound Sales Pod",
+    title: "Outbound Prospecting Teams",
     description:
-      "Deploy dedicated pods for prospecting, account reactivation, and expansion campaigns. Scale up or down by region, segment, or program — without adding fixed payroll.",
+      "Need to reach new accounts in healthcare, recruiting, or commercial real estate? AGORA builds you a dedicated outbound team — trained on your pitch, working your list, reporting back daily.",
     color: "#7FFFD4",
     tag: "Outbound",
     index: "02",
   },
   {
     icon: Brain,
-    title: "Real-Time Performance Coaching",
+    title: "Live Call Coaching",
     description:
-      "Give every rep live call guidance, script optimization, and objection analytics. Stay consistent across teams and regions with performance scoring and clear quality controls.",
+      "Every AGORA agent gets real-time guidance on every call — what to say, how to handle objections, when to push and when to back off. Your messaging stays consistent, no matter how many reps are on the phone.",
     color: "#7ACCC8",
     tag: "Coaching",
     index: "03",
   },
   {
     icon: BarChart3,
-    title: "Enterprise-Grade Reporting",
+    title: "Full Campaign Reporting",
     description:
-      "Call scoring dashboards, conversion analytics, objection trend mapping, regional comparisons, and revenue attribution. Know exactly what's working — then scale it.",
+      "See exactly how your campaign is performing — calls made, contacts reached, bookings created, and where leads are dropping off. No guessing. Just clear numbers you can act on.",
     color: "#6321EE",
     tag: "Analytics",
     index: "04",
@@ -83,20 +83,20 @@ export default function Services() {
             variants={fadeUpVariants}
             className="text-[11px] font-black tracking-[0.28em] uppercase text-[#7FFFD4] mb-4"
           >
-            Revenue Acceleration
+            What You Get
           </motion.p>
           <motion.h2
             variants={fadeUpVariants}
             className="font-black text-white tracking-[-0.03em] leading-[1.02] mb-5"
             style={{ fontSize: "clamp(36px, 5.5vw, 68px)" }}
           >
-            Four tools.
+            Everything your
             <br />
-            <span className="gradient-text">One network.</span>
+            <span className="gradient-text">campaign needs.</span>
           </motion.h2>
           <motion.p variants={fadeUpVariants} className="text-white/45 text-[15px] leading-relaxed">
-            Agora connects companies that need outreach with proven sales agents.
-            Companies set the rules. Agents compete to deliver. We enforce the standard.
+            AGORA gives you trained sales reps, live call coaching, and full
+            reporting — all in one. You focus on closing. We handle the outreach.
           </motion.p>
         </motion.div>
 

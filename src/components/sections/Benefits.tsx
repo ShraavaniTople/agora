@@ -8,29 +8,29 @@ const benefits = [
   {
     icon: TrendingDown,
     num: "01",
-    title: "Lower fixed cost risk",
-    desc: "Avoid long hiring cycles, ramp delays, and fixed payroll. Deploy pods immediately with variable pricing aligned to outcomes.",
+    title: "No hiring. No ramp time.",
+    desc: "Skip the months-long SDR hiring process. AGORA agents are trained and deployed in weeks — you start seeing outreach activity almost immediately.",
     color: "#6321EE",
   },
   {
     icon: Layers,
     num: "02",
-    title: "Scale by region or program",
-    desc: "Add coverage for inbound spikes, outbound pushes, or expansion campaigns. Scale up or down without reorganizing your team.",
+    title: "Turn it up or down, anytime.",
+    desc: "Need more coverage for a product launch? Running a regional push? Scale the team up or down without reorganizing your headcount.",
     color: "#7FFFD4",
   },
   {
     icon: Target,
     num: "03",
-    title: "Recover missed opportunities",
-    desc: "Stop letting inquiries sit unworked. Speed-to-lead workflows and lead recovery campaigns protect pipeline and improve conversion.",
+    title: "Stop losing leads to slow follow-up.",
+    desc: "Most inbound leads go cold within the first hour. AGORA's speed-to-lead coverage means someone calls them back while they're still warm.",
     color: "#7ACCC8",
   },
   {
     icon: LineChart,
     num: "04",
-    title: "Performance-aligned economics",
-    desc: "Expand outreach with clearer accountability and transparent KPIs. Spend stays tied to measurable progress, not headcount.",
+    title: "Pay for results, not seats.",
+    desc: "AGORA pricing is tied to outcomes — bookings, conversations, and campaign performance. You spend based on what's working, not a fixed monthly contract.",
     color: "#6321EE",
   },
 ];
@@ -83,8 +83,8 @@ export default function Benefits() {
             <span className="gradient-text">choose AGORA</span>
           </motion.h2>
           <motion.p variants={fadeUpVariants} className="text-white/40 text-[15px] max-w-lg leading-relaxed">
-            Reduce ramp time, lower fixed cost risk, and improve pipeline velocity with a
-            measurable execution layer.
+            No ramp time. No fixed salaries. A sales team that&apos;s accountable to
+            results — not headcount.
           </motion.p>
         </motion.div>
 

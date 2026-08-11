@@ -90,18 +90,17 @@ export default function FinalCTA() {
             className="font-black text-white leading-[0.96] tracking-[-0.04em] mb-7"
             style={{ fontSize: "clamp(40px, 7vw, 80px)" }}
           >
-            Scale revenue execution
+            Add a sales team.
             <br />
             <span
               style={{
-                /* white → mint gradient for the punch-line */
                 background: "linear-gradient(120deg, #FFFFFF 0%, #7FFFD4 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              without scaling headcount
+              Skip the hiring.
             </span>
           </motion.h2>
 
@@ -110,8 +109,8 @@ export default function FinalCTA() {
             variants={fadeUpVariants}
             className="text-white/70 text-[16px] max-w-lg mx-auto mb-14 leading-relaxed"
           >
-            Book a call to see how AGORA fits into your business —
-            from mid-market pods to enterprise programs.
+            Book a call and we&apos;ll show you exactly how AGORA works for your business —
+            what the team looks like, how fast we can start, and what it costs.
           </motion.p>
 
           {/* CTAs */}
