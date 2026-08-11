@@ -30,7 +30,7 @@ function DispatchFlow() {
           <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#7ACCC8]/60">Company</span>
           <span className="text-[13px] font-bold text-white/90">Sets the brief</span>
         </div>
-        <span className="text-[11px] text-white/30 tracking-wide">defines the bar</span>
+        <span className="text-[11px] text-white/30 tracking-wide">your campaigns</span>
       </motion.div>
 
       {/* Connector left */}
@@ -76,7 +76,7 @@ function DispatchFlow() {
               transition={{ duration: 1.4, repeat: Infinity }}
               style={{ boxShadow: "0 0 6px #6321EE" }}
             />
-            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#6321EE]">Dispatch</span>
+            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#6321EE]">Matches + Coaches</span>
           </div>
           <span className="text-[15px] font-black tracking-wide text-white">AGORA</span>
           <div
@@ -84,7 +84,7 @@ function DispatchFlow() {
             style={{ background: "linear-gradient(135deg, rgba(99,33,238,0.22) 0%, transparent 55%)" }}
           />
         </div>
-        <span className="text-[11px] text-[#6321EE] font-semibold tracking-wide">Performance core</span>
+        <span className="text-[11px] text-[#6321EE] font-semibold tracking-wide">we handle the rest</span>
       </motion.div>
 
       {/* Connector right */}
@@ -127,9 +127,9 @@ function DispatchFlow() {
             style={{ background: "linear-gradient(90deg, transparent, #7FFFD4, transparent)" }}
           />
           <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#7FFFD4]/60">Agent</span>
-          <span className="text-[13px] font-bold text-white/90">Competes to win</span>
+          <span className="text-[13px] font-bold text-white/90">Executes + earns</span>
         </div>
-        <span className="text-[11px] text-white/30 tracking-wide">competes to clear</span>
+        <span className="text-[11px] text-white/30 tracking-wide">no hiring needed</span>
       </motion.div>
     </div>
   );
@@ -220,6 +220,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
+        {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
@@ -227,35 +228,52 @@ export default function Hero() {
           className="font-black text-white leading-[0.94] tracking-[-0.04em] mb-7"
           style={{ fontSize: "clamp(52px, 9vw, 104px)" }}
         >
-          Plug&nbsp;&amp;&nbsp;Play
+          Outbound&nbsp;Sales,
           <br />
-          <span className="gradient-text">Sales</span>
-          <span className="text-white">, Built</span>
+          <span className="gradient-text">Without&nbsp;the</span>
           <br />
-          <span className="text-white">to&nbsp;</span>
-          <span className="gradient-text">Scale</span>
+          <span className="text-white">Overhead</span>
         </motion.h1>
 
+        {/* Subtext */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-white/55 font-medium mb-12 mx-auto leading-relaxed"
-          style={{ fontSize: "clamp(16px, 2vw, 20px)", maxWidth: 520 }}
+          className="text-white/55 font-medium mb-6 mx-auto leading-relaxed"
+          style={{ fontSize: "clamp(16px, 2vw, 20px)", maxWidth: 540 }}
         >
-          CRM meets gig-sales force. Companies dispatch.
-          Agents compete. Revenue scales.
+          We give companies a coached, performance-driven sales team — on demand.
+          No hiring cycles. No fixed payroll. Just results.
         </motion.p>
+
+        {/* Industry strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex items-center justify-center gap-2 mb-10 flex-wrap"
+        >
+          <span className="text-[11px] text-white/25 font-medium tracking-wide">Active in</span>
+          {["Healthcare", "Recruiting", "Commercial Real Estate"].map((ind, i) => (
+            <span key={ind} className="flex items-center gap-2">
+              <span className="text-[11px] font-semibold text-white/50">{ind}</span>
+              {i < 2 && <span className="text-white/15">·</span>}
+            </span>
+          ))}
+        </motion.div>
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.55 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-20"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-5"
         >
-          <Link
-            href="/contact"
+          <a
+            href="https://calendly.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-2.5 rounded-xl bg-[#6321EE] text-white font-bold transition-all duration-300 w-full sm:w-auto justify-center"
             style={{
               padding: "14px 28px",
@@ -271,29 +289,42 @@ export default function Hero() {
               (e.currentTarget as HTMLElement).style.background = "#6321EE";
             }}
           >
-            Get Started
+            Book a Free Call
             <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
-          </Link>
-          <a
-            href="https://calendly.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2.5 rounded-xl text-white font-semibold transition-all duration-300 w-full sm:w-auto justify-center hover:border-[#7FFFD4]/50 hover:text-[#7FFFD4]"
+          </a>
+          <Link
+            href="/contact"
+            className="flex items-center gap-2.5 rounded-xl text-white font-semibold transition-all duration-300 w-full sm:w-auto justify-center hover:border-white/30 hover:text-white/90"
             style={{
               padding: "14px 28px",
               fontSize: 15,
               border: "1px solid rgba(255,255,255,0.18)",
             }}
           >
-            Book a Call
-          </a>
+            Get Started
+          </Link>
+        </motion.div>
+
+        {/* Agent path link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="mb-16"
+        >
+          <Link
+            href="/for-agents"
+            className="text-[12px] text-white/30 hover:text-[#7FFFD4] transition-colors duration-200 font-medium"
+          >
+            Looking to build your sales career? Apply as an SDR →
+          </Link>
         </motion.div>
 
         {/* Dispatch flow diagram */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
+          transition={{ duration: 0.8, delay: 0.75 }}
         >
           <DispatchFlow />
         </motion.div>

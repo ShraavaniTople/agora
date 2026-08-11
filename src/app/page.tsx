@@ -1,4 +1,5 @@
 import Hero from "@/components/sections/Hero";
+import AudienceSplit from "@/components/sections/AudienceSplit";
 import Stats from "@/components/sections/Stats";
 import Services from "@/components/sections/Services";
 import Integrations from "@/components/sections/Integrations";
@@ -13,6 +14,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <AudienceSplit />
       <Stats />
       <Services />
       <Integrations />
