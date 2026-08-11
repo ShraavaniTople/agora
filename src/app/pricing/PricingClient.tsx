@@ -32,7 +32,7 @@ const illustrativeEngagements = [
   {
     name: "Enterprise Program",
     description:
-      "Multi-pod deployments with full reporting, AI coaching, and regional expansion built in. Best for scaled revenue teams running complex, multi-segment motions.",
+      "Multi-pod deployments with full reporting, performance coaching, and regional expansion built in. Best for scaled revenue teams running complex, multi-segment motions.",
     tags: ["Multi-Pod", "Enterprise Reporting", "Regional Expansion"],
     color: "#7ACCC8",
   },

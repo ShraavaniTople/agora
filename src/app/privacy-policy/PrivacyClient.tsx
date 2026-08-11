@@ -4,7 +4,7 @@ import Link from "next/link";
 const sections = [
   { id: "information-we-collect", label: "Information We Collect" },
   { id: "how-we-use", label: "How We Use Your Information" },
-  { id: "ai-data-processing", label: "AI Data Processing" },
+  { id: "data-processing", label: "Data Processing" },
   { id: "information-sharing", label: "Information Sharing" },
   { id: "data-security", label: "Data Security & Retention" },
   { id: "your-rights", label: "Your Rights & Controls" },
@@ -12,7 +12,7 @@ const sections = [
   { id: "abuse-prevention", label: "Platform Abuse Prevention" },
   { id: "cookies", label: "Cookies & Tracking" },
   { id: "international-transfers", label: "International Transfers" },
-  { id: "ai-ethics", label: "AI Ethics & Responsible Use" },
+  { id: "ethics", label: "Ethics & Responsible Use" },
 ];
 
 export default function PrivacyClient() {
@@ -20,7 +20,7 @@ export default function PrivacyClient() {
     <LegalLayout
       title="Privacy Policy"
       lastUpdated="September 15, 2025"
-      intro="This Privacy Policy explains how AGORA AI LLC collects, uses, discloses, and protects your personal data when you access our AI-powered outbound calling platform, including our website, mobile applications, and related services. As a platform connecting businesses with gig agents through AI coaching technology, we process data for multiple user types: business clients uploading leads, freelance agents making calls, and prospects receiving outbound communications."
+      intro="This Privacy Policy explains how AGORA AI LLC collects, uses, discloses, and protects your personal data when you access our outbound sales platform, including our website, mobile applications, and related services. As a platform connecting businesses with gig agents through coaching technology, we process data for multiple user types: business clients uploading leads, freelance agents making calls, and prospects receiving outbound communications."
       sections={sections}
     >
       <LegalSection id="information-we-collect" title="Information We Collect">
@@ -51,7 +51,7 @@ export default function PrivacyClient() {
           ]}
         />
 
-        <p className="font-semibold text-white/80 mt-4">AI Training Data</p>
+        <p className="font-semibold text-white/80 mt-4">Platform Training Data</p>
         <LegalList
           items={[
             "Anonymized call transcripts and outcome labels (booking rate, conversion, objection type)",
@@ -72,12 +72,12 @@ export default function PrivacyClient() {
           items={[
             "Provision and maintain your account and associated campaigns",
             "Match business clients with qualified agents based on campaign requirements",
-            "Deliver AI coaching and quality scoring to improve agent performance",
+            "Deliver coaching and quality scoring to improve agent performance",
             "Generate analytics and reporting dashboards for business clients",
             "Detect, investigate, and prevent fraudulent, abusive, or illegal activity",
             "Comply with applicable legal obligations and respond to lawful requests",
             "Send operational communications, including account and campaign updates",
-            "Improve our AI models using anonymized, aggregated training data",
+            "Improve our platform using anonymized, aggregated training data",
           ]}
         />
         <p className="mt-4">
@@ -87,15 +87,15 @@ export default function PrivacyClient() {
         </p>
       </LegalSection>
 
-      <LegalSection id="ai-data-processing" title="AI Data Processing and Training">
+      <LegalSection id="data-processing" title="Data Processing and Training">
         <p>
-          AGORA uses artificial intelligence to power call coaching, script
+          AGORA uses automated systems to power call coaching, script
           optimization, objection analysis, and performance scoring. These
           systems are trained on data derived from platform activity, and their
           outputs influence how agents are matched, coached, and compensated.
         </p>
         <p>
-          Before using any call data for AI training purposes, we apply
+          Before using any call data for training purposes, we apply
           anonymization and aggregation processes to remove personally
           identifiable information from underlying records. Training data is
           stored separately from operational data and subject to additional
@@ -103,7 +103,7 @@ export default function PrivacyClient() {
         </p>
         <p>
           Business clients may request that their campaign data be excluded from
-          AI training by contacting our privacy team. This election does not
+          platform training by contacting our privacy team. This election does not
           affect access to platform services or reporting.
         </p>
       </LegalSection>
@@ -163,7 +163,7 @@ export default function PrivacyClient() {
             "Correction: Update inaccurate or incomplete data in your account settings",
             "Deletion: Request removal of your personal data, subject to legal retention obligations",
             "Portability: Receive your data in a structured, machine-readable format",
-            "Opt-out: Withdraw consent for AI training use of your data at any time",
+            "Opt-out: Withdraw consent for platform training use of your data at any time",
           ]}
         />
         <p className="mt-4">
@@ -239,19 +239,19 @@ export default function PrivacyClient() {
         </p>
       </LegalSection>
 
-      <LegalSection id="ai-ethics" title="AI Ethics and Responsible Use">
+      <LegalSection id="ethics" title="Ethics and Responsible Use">
         <p>
-          Our privacy practices are guided by our comprehensive AI Ethics
-          framework. We believe in building AI that is transparent, fair, and
-          respects human autonomy.
+          Our privacy practices are guided by a commitment to transparency,
+          fairness, and respect for human autonomy. We build our platform to
+          give people meaningful control over how their data is used.
         </p>
 
-        <p className="font-semibold text-white/80 mt-4">Ethical AI Principles</p>
+        <p className="font-semibold text-white/80 mt-4">Our Principles</p>
         <LegalList
           items={[
-            "Human oversight in all AI decisions — no automated action is taken without a human in the loop for consequential outcomes",
+            "Human oversight in all automated decisions. No consequential action is taken without a person in the loop.",
             "Bias detection and mitigation systems applied to coaching models and agent scoring",
-            "Transparent AI decision-making processes — agents can review their performance scores and understand how they were calculated",
+            "Transparent scoring processes. Agents can review their performance scores and understand how they were calculated.",
             "Regular auditing and continuous improvement of model fairness and accuracy",
           ]}
         />
@@ -259,16 +259,15 @@ export default function PrivacyClient() {
         <p className="font-semibold text-white/80 mt-4">Data Protection Commitments</p>
         <LegalList
           items={[
-            "Anonymization of all AI training data before model ingestion",
-            "Minimal data collection principles — we collect only what is necessary for platform function",
-            "User control over AI processing, including opt-out rights for training use",
+            "Anonymization of all training data before platform ingestion",
+            "Minimal data collection. We collect only what is necessary for platform function.",
+            "User control over data processing, including opt-out rights for training use",
             "Secure, encrypted data storage with access limited to authorized personnel",
           ]}
         />
 
         <p className="mt-4">
-          Questions about Privacy? If you have any questions about this Privacy
-          Policy, your data rights, or our AI practices, please contact our
+          Questions about this Privacy Policy or your data rights? Contact our
           privacy team.
         </p>
         <div className="mt-4">
@@ -276,7 +275,7 @@ export default function PrivacyClient() {
             href="mailto:privacy@agoraai.tech"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#6321EE]/15 border border-[#6321EE]/30 text-[#7FFFD4] text-sm font-medium hover:bg-[#6321EE]/25 transition-all duration-200"
           >
-            Email Privacy Team →
+            Email Privacy Team
           </a>
         </div>
       </LegalSection>

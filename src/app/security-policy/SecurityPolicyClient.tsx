@@ -46,7 +46,7 @@ export default function SecurityPolicyClient() {
           items={[
             "User account data, campaign configurations, and lead records stored in our databases",
             "Call recordings stored in cloud object storage",
-            "AI training datasets and model artifacts",
+            "Training datasets and model artifacts used by platform systems",
             "Backup copies of all production data",
           ]}
         />

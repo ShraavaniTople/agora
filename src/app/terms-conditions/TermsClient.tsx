@@ -6,7 +6,7 @@ const sections = [
   { id: "business-client-requirements", label: "Business Client Requirements" },
   { id: "agent-requirements", label: "Gig Agent Requirements" },
   { id: "telemarketing-compliance", label: "Telemarketing Compliance" },
-  { id: "data-rights", label: "Data Rights & AI Training" },
+  { id: "data-rights", label: "Data Rights & Platform Training" },
   { id: "performance-disclaimers", label: "Performance Disclaimers" },
   { id: "pricing-payment", label: "Pricing & Payment Terms" },
   { id: "liability-limitations", label: "Liability Limitations" },
@@ -19,7 +19,7 @@ export default function TermsClient() {
     <LegalLayout
       title="Terms & Conditions"
       lastUpdated="September 15, 2025"
-      intro="Please read these terms and conditions carefully before using our AI-powered outbound sales platform. These terms constitute a legal agreement between AGORA AI LLC ('AGORA,' 'we,' or 'us') and the entity or person ('Customer,' 'you,' or 'User') who registers for or uses our AI-powered outbound sales platform services ('Services'). AGORA facilitates relationships between three parties: AGORA (Platform operator and technology provider), Business Clients (Companies uploading leads and campaigns), and Gig Agents (Independent contractors making outbound calls)."
+      intro="Please read these terms and conditions carefully before using our outbound sales platform. These terms constitute a legal agreement between AGORA AI LLC ('AGORA,' 'we,' or 'us') and the entity or person ('Customer,' 'you,' or 'User') who registers for or uses our outbound sales platform services ('Services'). AGORA facilitates relationships between three parties: AGORA (Platform operator and technology provider), Business Clients (Companies uploading leads and campaigns), and Gig Agents (Independent contractors making outbound calls)."
       sections={sections}
     >
       <LegalSection id="acceptance" title="Acceptance of Terms">
@@ -44,7 +44,7 @@ export default function TermsClient() {
           AGORA is a technology platform that connects business clients with
           independent contractor sales agents for the purpose of outbound
           calling, lead follow-up, and sales execution programs. AGORA provides
-          the matching technology, AI coaching infrastructure, reporting
+          the matching technology, coaching infrastructure, reporting
           dashboards, and quality control systems.
         </p>
         <p>
@@ -117,17 +117,17 @@ export default function TermsClient() {
         </p>
       </LegalSection>
 
-      <LegalSection id="data-rights" title="Data Rights & AI Training">
+      <LegalSection id="data-rights" title="Data Rights & Platform Training">
         <p>
           Business clients retain ownership of their lead data and campaign
           configurations. By using the AGORA platform, you grant AGORA a
           limited license to process your data for the purpose of delivering
-          platform services, including AI coaching, reporting, and quality
+          platform services, including coaching, reporting, and quality
           scoring.
         </p>
         <p>
           Call data may be used in anonymized, aggregated form to improve
-          AGORA's AI models. Business clients may opt out of this use by
+          AGORA's platform. Business clients may opt out of this use by
           contacting our privacy team. Agents' performance data may similarly be
           used for model improvement; agents may request exclusion as described
           in our Privacy Policy.
