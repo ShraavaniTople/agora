@@ -226,13 +226,13 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="font-black text-white leading-[0.94] tracking-[-0.04em] mb-7"
-          style={{ fontSize: "clamp(52px, 9vw, 104px)" }}
+          style={{ fontSize: "clamp(48px, 8.5vw, 100px)" }}
         >
-          Outbound&nbsp;Sales,
+          Your outbound
           <br />
-          <span className="gradient-text">Without&nbsp;the</span>
+          <span className="gradient-text">sales team,</span>
           <br />
-          <span className="text-white">Overhead</span>
+          <span className="text-white">on demand</span>
         </motion.h1>
 
         {/* Subtext */}
@@ -243,9 +243,9 @@ export default function Hero() {
           className="text-white/55 font-medium mb-6 mx-auto leading-relaxed"
           style={{ fontSize: "clamp(16px, 2vw, 20px)", maxWidth: 560 }}
         >
-          You give us the campaign. We supply the sales reps, train them on your
-          script, and have them making calls within two weeks.
-          No hiring. No managing. Just pipeline.
+          AGORA recruits, trains, and deploys sales reps for your campaigns —
+          in healthcare, recruiting, and commercial real estate.
+          No hiring. No managing. Ready in two weeks.
         </motion.p>
 
         {/* Industry strip */}
