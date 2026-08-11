@@ -11,9 +11,10 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Forward to your error tracking service (e.g. Sentry) once configured
     // eslint-disable-next-line no-console
     console.error(error);
+    // To wire up Sentry: npm install @sentry/nextjs, add sentry.client.config.ts,
+    // set NEXT_PUBLIC_SENTRY_DSN, then call Sentry.captureException(error) here.
   }, [error]);
 
   return (

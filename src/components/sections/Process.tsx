@@ -9,7 +9,7 @@ import type { LucideIcon } from "lucide-react";
 const steps: { n: string; Icon: LucideIcon; color: string; title: string; desc: string }[] = [
   { n: "01", Icon: SlidersHorizontal, color: "#6321EE", title: "Align on goals and guardrails", desc: "Define targets, lead sources, messaging, routing, and QA requirements. We map scripts and success criteria to your existing sales motion." },
   { n: "02", Icon: Rocket, color: "#7FFFD4", title: "Launch your specialized team", desc: "We staff a dedicated team aligned to your segment, region, and use case, with clear accountability and performance scoring." },
-  { n: "03", Icon: BrainCircuit, color: "#7ACCC8", title: "Calibrate scripts and AI coaching", desc: "We tune talk tracks, objection handling, and routing based on real conversations, then standardize what performs best." },
+  { n: "03", Icon: BrainCircuit, color: "#7ACCC8", title: "Calibrate scripts and coaching", desc: "We tune talk tracks, objection handling, and routing based on real conversations, then standardize what performs best." },
   { n: "04", Icon: BarChart2, color: "#6321EE", title: "Track lift with full transparency", desc: "Monitor contact rates, booking rates, call quality, and outcomes in dashboards. You'll always know exactly what you're paying for." },
   { n: "05", Icon: Zap, color: "#7FFFD4", title: "Scale what works", desc: "Expand capacity by program, region, or segment once KPIs are stable. Keep your core team on strategy while AGORA scales execution." },
 ];

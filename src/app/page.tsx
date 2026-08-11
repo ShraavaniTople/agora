@@ -4,8 +4,9 @@ import Services from "@/components/sections/Services";
 import Integrations from "@/components/sections/Integrations";
 import Process from "@/components/sections/Process";
 import Benefits from "@/components/sections/Benefits";
-import FAQ from "@/components/sections/FAQ";
+import HomePricing from "@/components/sections/HomePricing";
 import Press from "@/components/sections/Press";
+import FAQ from "@/components/sections/FAQ";
 import FinalCTA from "@/components/sections/FinalCTA";
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Integrations />
       <Process />
       <Benefits />
+      <HomePricing />
       <Press />
       <FAQ />
       <FinalCTA />

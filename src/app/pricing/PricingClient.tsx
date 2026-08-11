@@ -26,14 +26,14 @@ const illustrativeEngagements = [
     name: "Outbound Growth Pod",
     description:
       "Prospecting and account reactivation at scale — by region, segment, or campaign. Best for companies looking to grow net-new pipeline without adding headcount.",
-    tags: ["Outbound Prospecting", "Reactivation", "AI Coaching"],
+    tags: ["Outbound Prospecting", "Reactivation", "Live Coaching"],
     color: "#7FFFD4",
   },
   {
     name: "Enterprise Program",
     description:
       "Multi-pod deployments with full reporting, AI coaching, and regional expansion built in. Best for scaled revenue teams running complex, multi-segment motions.",
-    tags: ["Multi-Pod", "Enterprise Reporting", "Custom SLA"],
+    tags: ["Multi-Pod", "Enterprise Reporting", "Regional Expansion"],
     color: "#7ACCC8",
   },
 ];

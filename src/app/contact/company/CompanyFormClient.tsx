@@ -37,7 +37,7 @@ const leadVolumes = [
 const helpOptions = [
   "Speed-to-Lead",
   "Outbound Pod",
-  "AI Coaching",
+  "Live Coaching",
   "Reporting",
   "Other",
 ];

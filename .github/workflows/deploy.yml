@@ -42,8 +42,6 @@ jobs:
     name: Build
     needs: quality
     runs-on: ubuntu-latest
-    # Only deploy on push to main, not on pull requests
-    if: github.event_name != 'pull_request'
     steps:
       - uses: actions/checkout@v4
 
@@ -63,9 +61,11 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://shraavanitople.github.io/agora
 
       - name: Add .nojekyll
+        if: github.event_name != 'pull_request'
         run: touch out/.nojekyll
 
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: out
@@ -73,6 +73,7 @@ jobs:
   deploy:
     name: Deploy
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

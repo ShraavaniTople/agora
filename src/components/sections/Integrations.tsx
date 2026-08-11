@@ -10,7 +10,7 @@ const integrations = [
   { name: "Outlook", emoji: "📧" },
   { name: "Calendly", emoji: "📅" },
   { name: "Pipedrive", emoji: "🎯" },
-  { name: "ChatGPT", emoji: "🤖" },
+  { name: "Apollo", emoji: "🚀" },
   { name: "Zoom", emoji: "📹" },
   { name: "Google Workspace", emoji: "🔵" },
   { name: "Notion", emoji: "⬛" },

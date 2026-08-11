@@ -25,11 +25,11 @@ const services = [
   },
   {
     icon: Brain,
-    title: "Real-Time AI Coaching",
+    title: "Real-Time Performance Coaching",
     description:
       "Give every rep live call guidance, script optimization, and objection analytics. Stay consistent across teams and regions with performance scoring and clear quality controls.",
     color: "#7ACCC8",
-    tag: "AI",
+    tag: "Coaching",
     index: "03",
   },
   {

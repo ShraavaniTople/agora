@@ -10,11 +10,11 @@ const cards = [
     icon: Building2,
     role: "I run a company",
     description:
-      "Set up outbound coverage, speed-to-lead pods, AI coaching, and reporting for your revenue team.",
+      "Set up outbound coverage, speed-to-lead pods, live coaching, and reporting for your revenue team.",
     cta: "Get in touch",
     href: "/contact/company",
     color: "#6321EE",
-    tags: ["Outbound Pods", "AI Coaching", "Reporting"],
+    tags: ["Outbound Pods", "Live Coaching", "Reporting"],
   },
   {
     icon: User,
@@ -24,7 +24,7 @@ const cards = [
     cta: "Get in touch",
     href: "/contact/agent",
     color: "#7FFFD4",
-    tags: ["Remote", "Performance Pay", "AI Coaching"],
+    tags: ["Remote", "Performance Pay", "Live Coaching"],
   },
 ];
 

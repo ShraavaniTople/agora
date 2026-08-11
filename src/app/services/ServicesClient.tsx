@@ -38,8 +38,8 @@ const services = [
   },
   {
     icon: Brain,
-    id: "ai-coaching",
-    title: "Real-Time AI Coaching",
+    id: "coaching",
+    title: "Real-Time Performance Coaching",
     tagline: "Every rep. Every call. Consistent.",
     description:
       "Give every rep and pod live call guidance, script optimization, and objection analytics. Stay consistent across teams and regions, with performance scoring and clear quality controls.",

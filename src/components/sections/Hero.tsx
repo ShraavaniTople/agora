@@ -83,7 +83,7 @@ function DispatchFlow() {
               transition={{ duration: 1.4, repeat: Infinity }}
               style={{ boxShadow: "0 0 6px #6321EE" }}
             />
-            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#6321EE]">AI Dispatch</span>
+            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-[#6321EE]">Dispatch</span>
           </div>
           <span className="text-[15px] font-black tracking-wide text-white">AGORA</span>
           {/* inner glow sweep */}
@@ -92,7 +92,7 @@ function DispatchFlow() {
             style={{ background: "linear-gradient(135deg, rgba(99,33,238,0.22) 0%, transparent 55%)" }}
           />
         </div>
-        <span className="text-[11px] text-[#6321EE] font-semibold tracking-wide">AI-powered core</span>
+        <span className="text-[11px] text-[#6321EE] font-semibold tracking-wide">Performance core</span>
       </motion.div>
 
       {/* ── Connector right ── */}
@@ -232,7 +232,7 @@ export default function Hero() {
               style={{ boxShadow: "0 0 6px #6321EE" }}
             />
             <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#6321EE]">
-              AI-Powered Sales Marketplace
+              Georgia Tech Backed · Sales Network
             </span>
           </div>
         </motion.div>
