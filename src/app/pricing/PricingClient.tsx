@@ -6,12 +6,12 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import { fadeUpVariants, staggerContainer } from "@/components/ui/SectionWrapper";
 
 const valueProps = [
-  "No rigid tiers or bloated packages",
-  "Pay only for tools, automation, and support you actually use",
-  "Variable pricing aligned to your outcomes",
-  "Scale up or down by program without renegotiating",
-  "Full transparency — dashboards tied to every dollar spent",
-  "Performance-aligned economics from day one",
+  "No rigid tiers or packages — pricing fits your program",
+  "Pay based on what you use, not a fixed monthly seat fee",
+  "Scale up or down at any time without renegotiating",
+  "Full transparency — dashboards show exactly what your spend is doing",
+  "Pricing built around your outcomes, not our package sizes",
+  "No long-term commitments required to get started",
 ];
 
 const illustrativeEngagements = [
@@ -69,10 +69,9 @@ export default function PricingClient() {
               variants={fadeUpVariants}
               className="text-base sm:text-lg text-white/55 max-w-2xl mx-auto mb-12"
             >
-              Smart, scalable engagement designed to align with your
-              organization. Why pay for bloated packages filled with features
-              you'll never use? Our custom pricing structure fits your business
-              — not the other way around.
+              Tell us what you need — number of reps, industries, campaign type.
+              We build pricing around your program, not the other way around.
+              No bloated packages. No paying for things you don&apos;t use.
             </motion.p>
           </motion.div>
         </div>
@@ -94,15 +93,15 @@ export default function PricingClient() {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#6321EE]/20 border border-[#6321EE]/40 mb-4">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#7FFFD4] animate-pulse" />
                 <span className="text-xs font-semibold text-[#7FFFD4]">
-                  Performance Based Pricing → Custom
+                  Custom pricing — no fixed tiers
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                No fluff. No unnecessary add-ons. No rigid tiers.
+                You only pay for what your program actually needs.
               </h2>
               <p className="text-white/55">
-                You only invest in the tools, automation, and support you
-                actually need.
+                Every AGORA engagement is scoped to your team size, campaign
+                type, and industry — then priced accordingly.
               </p>
             </motion.div>
 
@@ -154,20 +153,21 @@ export default function PricingClient() {
               variants={fadeUpVariants}
               className="text-xs font-bold tracking-[0.25em] uppercase text-white/30 mb-2"
             >
-              Illustrative Engagement Models
+              Program types
             </motion.p>
             <motion.h2
               variants={fadeUpVariants}
               className="text-2xl sm:text-3xl font-bold text-white"
             >
-              Common ways companies work with AGORA
+              Common ways companies use AGORA
             </motion.h2>
             <motion.p
               variants={fadeUpVariants}
               className="mt-3 text-sm text-white/40"
             >
-              These are example program types — not fixed pricing packages.
-              Pricing for each is custom and based on your specific needs.
+              These aren&apos;t fixed tiers — they&apos;re examples of what programs
+              typically look like. Every engagement is scoped and priced
+              specifically for your needs.
             </motion.p>
           </motion.div>
 

@@ -12,12 +12,12 @@ const services = [
     title: "Speed-to-Lead Coverage",
     tagline: "Never let an inbound lead sit unworked.",
     description:
-      "Route inbound and outbound follow-up instantly with on-demand coverage, after-hours support, and lead recovery campaigns. Your team keeps control of messaging. We handle the execution layer and reporting.",
+      "When someone fills out a form or calls in, how quickly does your team respond? AGORA agents handle inbound follow-up around the clock — including after hours, weekends, and overflow — so leads don't go cold while your team is tied up.",
     bullets: [
-      "On-demand coverage for inbound spikes and after-hours leads",
-      "Lead recovery campaigns for dormant pipeline",
-      "Real-time routing and assignment to qualified agents",
-      "Full reporting tied to contact rate and booking rate outcomes",
+      "Around-the-clock coverage for inbound leads, including after-hours and weekends",
+      "Follow-up campaigns for leads that went cold or never got a callback",
+      "Every call logged and reported — contact rate, booking rate, outcomes",
+      "Your team keeps full control of messaging and routing rules",
     ],
     color: "#6321EE",
   },
@@ -27,12 +27,12 @@ const services = [
     title: "Dedicated Outbound Sales Pod",
     tagline: "Scale pipeline without scaling payroll.",
     description:
-      "Deploy dedicated pods for inbound speed-to-lead, outbound prospecting, account reactivation, and expansion campaigns. Scale up or down by region, segment, or program, without adding fixed payroll.",
+      "Need to reach new accounts in healthcare, recruiting, or commercial real estate? AGORA builds you a dedicated outbound team — briefed on your pitch, working your list, and reporting back daily. Add more capacity anytime without growing your headcount.",
     bullets: [
-      "Dedicated agent pods aligned to your segment, region, or use case",
-      "Outbound prospecting and account reactivation programs",
-      "Expansion into new markets without reorganizing your team",
-      "Variable capacity — scale up or down by program without long-term commitments",
+      "Dedicated team built around your industry, region, and target accounts",
+      "Outbound prospecting and reactivation of dormant accounts",
+      "Expand into new markets without reorganizing your internal team",
+      "Scale capacity up or down by program — no long-term commitments",
     ],
     color: "#7FFFD4",
   },
@@ -57,12 +57,12 @@ const services = [
     title: "Enterprise-Grade Reporting",
     tagline: "Know what's working. Scale it.",
     description:
-      "Get call scoring dashboards, conversion analytics, objection trend mapping, regional comparisons, and revenue attribution reporting. Know what's working, and scale it with confidence.",
+      "See exactly how your campaign is performing — calls made, contacts reached, bookings created, and where leads are dropping off. No black boxes. Just clear numbers you can act on.",
     bullets: [
-      "Call scoring dashboards and conversion analytics",
-      "Objection trend mapping and script effectiveness analysis",
-      "Regional and segment-level performance comparisons",
-      "Revenue attribution reporting tied to campaign outcomes",
+      "Daily and weekly dashboards showing calls, contacts, and bookings",
+      "Where leads drop off — and what's working to convert them",
+      "Script and objection analysis so you can see what messaging actually lands",
+      "Compare performance across regions, segments, or campaign types",
     ],
     color: "#6321EE",
   },
@@ -92,16 +92,17 @@ export default function ServicesClient() {
               variants={fadeUpVariants}
               className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight mb-6 max-w-3xl"
             >
-              Revenue Acceleration{" "}
-              <span className="gradient-text">With AGORA</span>
+              What your{" "}
+              <span className="gradient-text">AGORA program</span>{" "}
+              includes
             </motion.h1>
             <motion.p
               variants={fadeUpVariants}
               className="text-base sm:text-xl text-white/55 max-w-xl leading-relaxed"
             >
-              Agora connects companies that need outreach with proven sales
-              agents. Companies set the rules — calls, closes, and performance
-              standards. Agents qualify on results and compete to clear the bar.
+              We supply trained sales reps for your campaigns — and wrap
+              them in coaching, quality control, and reporting. Here&apos;s
+              what each piece does.
             </motion.p>
           </motion.div>
         </div>

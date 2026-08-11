@@ -10,21 +10,21 @@ const cards = [
     icon: Building2,
     role: "I run a company",
     description:
-      "Set up outbound coverage, speed-to-lead pods, live coaching, and reporting for your revenue team.",
-    cta: "Get in touch",
+      "Add an outbound sales team to your business — without hiring. We build the team, train them on your campaign, and have them making calls within two weeks.",
+    cta: "Tell us about your business",
     href: "/contact/company",
     color: "#6321EE",
-    tags: ["Outbound Pods", "Live Coaching", "Reporting"],
+    tags: ["Healthcare", "Recruiting", "Commercial Real Estate"],
   },
   {
     icon: User,
-    role: "I want to be an agent",
+    role: "I want to be an SDR",
     description:
-      "Join AGORA's network of high-performance sales agents. Qualify, compete, and unlock better opportunities.",
-    cta: "Get in touch",
+      "Build real sales skills across healthcare, recruiting, and commercial real estate — and get paid while you do it. No prior experience required.",
+    cta: "Apply to the network",
     href: "/contact/agent",
     color: "#7FFFD4",
-    tags: ["Remote", "Performance Pay", "Live Coaching"],
+    tags: ["Flexible Hours", "Performance Pay", "Coaching Included"],
   },
 ];
 
