@@ -33,7 +33,7 @@ export default function ContactClient() {
     <div className="bg-[#211A1D] min-h-screen pt-20">
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 dot-grid opacity-15 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[130px] bg-[#6321EE]/10 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(700px,90vw)] h-[min(400px,60vw)] rounded-full blur-[130px] sm:blur-[130px] bg-[#6321EE]/10 pointer-events-none glow-orb-secondary" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div

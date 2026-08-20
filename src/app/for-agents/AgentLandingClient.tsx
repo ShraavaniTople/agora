@@ -33,7 +33,7 @@ export default function AgentLandingClient() {
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
         <div className="absolute inset-0 grid-overlay pointer-events-none" />
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
+          className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none glow-orb"
           style={{
             width: "min(700px, 140vw)",
             height: "min(500px, 80vw)",

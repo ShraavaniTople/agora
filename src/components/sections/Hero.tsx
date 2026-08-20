@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -135,6 +135,10 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.matchMedia("(max-width: 767px)").matches);
+  }, []);
 
   return (
     <section
@@ -144,9 +148,9 @@ export default function Hero() {
     >
       <div className="absolute inset-0 grid-overlay pointer-events-none" />
 
-      {/* Purple glow orb */}
+      {/* Purple glow orb — primary, dimmed on mobile via CSS */}
       <div
-        className="absolute pointer-events-none hero-glow-pulse"
+        className="absolute pointer-events-none glow-orb hero-glow-pulse"
         style={{
           top: "30%",
           left: "50%",
@@ -159,9 +163,9 @@ export default function Hero() {
         }}
       />
 
-      {/* Teal bottom-left orb */}
+      {/* Teal bottom-left orb — hidden on mobile */}
       <div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none glow-orb-secondary"
         style={{
           bottom: "-80px",
           left: "-60px",
@@ -173,9 +177,9 @@ export default function Hero() {
         }}
       />
 
-      {/* Purple top-right orb */}
+      {/* Purple top-right orb — hidden on mobile */}
       <div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none glow-orb-secondary"
         style={{
           top: "-100px",
           right: "-80px",
@@ -189,7 +193,7 @@ export default function Hero() {
 
       <motion.div
         className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        style={{ y: textY, opacity }}
+        style={isMobile ? { y: 0, opacity: 1 } : { y: textY, opacity }}
       >
         {/* Eyebrow badge */}
         <motion.div

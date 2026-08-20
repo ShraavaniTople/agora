@@ -61,10 +61,10 @@ export default function Services() {
 
       {/* Side glow */}
       <div
-        className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none"
+        className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none glow-orb-secondary"
         style={{
-          width: 400,
-          height: 600,
+          width: "min(400px, 50vw)",
+          height: "min(600px, 70vw)",
           background: "radial-gradient(ellipse, rgba(99,33,238,0.18) 0%, transparent 70%)",
           filter: "blur(60px)",
         }}

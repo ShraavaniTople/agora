@@ -48,12 +48,12 @@ export default function Benefits() {
         style={{ background: "linear-gradient(90deg, transparent, rgba(127,255,212,0.2), transparent)" }}
       />
 
-      {/* Right ambient glow */}
+      {/* Right ambient glow — hidden on mobile */}
       <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none glow-orb-secondary"
         style={{
-          width: 500,
-          height: 700,
+          width: "min(500px, 60vw)",
+          height: "min(700px, 80vw)",
           background: "radial-gradient(ellipse, rgba(99,33,238,0.16) 0%, transparent 65%)",
           filter: "blur(70px)",
         }}

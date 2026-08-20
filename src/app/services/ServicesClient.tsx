@@ -74,7 +74,7 @@ export default function ServicesClient() {
       {/* Hero */}
       <section className="relative py-24 lg:py-32 overflow-hidden border-b border-white/[0.06]">
         <div className="absolute inset-0 dot-grid opacity-15 pointer-events-none" />
-        <div className="absolute -top-20 right-0 w-[600px] h-[600px] rounded-full blur-[120px] bg-[#6321EE]/10 pointer-events-none" />
+        <div className="absolute -top-20 right-0 w-[600px] h-[600px] rounded-full blur-[120px] bg-[#6321EE]/10 pointer-events-none glow-orb-secondary" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div

@@ -40,10 +40,10 @@ export default function HomePricing() {
       />
 
       <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none glow-orb-secondary"
         style={{
-          width: 500,
-          height: 600,
+          width: "min(500px, 60vw)",
+          height: "min(600px, 70vw)",
           background: "radial-gradient(ellipse, rgba(127,255,212,0.10) 0%, transparent 65%)",
           filter: "blur(80px)",
         }}

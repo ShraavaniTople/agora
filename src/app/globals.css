@@ -103,6 +103,9 @@ body {
     transform: translate(-50%, -50%) scale(1.06);
   }
 }
+.hero-glow-pulse {
+  animation: hero-glow 6s ease-in-out infinite;
+}
 
 /* Marquee — content is doubled so we shift exactly -50% */
 @keyframes marquee {
@@ -182,6 +185,19 @@ body {
 /* Animate marquee utility */
 .animate-marquee {
   animation: marquee 28s linear infinite;
+}
+
+/* Disable expensive continuous animations on mobile */
+@media (max-width: 640px) {
+  .stats-mesh-blob { animation: none !important; }
+  .hero-glow-pulse { animation: none !important; }
+  .animate-marquee { animation-duration: 60s; }
+  /* Reduce blur filter radius — the biggest GPU-cost on mobile */
+  .glow-orb { filter: blur(20px) !important; }
+  /* Hide decorative secondary orbs entirely — not worth the GPU cost */
+  .glow-orb-secondary { display: none !important; }
+  /* Simplify grid/dot overlays on mobile */
+  .grid-overlay, .dot-grid, .dot-grid-subtle { opacity: 0 !important; }
 }
 
 /* Reduced motion */

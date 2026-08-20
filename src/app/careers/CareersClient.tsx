@@ -37,7 +37,7 @@ export default function CareersClient() {
       {/* Hero */}
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 dot-grid opacity-15 pointer-events-none" />
-        <div className="absolute top-1/2 -left-40 w-[600px] h-[600px] rounded-full blur-[120px] bg-[#6321EE]/10 pointer-events-none" />
+        <div className="absolute top-1/2 -left-40 w-[600px] h-[600px] rounded-full blur-[120px] bg-[#6321EE]/10 pointer-events-none glow-orb-secondary" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div

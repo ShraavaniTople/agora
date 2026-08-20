@@ -37,10 +37,10 @@ export default function FinalCTA() {
 
       {/* Top-left highlight bloom */}
       <div
-        className="absolute -top-20 -left-20 pointer-events-none"
+        className="absolute -top-20 -left-20 pointer-events-none glow-orb-secondary"
         style={{
-          width: 500,
-          height: 500,
+          width: "min(500px, 70vw)",
+          height: "min(500px, 70vw)",
           background: "radial-gradient(ellipse, rgba(127,255,212,0.15) 0%, transparent 60%)",
           borderRadius: "50%",
           filter: "blur(60px)",

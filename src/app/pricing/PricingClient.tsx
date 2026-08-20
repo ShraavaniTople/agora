@@ -44,7 +44,7 @@ export default function PricingClient() {
       {/* Hero */}
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 dot-grid opacity-15 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[120px] bg-[#6321EE]/12 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(700px,90vw)] h-[min(400px,60vw)] rounded-full blur-[120px] bg-[#6321EE]/12 pointer-events-none glow-orb-secondary" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div
@@ -87,7 +87,7 @@ export default function PricingClient() {
             variants={staggerContainer}
             className="relative rounded-2xl border border-[#6321EE]/30 bg-gradient-to-br from-[#6321EE]/10 to-[#7FFFD4]/[0.05] p-8 lg:p-12 overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full blur-[80px] bg-[#6321EE]/15 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full blur-[80px] bg-[#6321EE]/15 pointer-events-none glow-orb-secondary" />
 
             <motion.div variants={fadeUpVariants} className="mb-8">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#6321EE]/20 border border-[#6321EE]/40 mb-4">
