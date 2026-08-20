@@ -33,6 +33,10 @@ const nextConfig: NextConfig = {
   output: "export",
   basePath: isProd ? "/agora" : "",
 
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? "/agora" : "",
+  },
+
   images: {
     unoptimized: true,
   },

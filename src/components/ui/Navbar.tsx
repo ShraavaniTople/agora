@@ -15,6 +15,8 @@ const navLinks = [
   { label: "Careers", href: "/careers" },
 ];
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -49,7 +51,7 @@ export default function Navbar() {
           {/* Left — Agora logo + wordmark */}
           <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
             <Image
-              src="/agora-mark.png"
+              src={`${BASE}/agora-mark.png`}
               alt="Agora"
               width={36}
               height={36}
@@ -78,7 +80,7 @@ export default function Navbar() {
             {/* Georgia Tech badge — before Login */}
             <span className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/[0.04] mr-1">
               <Image
-                src="/gt-logo.png"
+                src={`${BASE}/gt-logo.png`}
                 alt="Georgia Tech"
                 width={28}
                 height={16}
@@ -147,7 +149,7 @@ export default function Navbar() {
               <div className="pt-3 mt-2 border-t border-white/[0.08] flex flex-col gap-2">
                 {/* GT badge in mobile menu */}
                 <div className="inline-flex items-center gap-2 px-3 py-2">
-                  <Image src="/gt-logo.png" alt="Georgia Tech" width={24} height={14} className="object-contain" />
+                  <Image src={`${BASE}/gt-logo.png`} alt="Georgia Tech" width={24} height={14} className="object-contain" />
                   <span className="text-xs text-white/40">Backed by Georgia Tech</span>
                 </div>
                 <a

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const cols = {
   platform: [
     { label: "Services", href: "/#services" },
@@ -33,7 +35,7 @@ export default function Footer() {
           <div className="col-span-2">
             <Link href="/" className="inline-flex items-center gap-2.5 mb-5 group">
               <Image
-                src="/agora-mark.png"
+                src={`${BASE}/agora-mark.png`}
                 alt="Agora"
                 width={34}
                 height={34}
@@ -48,7 +50,7 @@ export default function Footer() {
 
             {/* Georgia Tech badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.04]">
-              <Image src="/gt-logo.png" alt="Georgia Tech" width={30} height={17} className="object-contain flex-shrink-0" />
+              <Image src={`${BASE}/gt-logo.png`} alt="Georgia Tech" width={30} height={17} className="object-contain flex-shrink-0" />
               <span className="text-[11px] font-semibold text-white/60 tracking-wide">Backed by Georgia Tech</span>
             </div>
           </div>
