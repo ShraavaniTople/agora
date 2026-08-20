@@ -9,7 +9,7 @@ const services = [
     icon: Zap,
     title: "Speed-to-Lead Follow-Up",
     description:
-      "When someone fills out a form or calls in, how fast does your team respond? AGORA agents cover inbound follow-up around the clock — so leads don't go cold while your team is busy.",
+      "When someone fills out a form or calls in, how fast does your team respond? AGORA agents cover inbound follow-up around the clock so leads don't go cold while your team is busy.",
     color: "#6321EE",
     tag: "Inbound",
     index: "01",
@@ -18,7 +18,7 @@ const services = [
     icon: Users,
     title: "Outbound Prospecting Teams",
     description:
-      "Need to reach new accounts in healthcare, recruiting, or commercial real estate? AGORA builds you a dedicated outbound team — trained on your pitch, working your list, reporting back daily.",
+      "Need to reach new accounts in healthcare, recruiting, or commercial real estate? AGORA builds you a dedicated outbound team, trained on your pitch, working your list, reporting back daily.",
     color: "#7FFFD4",
     tag: "Outbound",
     index: "02",
@@ -27,7 +27,7 @@ const services = [
     icon: Brain,
     title: "Live Call Coaching",
     description:
-      "Every AGORA agent gets real-time guidance on every call — what to say, how to handle objections, when to push and when to back off. Your messaging stays consistent, no matter how many reps are on the phone.",
+      "Every AGORA agent gets real-time guidance on every call, what to say, how to handle objections, when to push and when to back off. Your messaging stays consistent, no matter how many reps are on the phone.",
     color: "#7ACCC8",
     tag: "Coaching",
     index: "03",
@@ -36,7 +36,7 @@ const services = [
     icon: BarChart3,
     title: "Full Campaign Reporting",
     description:
-      "See exactly how your campaign is performing — calls made, contacts reached, bookings created, and where leads are dropping off. No guessing. Just clear numbers you can act on.",
+      "See exactly how your campaign is performing, calls made, contacts reached, bookings created, and where leads are dropping off. No guessing. Just clear numbers you can act on.",
     color: "#6321EE",
     tag: "Analytics",
     index: "04",
@@ -96,7 +96,7 @@ export default function Services() {
           </motion.h2>
           <motion.p variants={fadeUpVariants} className="text-white/45 text-[15px] leading-relaxed">
             AGORA gives you trained sales reps, live call coaching, and full
-            reporting — all in one. You focus on closing. We handle the outreach.
+            reporting, all in one. You focus on closing. We handle the outreach.
           </motion.p>
         </motion.div>
 

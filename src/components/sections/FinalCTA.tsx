@@ -109,7 +109,7 @@ export default function FinalCTA() {
             variants={fadeUpVariants}
             className="text-white/70 text-[16px] max-w-lg mx-auto mb-14 leading-relaxed"
           >
-            Book a call and we&apos;ll show you exactly how AGORA works for your business —
+            Book a call and we&apos;ll show you exactly how AGORA works for your business:
             what the team looks like, how fast we can start, and what it costs.
           </motion.p>
 

@@ -8,7 +8,7 @@ const steps = [
     number: "01",
     color: "#6321EE",
     title: "You tell us your campaign",
-    body: "Describe your target market, the industry you're working in, and what a good outcome looks like — a booked meeting, a qualified call, a follow-up conversation.",
+    body: "Describe your target market, the industry you're working in, and what a good outcome looks like, a booked meeting, a qualified call, a follow-up conversation.",
     note: "Takes about 30 minutes. We do the rest.",
   },
   {
@@ -22,7 +22,7 @@ const steps = [
     number: "03",
     color: "#7ACCC8",
     title: "They work. You watch.",
-    body: "Agents run your campaigns every day. You get a live dashboard showing every call, every booking, and every result — so you always know exactly what's happening.",
+    body: "Agents run your campaigns every day. You get a live dashboard showing every call, every booking, and every result, so you always know exactly what's happening.",
     note: "Full visibility. No black boxes.",
   },
 ];

@@ -14,14 +14,14 @@ const industries = [
 const whyJoin = [
   { icon: GraduationCap, title: "No experience required", desc: "We teach you. AGORA's coaching platform walks you through every script, objection, and industry before you make a single call." },
   { icon: TrendingUp, title: "Skills that go on your resume", desc: "Work real campaigns in healthcare, recruiting, and CRE. Leave with industry knowledge, communication skills, and a track record you can point to." },
-  { icon: Clock, title: "Flexible — fits around your schedule", desc: "Part-time, full-time, or project-based. You pick your availability. Great for students and recent grads building experience while earning." },
+  { icon: Clock, title: "Flexible, fits around your schedule", desc: "Part-time, full-time, or project-based. You pick your availability. Great for students and recent grads building experience while earning." },
 ];
 
 const qualify = [
   "College students and recent graduates welcome",
   "No prior sales experience required",
   "Must be based in the U.S.",
-  "Strong communicator — comfortable on the phone",
+  "Strong communicator, comfortable on the phone",
   "Coachable and motivated by performance",
 ];
 
@@ -73,7 +73,7 @@ export default function AgentLandingClient() {
               style={{ fontSize: "clamp(16px, 2vw, 20px)", maxWidth: 520 }}
             >
               AGORA places you in real outbound campaigns across healthcare, recruiting,
-              and commercial real estate — with structured coaching, flexible hours,
+              and commercial real estate, with structured coaching, flexible hours,
               and performance-based pay. No experience needed.
             </motion.p>
 
@@ -207,7 +207,7 @@ export default function AgentLandingClient() {
         </div>
       </section>
 
-      {/* Earnings — placeholder section */}
+      {/* Earnings, placeholder section */}
       <section id="earnings" className="py-20 lg:py-24" style={{ background: "#0D0A0F" }}>
         <div
           className="h-px mb-0"
@@ -231,12 +231,12 @@ export default function AgentLandingClient() {
               Performance pay, not hourly minimums.
             </motion.h2>
             <motion.p variants={fadeUpVariants} className="text-white/45 text-[15px] leading-relaxed mb-10">
-              AGORA agents earn based on results — bookings, qualified conversations,
+              AGORA agents earn based on results, bookings, qualified conversations,
               and campaign outcomes. The more you improve, the more you earn.
               {/* TODO: Add specific earnings example once data is confirmed */}
             </motion.p>
 
-            {/* Placeholder for real earnings stats — swap in once confirmed */}
+            {/* Placeholder for real earnings stats, swap in once confirmed */}
             <motion.div variants={fadeUpVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
               {[
                 { label: "Performance-based pay", sub: "Earn more as you improve" },

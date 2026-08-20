@@ -127,7 +127,7 @@ export default function CompanyFormClient() {
               Let's build your AGORA program
             </h1>
             <p className="text-white/50 text-base">
-              Tell us about your team and goals — we'll follow up within one
+              Tell us about your team and goals, we'll follow up within one
               business day.
             </p>
           </motion.div>

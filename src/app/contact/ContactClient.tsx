@@ -10,7 +10,7 @@ const cards = [
     icon: Building2,
     role: "I run a company",
     description:
-      "Add an outbound sales team to your business — without hiring. We build the team, train them on your campaign, and have them making calls within two weeks.",
+      "Add an outbound sales team to your business, without hiring. We build the team, train them on your campaign, and have them making calls within two weeks.",
     cta: "Tell us about your business",
     href: "/contact/company",
     color: "#6321EE",
@@ -20,7 +20,7 @@ const cards = [
     icon: User,
     role: "I want to be an SDR",
     description:
-      "Build real sales skills across healthcare, recruiting, and commercial real estate — and get paid while you do it. No prior experience required.",
+      "Build real sales skills across healthcare, recruiting, and commercial real estate, and get paid while you do it. No prior experience required.",
     cta: "Apply to the network",
     href: "/contact/agent",
     color: "#7FFFD4",

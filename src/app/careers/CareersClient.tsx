@@ -64,7 +64,7 @@ export default function CareersClient() {
             >
               AGORA connects companies with trained sales agents and gives them
               the tools, coaching, and reporting to perform. We&apos;re a small,
-              fast-moving team — if you like to build and take ownership,
+              fast-moving team, if you like to build and take ownership,
               you&apos;ll fit in here.
             </motion.p>
           </motion.div>

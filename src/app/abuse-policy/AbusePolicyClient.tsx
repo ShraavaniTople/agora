@@ -20,7 +20,7 @@ export default function AbusePolicyClient() {
       <LegalSection id="purpose" title="Purpose">
         <p>
           This policy exists to protect all participants on the AGORA platform —
-          business clients, agents, and the prospects they contact — from
+          business clients, agents, and the prospects they contact, from
           behavior that would undermine the fairness, safety, or legal
           compliance of our marketplace. Abuse can come from either side of the
           platform, and we take reports from both seriously.
@@ -82,8 +82,8 @@ export default function AbusePolicyClient() {
 
       <LegalSection id="investigation" title="How Reports Are Investigated">
         <p>
-          When AGORA receives a report of suspected abuse — whether from a
-          business client, an agent, a prospect, or an automated system flag —
+          When AGORA receives a report of suspected abuse from a
+          business client, an agent, a prospect, or an automated system flag,
           we take the following steps:
         </p>
         <LegalList
@@ -111,7 +111,7 @@ export default function AbusePolicyClient() {
           items={[
             "Warning: For first-time, lower-severity violations with no prior history, we may issue a formal written warning with remediation requirements",
             "Temporary suspension: For more serious violations or repeat offenses, we may suspend access to the platform pending investigation or remediation",
-            "Permanent termination: For severe violations — including legal non-compliance, fraud, data misuse, and material misrepresentation — we will permanently terminate platform access without refund or compensation",
+            "Permanent termination: For severe violations, including legal non-compliance, fraud, data misuse, and material misrepresentation, we will permanently terminate platform access without refund or compensation",
             "Legal action: For violations that expose AGORA or third parties to legal liability, we reserve the right to pursue civil or criminal remedies",
           ]}
         />
@@ -124,8 +124,8 @@ export default function AbusePolicyClient() {
 
       <LegalSection id="reporting" title="How to Report Abuse">
         <p>
-          If you believe someone on the AGORA platform — a business client,
-          agent, or any other party — is engaged in abusive, fraudulent, or
+          If you believe someone on the AGORA platform, a business client,
+          agent, or any other party who is engaged in abusive, fraudulent, or
           non-compliant behavior, please report it promptly.
         </p>
         <p>

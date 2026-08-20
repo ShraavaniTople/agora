@@ -7,11 +7,11 @@ import Accordion from "@/components/ui/Accordion";
 const faqs = [
   {
     question: "How long will it take for my business to onboard onto AGORA?",
-    answer: "Most clients are fully operational within one to two weeks of kickoff. The onboarding process involves aligning on targets, scripting, and routing rules — all of which we handle collaboratively. We move fast without cutting corners: the goal is a team that's calibrated and accountable from day one, not a slow-rolling implementation that takes months to show results.",
+    answer: "Most clients are fully operational within one to two weeks of kickoff. The onboarding process involves aligning on targets, scripting, and routing rules, all of which we handle collaboratively. We move fast without cutting corners: the goal is a team that's calibrated and accountable from day one, not a slow-rolling implementation that takes months to show results.",
   },
   {
     question: "Does AGORA replace my existing infrastructure?",
-    answer: "No — AGORA is designed to complement what you already have. We integrate with your CRM, communication tools, and calendar systems (including HubSpot, Pipedrive, Salesforce, Slack, Calendly, and more), so your team keeps full visibility without changing how they work. AGORA sits as an execution layer on top of your existing stack.",
+    answer: "AGORA is designed to complement what you already have. We integrate with your CRM, communication tools, and calendar systems (including HubSpot, Pipedrive, Salesforce, Slack, Calendly, and more), so your team keeps full visibility without changing how they work. AGORA sits as an execution layer on top of your existing stack.",
   },
   {
     question: "What use cases does AGORA support?",
@@ -19,7 +19,7 @@ const faqs = [
   },
   {
     question: "How is performance measured and reported?",
-    answer: "Every engagement comes with full reporting: contact rates, booking rates, call quality scores, objection trend data, and revenue attribution. You'll have access to real-time dashboards and regular performance reviews — if something isn't working, we'll know before you do, and we'll already be adjusting.",
+    answer: "Every engagement comes with full reporting: contact rates, booking rates, call quality scores, objection trend data, and revenue attribution. You'll have access to real-time dashboards and regular performance reviews, If something isn't working, we'll know before you do and we'll already be adjusting.",
   },
   {
     question: "How do you make sure messaging matches our brand?",
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     question: "How does pricing work?",
-    answer: "AGORA uses a custom, performance-aligned pricing model. No rigid tiers or bloated packages — pricing is built around your program size, campaign type, and volume. We offer variable pricing structures designed to tie our economics to your outcomes, not your headcount.",
+    answer: "AGORA uses a custom, performance-aligned pricing model. No rigid tiers or bloated packages. Pricing is built around your program size, campaign type, and volume. We offer variable pricing structures designed to tie our economics to your outcomes, not your headcount.",
   },
 ];
 

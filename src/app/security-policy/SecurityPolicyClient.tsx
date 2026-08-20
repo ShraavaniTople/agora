@@ -30,7 +30,7 @@ export default function SecurityPolicyClient() {
           We conduct regular internal security reviews and work with trusted
           infrastructure partners who maintain their own compliance
           certifications. Our security posture is an ongoing commitment, not a
-          checkbox — we continuously review and improve controls as the platform
+          checkbox; we continuously review and improve controls as the platform
           evolves.
         </p>
       </LegalSection>
@@ -61,7 +61,7 @@ export default function SecurityPolicyClient() {
         <p>
           Access to AGORA systems and customer data is governed by a
           least-privilege model. Employees and systems are granted the minimum
-          access required to perform their function — not broad administrative
+          access required to perform their function, not broad administrative
           access by default.
         </p>
         <LegalList
@@ -129,7 +129,7 @@ export default function SecurityPolicyClient() {
             "Detection & triage: Automated monitoring and alerting systems flag anomalous activity; our on-call team triages alerts 24/7",
             "Containment: Affected systems or accounts are isolated or suspended to prevent further impact while investigation is underway",
             "Investigation: We gather logs, identify root cause, and assess the scope of affected data",
-            "Notification: Affected users and clients are notified in accordance with applicable breach notification laws — typically within 72 hours of a confirmed breach",
+            "Notification: Affected users and clients are notified in accordance with applicable breach notification laws, typically within 72 hours of a confirmed breach",
             "Remediation: Root cause is addressed, controls are updated, and a post-incident review is conducted",
           ]}
         />

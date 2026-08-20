@@ -6,10 +6,10 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import { fadeUpVariants, staggerContainer } from "@/components/ui/SectionWrapper";
 
 const valueProps = [
-  "No rigid tiers or packages — pricing fits your program",
+  "No rigid tiers or packages, pricing fits your program",
   "Pay based on what you use, not a fixed monthly seat fee",
   "Scale up or down at any time without renegotiating",
-  "Full transparency — dashboards show exactly what your spend is doing",
+  "Full transparency, dashboards show exactly what your spend is doing",
   "Pricing built around your outcomes, not our package sizes",
   "No long-term commitments required to get started",
 ];
@@ -18,14 +18,14 @@ const illustrativeEngagements = [
   {
     name: "Speed-to-Lead Pod",
     description:
-      "Dedicated coverage for inbound lead response — after-hours, weekends, and overflow. Best for companies losing pipeline to slow follow-up.",
+      "Dedicated coverage for inbound lead response, after-hours, weekends, and overflow. Best for companies losing pipeline to slow follow-up.",
     tags: ["Inbound Coverage", "Lead Recovery", "Reporting"],
     color: "#6321EE",
   },
   {
     name: "Outbound Growth Pod",
     description:
-      "Prospecting and account reactivation at scale — by region, segment, or campaign. Best for companies looking to grow net-new pipeline without adding headcount.",
+      "Prospecting and account reactivation at scale, by region, segment, or campaign. Best for companies looking to grow net-new pipeline without adding headcount.",
     tags: ["Outbound Prospecting", "Reactivation", "Live Coaching"],
     color: "#7FFFD4",
   },
@@ -69,7 +69,7 @@ export default function PricingClient() {
               variants={fadeUpVariants}
               className="text-base sm:text-lg text-white/55 max-w-2xl mx-auto mb-12"
             >
-              Tell us what you need — number of reps, industries, campaign type.
+              Tell us what you need, number of reps, industries, campaign type.
               We build pricing around your program, not the other way around.
               No bloated packages. No paying for things you don&apos;t use.
             </motion.p>
@@ -93,7 +93,7 @@ export default function PricingClient() {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#6321EE]/20 border border-[#6321EE]/40 mb-4">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#7FFFD4] animate-pulse" />
                 <span className="text-xs font-semibold text-[#7FFFD4]">
-                  Custom pricing — no fixed tiers
+                  Custom pricing, no fixed tiers
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
@@ -101,7 +101,7 @@ export default function PricingClient() {
               </h2>
               <p className="text-white/55">
                 Every AGORA engagement is scoped to your team size, campaign
-                type, and industry — then priced accordingly.
+                type, and industry, then priced accordingly.
               </p>
             </motion.div>
 
@@ -165,7 +165,7 @@ export default function PricingClient() {
               variants={fadeUpVariants}
               className="mt-3 text-sm text-white/40"
             >
-              These aren&apos;t fixed tiers — they&apos;re examples of what programs
+              These aren&apos;t fixed tiers, they&apos;re examples of what programs
               typically look like. Every engagement is scoped and priced
               specifically for your needs.
             </motion.p>

@@ -9,7 +9,7 @@ const benefits = [
     icon: TrendingDown,
     num: "01",
     title: "No hiring. No ramp time.",
-    desc: "Skip the months-long SDR hiring process. AGORA agents are trained and deployed in weeks — you start seeing outreach activity almost immediately.",
+    desc: "Skip the months-long SDR hiring process. AGORA agents are trained and deployed in weeks, you start seeing outreach activity almost immediately.",
     color: "#6321EE",
   },
   {
@@ -30,7 +30,7 @@ const benefits = [
     icon: LineChart,
     num: "04",
     title: "Pay for results, not seats.",
-    desc: "AGORA pricing is tied to outcomes — bookings, conversations, and campaign performance. You spend based on what's working, not a fixed monthly contract.",
+    desc: "AGORA pricing is tied to outcomes, bookings, conversations, and campaign performance. You spend based on what's working, not a fixed monthly contract.",
     color: "#6321EE",
   },
 ];
@@ -84,7 +84,7 @@ export default function Benefits() {
           </motion.h2>
           <motion.p variants={fadeUpVariants} className="text-white/40 text-[15px] max-w-lg leading-relaxed">
             No ramp time. No fixed salaries. A sales team that&apos;s accountable to
-            results — not headcount.
+            results, not headcount.
           </motion.p>
         </motion.div>
 

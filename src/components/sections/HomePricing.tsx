@@ -14,7 +14,7 @@ const pods = [
   },
   {
     name: "Outbound Growth Pod",
-    desc: "Prospecting and account reactivation by region, segment, or campaign — without adding fixed headcount.",
+    desc: "Prospecting and account reactivation by region, segment, or campaign, without adding fixed headcount.",
     color: "#7FFFD4",
     tag: "Outbound",
     featured: true,

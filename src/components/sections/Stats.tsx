@@ -249,7 +249,7 @@ export default function Stats() {
               style={{ borderTop: "1px solid rgba(127,255,212,0.15)" }}
             >
               <p className="text-[12px] text-white/50 leading-relaxed mb-4">
-                Salary, benefits, tools, mgmt overhead — replaced with variable pods aligned to outcomes.
+                Salary, benefits, tools, mgmt overhead, replaced with variable pods aligned to outcomes.
               </p>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(127,255,212,0.65)" strokeWidth="1.5" strokeLinecap="round">
                 <line x1="12" y1="1" x2="12" y2="23"/>

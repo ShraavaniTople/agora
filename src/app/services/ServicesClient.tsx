@@ -12,11 +12,11 @@ const services = [
     title: "Speed-to-Lead Coverage",
     tagline: "Never let an inbound lead sit unworked.",
     description:
-      "When someone fills out a form or calls in, how quickly does your team respond? AGORA agents handle inbound follow-up around the clock — including after hours, weekends, and overflow — so leads don't go cold while your team is tied up.",
+      "When someone fills out a form or calls in, how quickly does your team respond? AGORA agents handle inbound follow-up around the clock, including after hours, weekends, and overflow, so leads don't go cold while your team is tied up.",
     bullets: [
       "Around-the-clock coverage for inbound leads, including after-hours and weekends",
       "Follow-up campaigns for leads that went cold or never got a callback",
-      "Every call logged and reported — contact rate, booking rate, outcomes",
+      "Every call logged and reported, contact rate, booking rate, outcomes",
       "Your team keeps full control of messaging and routing rules",
     ],
     color: "#6321EE",
@@ -27,12 +27,12 @@ const services = [
     title: "Dedicated Outbound Sales Pod",
     tagline: "Scale pipeline without scaling payroll.",
     description:
-      "Need to reach new accounts in healthcare, recruiting, or commercial real estate? AGORA builds you a dedicated outbound team — briefed on your pitch, working your list, and reporting back daily. Add more capacity anytime without growing your headcount.",
+      "Need to reach new accounts in healthcare, recruiting, or commercial real estate? AGORA builds you a dedicated outbound team, briefed on your pitch, working your list, and reporting back daily. Add more capacity anytime without growing your headcount.",
     bullets: [
       "Dedicated team built around your industry, region, and target accounts",
       "Outbound prospecting and reactivation of dormant accounts",
       "Expand into new markets without reorganizing your internal team",
-      "Scale capacity up or down by program — no long-term commitments",
+      "Scale capacity up or down by program, no long-term commitments",
     ],
     color: "#7FFFD4",
   },
@@ -57,10 +57,10 @@ const services = [
     title: "Enterprise-Grade Reporting",
     tagline: "Know what's working. Scale it.",
     description:
-      "See exactly how your campaign is performing — calls made, contacts reached, bookings created, and where leads are dropping off. No black boxes. Just clear numbers you can act on.",
+      "See exactly how your campaign is performing, calls made, contacts reached, bookings created, and where leads are dropping off. No black boxes. Just clear numbers you can act on.",
     bullets: [
       "Daily and weekly dashboards showing calls, contacts, and bookings",
-      "Where leads drop off — and what's working to convert them",
+      "Where leads drop off, and what's working to convert them",
       "Script and objection analysis so you can see what messaging actually lands",
       "Compare performance across regions, segments, or campaign types",
     ],
@@ -100,7 +100,7 @@ export default function ServicesClient() {
               variants={fadeUpVariants}
               className="text-base sm:text-xl text-white/55 max-w-xl leading-relaxed"
             >
-              We supply trained sales reps for your campaigns — and wrap
+              We supply trained sales reps for your campaigns, and wrap
               them in coaching, quality control, and reporting. Here&apos;s
               what each piece does.
             </motion.p>
