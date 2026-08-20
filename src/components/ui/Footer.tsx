@@ -35,9 +35,9 @@ export default function Footer() {
               <Image
                 src="/agora-mark.png"
                 alt="Agora"
-                width={32}
-                height={32}
-                className="rounded-lg flex-shrink-0"
+                width={34}
+                height={34}
+                className="rounded-full flex-shrink-0"
               />
               <span className="font-black text-[17px] text-white tracking-tight">AGORA</span>
             </Link>

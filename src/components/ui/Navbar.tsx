@@ -51,9 +51,9 @@ export default function Navbar() {
             <Image
               src="/agora-mark.png"
               alt="Agora"
-              width={34}
-              height={34}
-              className="rounded-lg flex-shrink-0"
+              width={36}
+              height={36}
+              className="rounded-full flex-shrink-0"
               priority
             />
             <span className="font-black text-[17px] tracking-tight text-white">AGORA</span>
