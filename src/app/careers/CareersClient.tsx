@@ -138,7 +138,7 @@ export default function CareersClient() {
 
             <motion.div
               variants={fadeUpVariants}
-              className="relative rounded-2xl border border-dashed border-white/[0.12] p-12 lg:p-16 text-center overflow-hidden"
+              className="relative rounded-2xl border border-dashed border-white/[0.12] p-8 sm:p-12 lg:p-16 text-center overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#6321EE]/[0.04] to-transparent pointer-events-none" />
 

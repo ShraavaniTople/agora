@@ -146,7 +146,7 @@ export default function Hero() {
 
       {/* Purple glow orb */}
       <div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none hero-glow-pulse"
         style={{
           top: "30%",
           left: "50%",
@@ -156,7 +156,6 @@ export default function Hero() {
           background: "radial-gradient(ellipse, rgba(99,33,238,0.45) 0%, rgba(99,33,238,0.12) 40%, transparent 70%)",
           borderRadius: "50%",
           filter: "blur(80px)",
-          animation: "hero-glow 6s ease-in-out infinite",
         }}
       />
 

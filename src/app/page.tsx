@@ -1,14 +1,16 @@
+import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
-import AudienceSplit from "@/components/sections/AudienceSplit";
-import HowItWorks from "@/components/sections/HowItWorks";
-import Stats from "@/components/sections/Stats";
-import Services from "@/components/sections/Services";
-import Process from "@/components/sections/Process";
-import Benefits from "@/components/sections/Benefits";
-import HomePricing from "@/components/sections/HomePricing";
-import Press from "@/components/sections/Press";
-import FAQ from "@/components/sections/FAQ";
-import FinalCTA from "@/components/sections/FinalCTA";
+
+const AudienceSplit  = dynamic(() => import("@/components/sections/AudienceSplit"));
+const HowItWorks     = dynamic(() => import("@/components/sections/HowItWorks"));
+const Stats          = dynamic(() => import("@/components/sections/Stats"));
+const Services       = dynamic(() => import("@/components/sections/Services"));
+const Process        = dynamic(() => import("@/components/sections/Process"));
+const Benefits       = dynamic(() => import("@/components/sections/Benefits"));
+const HomePricing    = dynamic(() => import("@/components/sections/HomePricing"));
+const Press          = dynamic(() => import("@/components/sections/Press"));
+const FAQ            = dynamic(() => import("@/components/sections/FAQ"));
+const FinalCTA       = dynamic(() => import("@/components/sections/FinalCTA"));
 
 export default function HomePage() {
   return (

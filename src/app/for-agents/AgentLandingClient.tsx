@@ -35,8 +35,8 @@ export default function AgentLandingClient() {
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
           style={{
-            width: 700,
-            height: 500,
+            width: "min(700px, 140vw)",
+            height: "min(500px, 80vw)",
             background: "radial-gradient(ellipse, rgba(127,255,212,0.18) 0%, transparent 65%)",
             filter: "blur(80px)",
           }}

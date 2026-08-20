@@ -11,11 +11,11 @@ interface SectionWrapperProps {
 }
 
 export const fadeUpVariants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -23,8 +23,8 @@ export const staggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.09,
-      delayChildren: 0.05,
+      staggerChildren: 0.05,
+      delayChildren: 0.03,
     },
   },
 };
