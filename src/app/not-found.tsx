@@ -10,7 +10,7 @@ export default function NotFound() {
     <div className="bg-[#211A1D] min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 dot-grid opacity-15 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] bg-[#6321EE]/08 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] bg-[#6321EE]/[0.08] pointer-events-none" />
 
       {/* Animated dispatch nodes */}
       <div className="absolute inset-0 pointer-events-none">

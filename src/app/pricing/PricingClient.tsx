@@ -85,7 +85,7 @@ export default function PricingClient() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="relative rounded-2xl border border-[#6321EE]/30 bg-gradient-to-br from-[#6321EE]/10 to-[#7FFFD4]/05 p-8 lg:p-12 overflow-hidden"
+            className="relative rounded-2xl border border-[#6321EE]/30 bg-gradient-to-br from-[#6321EE]/10 to-[#7FFFD4]/[0.05] p-8 lg:p-12 overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full blur-[80px] bg-[#6321EE]/15 pointer-events-none" />
 

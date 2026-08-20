@@ -109,7 +109,7 @@ function SideCard({
         </p>
       </div>
 
-      {/* Bottom: description (hover reveal) + icon */}
+      {/* Bottom: description + icon */}
       <div
         className="mt-auto relative z-10"
         style={{
@@ -118,22 +118,8 @@ function SideCard({
           transition: "border-color 0.3s ease",
         }}
       >
-        {/* Description, revealed on hover */}
-        <div
-          style={{
-            opacity: hovered ? 1 : 0,
-            transform: hovered ? "translateY(0)" : "translateY(8px)",
-            transition: "opacity 0.35s ease, transform 0.35s ease",
-            marginBottom: hovered ? "14px" : "0",
-            maxHeight: hovered ? "60px" : "0",
-            overflow: "hidden",
-            transitionProperty: "opacity, transform, max-height, margin-bottom",
-            transitionDuration: "0.35s",
-            transitionTimingFunction: "ease",
-          }}
-        >
-          <p className="text-[12px] text-white/40 leading-relaxed">{description}</p>
-        </div>
+        {/* Description — always visible */}
+        <p className="text-[12px] text-white/40 leading-relaxed mb-4">{description}</p>
 
         {/* Icon */}
         <div

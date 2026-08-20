@@ -132,7 +132,7 @@ export default function ServicesClient() {
                   className="lg:w-2/5 flex-shrink-0"
                 >
                   <div
-                    className="rounded-2xl border p-10 flex flex-col items-center justify-center text-center h-full min-h-[240px]"
+                    className="rounded-2xl border p-6 sm:p-10 flex flex-col items-center justify-center text-center h-full min-h-[200px] sm:min-h-[240px]"
                     style={{
                       borderColor: `${service.color}25`,
                       background: `linear-gradient(135deg, ${service.color}08 0%, transparent 60%)`,

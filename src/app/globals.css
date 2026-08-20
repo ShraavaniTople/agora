@@ -55,6 +55,10 @@ body {
 }
 
 /* Dot grid */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(127,255,212,0.18) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
 .dot-grid-subtle {
   background-image: radial-gradient(circle, rgba(127,255,212,0.10) 1px, transparent 1px);
   background-size: 28px 28px;

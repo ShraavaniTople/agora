@@ -139,7 +139,7 @@ export default function CompanyFormClient() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="rounded-2xl border border-[#7FFFD4]/30 bg-[#7FFFD4]/05 p-10 text-center"
+                className="rounded-2xl border border-[#7FFFD4]/30 bg-[#7FFFD4]/[0.05] p-8 sm:p-10 text-center"
               >
                 <div className="w-16 h-16 rounded-2xl bg-[#7FFFD4]/10 border border-[#7FFFD4]/20 flex items-center justify-center mx-auto mb-5">
                   <CheckCircle2 size={30} className="text-[#7FFFD4]" />

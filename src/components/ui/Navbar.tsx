@@ -158,6 +158,14 @@ export default function Navbar() {
                 >
                   Company Login
                 </a>
+                <a
+                  href="https://calendly.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-center py-3 rounded-lg border border-white/15 text-white text-sm font-semibold"
+                >
+                  Book a Call
+                </a>
                 <Link
                   href="/contact"
                   className="text-center py-3 rounded-lg bg-[#6321EE] text-white text-sm font-bold shadow-[0_0_20px_rgba(99,33,238,0.4)]"
