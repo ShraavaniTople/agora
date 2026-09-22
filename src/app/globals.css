@@ -200,6 +200,136 @@ body {
   .grid-overlay, .dot-grid, .dot-grid-subtle { opacity: 0 !important; }
 }
 
+/* ── Aurora Background ──────────────────────────────────────────── */
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Blob 1 — deep brand purple, hero centre mass */
+.aurora-1 {
+  width: min(1300px, 180vw);
+  height: min(950px, 135vw);
+  background: radial-gradient(ellipse at 50% 40%,
+    rgba(99,33,238,0.65) 0%,
+    rgba(99,33,238,0.22) 42%,
+    transparent 70%);
+  filter: blur(80px);
+  top: -28%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: aurora-drift-1 14s ease-in-out infinite;
+}
+
+/* Blob 2 — violet, upper-left, larger for sweep */
+.aurora-2 {
+  width: min(1000px, 145vw);
+  height: min(850px, 120vw);
+  background: radial-gradient(ellipse at 42% 42%,
+    rgba(139,92,246,0.50) 0%,
+    rgba(109,40,217,0.16) 48%,
+    transparent 70%);
+  filter: blur(100px);
+  top: -32%;
+  left: -22%;
+  border-radius: 42% 58% 56% 44% / 44% 42% 58% 56%;
+  animation: aurora-drift-2 18s ease-in-out infinite;
+}
+
+/* Blob 3 — teal/mint, lower-right sweep */
+.aurora-3 {
+  width: min(800px, 115vw);
+  height: min(800px, 115vw);
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(127,255,212,0.30) 0%,
+    rgba(122,204,200,0.13) 48%,
+    transparent 70%);
+  filter: blur(90px);
+  bottom: -22%;
+  right: -14%;
+  border-radius: 58% 42% 42% 58% / 52% 48% 52% 48%;
+  animation: aurora-drift-3 13s ease-in-out infinite;
+}
+
+/* Blob 4 — indigo accent, upper-right */
+.aurora-4 {
+  width: min(700px, 100vw);
+  height: min(650px, 92vw);
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(79,70,229,0.38) 0%,
+    rgba(99,33,238,0.12) 52%,
+    transparent 72%);
+  filter: blur(110px);
+  top: -18%;
+  right: -10%;
+  border-radius: 52% 48% 54% 46% / 46% 54% 46% 54%;
+  animation: aurora-drift-4 21s ease-in-out infinite;
+}
+
+/* Blob 5 — aqua, mid-screen slow wander */
+.aurora-5 {
+  width: min(650px, 95vw);
+  height: min(550px, 80vw);
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(122,204,200,0.24) 0%,
+    rgba(127,255,212,0.09) 52%,
+    transparent 72%);
+  filter: blur(120px);
+  top: 32%;
+  left: 32%;
+  border-radius: 46% 54% 52% 48% / 54% 46% 54% 46%;
+  animation: aurora-drift-5 17s ease-in-out infinite;
+}
+
+/* Film-grain texture — adds physicality and depth */
+.aurora-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.032;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Aurora drift keyframes — each blob uses a unique rhythm */
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translateX(-50%) scale(1) rotate(0deg); }
+  25%       { transform: translateX(-50%) translateY(-5%) scale(1.06) rotate(2deg); }
+  50%       { transform: translateX(-48%) translateY(3%) scale(0.97) rotate(-1.5deg); }
+  75%       { transform: translateX(-52%) translateY(-2%) scale(1.04) rotate(1deg); }
+}
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33%       { transform: translate(8%, 13%) scale(1.09) rotate(-2deg); }
+  66%       { transform: translate(-5%, 7%) scale(0.94) rotate(3deg); }
+}
+@keyframes aurora-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  40%       { transform: translate(-10%, -9%) scale(1.11) rotate(3deg); }
+  80%       { transform: translate(6%, -4%) scale(0.95) rotate(-2deg); }
+}
+@keyframes aurora-drift-4 {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  30%       { transform: translate(-9%, 11%) scale(1.13) rotate(-3deg); }
+  70%       { transform: translate(7%, -7%) scale(0.91) rotate(2.5deg); }
+}
+@keyframes aurora-drift-5 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  45%       { transform: translate(-14%, 9%) scale(1.15); }
+  85%       { transform: translate(9%, -7%) scale(0.92); }
+}
+
+/* Mobile — keep only the primary blob, no animation */
+@media (max-width: 640px) {
+  .aurora-blob { animation: none !important; }
+  .aurora-2, .aurora-4, .aurora-5 { display: none !important; }
+  .aurora-1 { filter: blur(40px) !important; }
+  .aurora-3 { filter: blur(50px) !important; opacity: 0.7; }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

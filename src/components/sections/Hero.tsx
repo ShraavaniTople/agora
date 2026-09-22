@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import AuroraBackground from "@/components/ui/AuroraBackground";
 
 /* ── Dispatch-flow diagram ─────────────────────────────────────── */
 
@@ -146,50 +147,10 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       style={{ background: "#080507", paddingTop: 68 }}
     >
+      {/* Aurora — multi-layer drifting gradient blobs */}
+      <AuroraBackground />
+
       <div className="absolute inset-0 grid-overlay pointer-events-none" />
-
-      {/* Purple glow orb — primary, dimmed on mobile via CSS */}
-      <div
-        className="absolute pointer-events-none glow-orb hero-glow-pulse"
-        style={{
-          top: "30%",
-          left: "50%",
-          width: "min(900px, 140vw)",
-          height: "min(600px, 90vw)",
-          transform: "translate(-50%, -50%)",
-          background: "radial-gradient(ellipse, rgba(99,33,238,0.45) 0%, rgba(99,33,238,0.12) 40%, transparent 70%)",
-          borderRadius: "50%",
-          filter: "blur(80px)",
-        }}
-      />
-
-      {/* Teal bottom-left orb — hidden on mobile */}
-      <div
-        className="absolute pointer-events-none glow-orb-secondary"
-        style={{
-          bottom: "-80px",
-          left: "-60px",
-          width: "min(500px, 80vw)",
-          height: "min(500px, 80vw)",
-          background: "radial-gradient(ellipse, rgba(127,255,212,0.18) 0%, transparent 65%)",
-          borderRadius: "50%",
-          filter: "blur(60px)",
-        }}
-      />
-
-      {/* Purple top-right orb — hidden on mobile */}
-      <div
-        className="absolute pointer-events-none glow-orb-secondary"
-        style={{
-          top: "-100px",
-          right: "-80px",
-          width: "min(600px, 90vw)",
-          height: "min(500px, 80vw)",
-          background: "radial-gradient(ellipse, rgba(99,33,238,0.22) 0%, transparent 65%)",
-          borderRadius: "50%",
-          filter: "blur(70px)",
-        }}
-      />
 
       <motion.div
         className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
