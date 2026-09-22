@@ -139,7 +139,11 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    setIsMobile(window.matchMedia("(max-width: 767px)").matches);
+    const mq = window.matchMedia("(max-width: 767px)");
+    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", onChange);
+    setIsMobile(mq.matches); // eslint-disable-line react-hooks/set-state-in-effect
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
   return (
