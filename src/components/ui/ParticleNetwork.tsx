@@ -36,14 +36,17 @@ export default function ParticleNetwork() {
     const SPEED     = 0.32;
 
     let dots: Dot[] = [];
-    let raf = 0;
+    let rafId = 0;
 
     const setup = () => {
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      // Fall back to window dimensions if the canvas hasn't been laid out yet
+      const w = canvas.offsetWidth  > 0 ? canvas.offsetWidth  : window.innerWidth;
+      const h = canvas.offsetHeight > 0 ? canvas.offsetHeight : window.innerHeight;
+      canvas.width  = w;
+      canvas.height = h;
       dots = Array.from({ length: COUNT }, () => ({
-        x:     Math.random() * canvas.width,
-        y:     Math.random() * canvas.height,
+        x:     Math.random() * w,
+        y:     Math.random() * h,
         vx:    (Math.random() - 0.5) * SPEED,
         vy:    (Math.random() - 0.5) * SPEED,
         r:     Math.random() * 3.8 + 1.4,
@@ -88,17 +91,21 @@ export default function ParticleNetwork() {
         ctx.fill();
       }
 
-      raf = requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
     };
 
-    setup();
-    tick();
+    // Defer to next frame so the canvas has been laid out and has real dimensions
+    const initId = requestAnimationFrame(() => {
+      setup();
+      tick();
+    });
 
     const ro = new ResizeObserver(setup);
     ro.observe(canvas);
 
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(initId);
+      cancelAnimationFrame(rafId);
       ro.disconnect();
     };
   }, []);
