@@ -12,12 +12,13 @@ interface Dot {
   r: number; color: string; alpha: number;
 }
 
-interface Block {
+interface Cube {
   x: number; y: number;
   vx: number; vy: number;
-  w: number; h: number;
-  angle: number; va: number;
-  color: string; alpha: number;
+  size: number;
+  rotY: number; vrotY: number;  // horizontal rotation (affects isometric skew)
+  color: string;
+  alpha: number;
 }
 
 interface Cross {
@@ -27,11 +28,68 @@ interface Cross {
   alpha: number;
 }
 
+type Point2D = { x: number; y: number };
+
+function drawIsoCube(
+  ctx: CanvasRenderingContext2D,
+  cx: number, cy: number,
+  s: number,
+  rotY: number,   // 0–1 continuous spin
+  color: string,
+  alpha: number,
+) {
+  const a = rotY * Math.PI * 2;
+  const cosA = Math.cos(a);
+  const sinA = Math.sin(a);
+
+  // Isometric projection of a 3D point into screen coords
+  const iso = (x: number, y: number, z: number): Point2D => ({
+    x: cx + (x * cosA - z * sinA) * 0.82,
+    y: cy + (x * sinA + z * cosA) * 0.42 - y * 0.9,
+  });
+
+  // 8 vertices of a cube ±s
+  const v: Point2D[] = [
+    iso(-s, -s, -s), iso( s, -s, -s), iso( s, -s,  s), iso(-s, -s,  s),
+    iso(-s,  s, -s), iso( s,  s, -s), iso( s,  s,  s), iso(-s,  s,  s),
+  ];
+
+  const face = (pts: Point2D[], fillOpacity: number, strokeOpacity: number) => {
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+    ctx.closePath();
+    ctx.fillStyle   = `rgba(${color},${fillOpacity})`;
+    ctx.strokeStyle = `rgba(${color},${strokeOpacity})`;
+    ctx.lineWidth   = 1.1;
+    ctx.fill();
+    ctx.stroke();
+  };
+
+  // Top face (brightest)
+  face([v[0], v[1], v[2], v[3]], alpha * 0.28, alpha);
+  // Right face
+  face([v[1], v[5], v[6], v[2]], alpha * 0.14, alpha * 0.85);
+  // Front face (darkest)
+  face([v[2], v[6], v[7], v[3]], alpha * 0.07, alpha * 0.7);
+
+  // Bright top-edge highlight
+  ctx.strokeStyle = `rgba(${color},${Math.min(1, alpha * 1.5)})`;
+  ctx.lineWidth = 0.7;
+  ctx.beginPath();
+  ctx.moveTo(v[0].x, v[0].y);
+  ctx.lineTo(v[1].x, v[1].y);
+  ctx.lineTo(v[2].x, v[2].y);
+  ctx.lineTo(v[3].x, v[3].y);
+  ctx.closePath();
+  ctx.stroke();
+}
+
 export default function ParticleNetwork() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (window.innerWidth <= 640) return;
+    if (window.innerWidth <= 480) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -39,12 +97,12 @@ export default function ParticleNetwork() {
     if (!ctx) return;
 
     const DOT_COUNT   = 40;
-    const BLOCK_COUNT = 11;
-    const CROSS_COUNT = 9;
+    const CUBE_COUNT  = window.innerWidth > 1024 ? 9 : 6;
+    const CROSS_COUNT = 10;
     const LINK_DIST   = 175;
 
-    let dots:   Dot[]   = [];
-    let blocks: Block[] = [];
+    let dots:    Dot[]   = [];
+    let cubes:   Cube[]  = [];
     let crosses: Cross[] = [];
     let raf = 0;
 
@@ -64,17 +122,16 @@ export default function ParticleNetwork() {
         alpha: Math.random() * 0.45 + 0.4,
       }));
 
-      blocks = Array.from({ length: BLOCK_COUNT }, () => ({
+      cubes = Array.from({ length: CUBE_COUNT }, () => ({
         x:     Math.random() * W,
         y:     Math.random() * H,
-        vx:    (Math.random() - 0.5) * 0.18,
-        vy:    (Math.random() - 0.5) * 0.18,
-        w:     Math.random() * 110 + 65,
-        h:     Math.random() * 60  + 32,
-        angle: Math.random() * Math.PI * 2,
-        va:    (Math.random() - 0.5) * 0.0025,
+        vx:    (Math.random() - 0.5) * 0.15,
+        vy:    (Math.random() - 0.5) * 0.15,
+        size:  Math.random() * 42 + 22,
+        rotY:  Math.random(),
+        vrotY: (Math.random() - 0.5) * 0.0012,
         color: Math.random() < 0.55 ? PURPLE : TEAL,
-        alpha: Math.random() * 0.07 + 0.06,
+        alpha: Math.random() * 0.22 + 0.30,  // 0.30 – 0.52: clearly visible
       }));
 
       crosses = Array.from({ length: CROSS_COUNT }, () => ({
@@ -82,12 +139,11 @@ export default function ParticleNetwork() {
         y:     Math.random() * H,
         vx:    (Math.random() - 0.5) * 0.22,
         vy:    (Math.random() - 0.5) * 0.22,
-        size:  Math.random() * 7 + 5,
-        alpha: Math.random() * 0.18 + 0.10,
+        size:  Math.random() * 9 + 6,
+        alpha: Math.random() * 0.3 + 0.25,  // 0.25 – 0.55: clearly visible
       }));
     };
 
-    // Wrap a value into [0, max] with margin
     const wrap = (v: number, max: number, margin: number) =>
       v < -margin ? max + margin : v > max + margin ? -margin : v;
 
@@ -96,49 +152,33 @@ export default function ParticleNetwork() {
       const H = canvas.height;
       ctx.clearRect(0, 0, W, H);
 
-      /* ── Wireframe blocks ─────────────────────────── */
-      for (const b of blocks) {
-        b.x = wrap(b.x + b.vx, W, b.w);
-        b.y = wrap(b.y + b.vy, H, b.h);
-        b.angle += b.va;
-
-        ctx.save();
-        ctx.translate(b.x, b.y);
-        ctx.rotate(b.angle);
-
-        // Subtle inner fill
-        ctx.fillStyle = `rgba(${b.color},${b.alpha * 0.3})`;
-        ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h);
-
-        // Border
-        ctx.strokeStyle = `rgba(${b.color},${b.alpha})`;
-        ctx.lineWidth   = 0.65;
-        ctx.strokeRect(-b.w / 2, -b.h / 2, b.w, b.h);
-
-        // Top highlight line inside (single accent line at top)
-        ctx.strokeStyle = `rgba(${b.color},${b.alpha * 1.8})`;
-        ctx.lineWidth   = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(-b.w / 2 + 4, -b.h / 2 + 1);
-        ctx.lineTo( b.w / 2 - 4, -b.h / 2 + 1);
-        ctx.stroke();
-
-        ctx.restore();
+      /* ── Isometric 3D cubes ───────────────────────── */
+      for (const b of cubes) {
+        b.x    = wrap(b.x + b.vx, W, b.size * 2);
+        b.y    = wrap(b.y + b.vy, H, b.size * 2);
+        b.rotY = (b.rotY + b.vrotY + 1) % 1;
+        drawIsoCube(ctx, b.x, b.y, b.size, b.rotY, b.color, b.alpha);
       }
 
       /* ── Cross marks ──────────────────────────────── */
-      ctx.lineWidth = 0.8;
       for (const c of crosses) {
         c.x = wrap(c.x + c.vx, W, c.size);
         c.y = wrap(c.y + c.vy, H, c.size);
 
         ctx.strokeStyle = `rgba(${TEAL},${c.alpha})`;
+        ctx.lineWidth = 1.4;
         ctx.beginPath();
         ctx.moveTo(c.x - c.size, c.y);
         ctx.lineTo(c.x + c.size, c.y);
         ctx.moveTo(c.x, c.y - c.size);
         ctx.lineTo(c.x, c.y + c.size);
         ctx.stroke();
+
+        // Centre dot on cross
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${TEAL},${c.alpha * 1.4})`;
+        ctx.fill();
       }
 
       /* ── Dot movement ─────────────────────────────── */

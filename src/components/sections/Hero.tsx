@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import AuroraBackground from "@/components/ui/AuroraBackground";
-import ParticleNetwork from "@/components/ui/ParticleNetwork";
+import IsoPlatform from "@/components/ui/IsoPlatform";
 
 /* ── Dispatch-flow diagram ─────────────────────────────────────── */
 
@@ -157,8 +157,8 @@ export default function Hero() {
 
       <div className="absolute inset-0 grid-overlay pointer-events-none" />
 
-      {/* Particle network — floating teal dots with connecting lines */}
-      <ParticleNetwork />
+      {/* Isometric 3D platform with orbiting dots */}
+      <IsoPlatform />
 
       <motion.div
         className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
