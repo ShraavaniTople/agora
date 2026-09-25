@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 function WireframeCube({
   size,
