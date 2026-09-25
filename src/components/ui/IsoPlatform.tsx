@@ -158,10 +158,10 @@ export default function IsoPlatform() {
 
     const drawDots = (cx: number, cy: number, W: number) => {
       // Orbit ellipse — wide and flat to match low-angle projection
-      const ORX    = W * 0.46;
-      const ORY    = W * 0.18;
-      const ORZ    = W * 0.20;
-      const BASE_Z = W * 0.07;
+      const ORX    = W * 0.32;
+      const ORY    = W * 0.13;
+      const ORZ    = W * 0.14;
+      const BASE_Z = W * 0.05;
 
       const scrollPhase = scrollY * 0.00060;
       const timePhase   = frame  * 0.006;
@@ -224,16 +224,16 @@ export default function IsoPlatform() {
       const W = canvas.width, H = canvas.height;
       ctx.clearRect(0, 0, W, H);
 
-      // Platform center — LOWER so top surface sits behind the text
+      // Platform — centered, pulled up slightly so it sits mid-hero
       const cx = W * 0.50;
-      const cy = H * 0.72;       // low anchor = platform dominates hero
-      const S  = Math.max(0.55, Math.min(1.1, W / 1280));
+      const cy = H * 0.65;
+      const S  = Math.max(0.45, Math.min(0.85, W / 1280));
 
-      // Three stacked slabs — bottom is widest
-      const baseW = 520 * S;
-      const baseD = 320 * S;
-      const sH    = 28 * S;
-      const gap   = 7  * S;
+      // Three stacked slabs — bottom widest, refined size
+      const baseW = 370 * S;
+      const baseD = 228 * S;
+      const sH    = 20 * S;
+      const gap   = 6  * S;
 
       for (let i = 0; i < 3; i++) {
         const extra = (2 - i) * 0.14;

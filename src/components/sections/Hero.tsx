@@ -150,7 +150,7 @@ export default function Hero() {
     <section
       ref={ref}
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ background: "#080507", paddingTop: 68 }}
+      style={{ paddingTop: 68 }}
     >
       {/* Aurora — multi-layer drifting gradient blobs */}
       <AuroraBackground />

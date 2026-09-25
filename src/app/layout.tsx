@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import GlobalBackground from "@/components/ui/GlobalBackground";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://shraavanitople.github.io/agora";
@@ -108,9 +109,12 @@ export default function RootLayout({
         )}
       </head>
       <body className="antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <GlobalBackground />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

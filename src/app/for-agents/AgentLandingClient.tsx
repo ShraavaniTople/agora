@@ -27,7 +27,7 @@ const qualify = [
 
 export default function AgentLandingClient() {
   return (
-    <div className="bg-[#080507] min-h-screen">
+    <div className="min-h-screen">
 
       {/* Hero */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">

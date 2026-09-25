@@ -70,7 +70,7 @@ const services = [
 
 export default function ServicesClient() {
   return (
-    <div className="bg-[#211A1D] min-h-screen pt-20">
+    <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="relative py-24 lg:py-32 overflow-hidden border-b border-white/[0.06]">
         <div className="absolute inset-0 dot-grid opacity-15 pointer-events-none" />
