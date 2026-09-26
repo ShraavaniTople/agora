@@ -304,7 +304,7 @@ export default function Hero() {
       {/* Fade to next section */}
       <div
         className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
-        style={{ background: "linear-gradient(to top, #080507, transparent)" }}
+        style={{ background: "linear-gradient(to top, rgba(8,5,7,0.85), transparent)" }}
       />
 
       {/* Scroll indicator */}

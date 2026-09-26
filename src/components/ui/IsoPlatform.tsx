@@ -142,26 +142,20 @@ export default function IsoPlatform() {
     interface OrbDot { phase: number; baseR: number; spd: number; rgb: string }
     const dots: OrbDot[] = Array.from({ length: N_DOTS }, (_, i) => ({
       phase: i / N_DOTS,
-      baseR: 4.0 + Math.random() * 5.5,
+      baseR: 2.5 + Math.random() * 3.0,
       spd:   0.45 + Math.random() * 0.70,
       rgb:   i % 6 === 0 ? "160,220,255"
            : i % 3 === 0 ? "127,255,212"
            :               "100,210,200",
     }));
 
-    // A few large "pill" dots like the reference (right side)
-    interface PillDot { phase: number; spd: number }
-    const pillDots: PillDot[] = Array.from({ length: 2 }, (_, i) => ({
-      phase: 0.6 + i * 0.15,
-      spd:   0.30 + i * 0.10,
-    }));
 
     const drawDots = (cx: number, cy: number, W: number) => {
       // Orbit ellipse — wide and flat to match low-angle projection
-      const ORX    = W * 0.32;
-      const ORY    = W * 0.13;
-      const ORZ    = W * 0.14;
-      const BASE_Z = W * 0.05;
+      const ORX    = W * 0.20;
+      const ORY    = W * 0.08;
+      const ORZ    = W * 0.09;
+      const BASE_Z = W * 0.03;
 
       const scrollPhase = scrollY * 0.00060;
       const timePhase   = frame  * 0.006;
@@ -193,30 +187,6 @@ export default function IsoPlatform() {
         ctx.fill();
       }
 
-      // Large pill/sphere dots — like the reference bottom-right
-      for (const pd of pillDots) {
-        const angle = ((pd.phase + timePhase * pd.spd * 0.5 + scrollPhase) % 1) * Math.PI * 2;
-        const wx = Math.cos(angle) * ORX * 1.1;
-        const wy = Math.sin(angle) * ORY * 1.1;
-        const wz = BASE_Z * 0.5;
-        const pt = proj(wx, wy, wz, cx, cy);
-        const depth = (Math.sin(angle) + 1) / 2;
-        const r = 18 + depth * 14;
-
-        const pg = ctx.createRadialGradient(pt.sx,pt.sy,0, pt.sx,pt.sy,r*2);
-        pg.addColorStop(0,   "rgba(180,195,210,0.55)");
-        pg.addColorStop(0.5, "rgba(140,160,175,0.20)");
-        pg.addColorStop(1,   "rgba(0,0,0,0)");
-        ctx.beginPath(); ctx.arc(pt.sx,pt.sy,r*2,0,Math.PI*2);
-        ctx.fillStyle = pg; ctx.fill();
-
-        ctx.beginPath(); ctx.arc(pt.sx,pt.sy,r,0,Math.PI*2);
-        ctx.fillStyle = "rgba(160,180,195,0.70)";
-        ctx.fill();
-        ctx.strokeStyle = "rgba(200,215,225,0.50)";
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
     };
 
     const tick = () => {
@@ -224,16 +194,16 @@ export default function IsoPlatform() {
       const W = canvas.width, H = canvas.height;
       ctx.clearRect(0, 0, W, H);
 
-      // Platform — centered, pulled up slightly so it sits mid-hero
+      // Platform — kept compact so it doesn't dominate the text
       const cx = W * 0.50;
-      const cy = H * 0.65;
-      const S  = Math.max(0.45, Math.min(0.85, W / 1280));
+      const cy = H * 0.60;
+      const S  = Math.max(0.30, Math.min(0.55, W / 1280));
 
-      // Three stacked slabs — bottom widest, refined size
-      const baseW = 370 * S;
-      const baseD = 228 * S;
-      const sH    = 20 * S;
-      const gap   = 6  * S;
+      // Three stacked slabs — compact size
+      const baseW = 280 * S;
+      const baseD = 175 * S;
+      const sH    = 15 * S;
+      const gap   = 5  * S;
 
       for (let i = 0; i < 3; i++) {
         const extra = (2 - i) * 0.14;

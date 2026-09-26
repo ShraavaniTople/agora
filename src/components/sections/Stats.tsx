@@ -143,7 +143,7 @@ export default function Stats() {
   return (
     <section
       className="relative overflow-hidden py-24 lg:py-32"
-      style={{ background: "#0D0A0C" }}
+      style={{ background: "transparent" }}
     >
       <div
         className="absolute top-0 left-0 right-0 h-px"

@@ -31,7 +31,7 @@ export default function HowItWorks() {
   return (
     <section
       className="relative py-20 lg:py-28 overflow-hidden"
-      style={{ background: "#080507" }}
+      style={{ background: "transparent" }}
     >
       <div
         className="absolute top-0 left-0 right-0 h-px"

@@ -48,7 +48,7 @@ export default function Services() {
     <section
       id="services"
       className="relative overflow-hidden py-24 lg:py-32"
-      style={{ background: "#100C0E" }}
+      style={{ background: "transparent" }}
     >
       {/* Top separator */}
       <div

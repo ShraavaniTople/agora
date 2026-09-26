@@ -40,7 +40,7 @@ export default function Benefits() {
     <section
       id="benefits"
       className="relative overflow-hidden py-24 lg:py-32"
-      style={{ background: "#0A0608" }}
+      style={{ background: "transparent" }}
     >
       {/* Top separator */}
       <div
