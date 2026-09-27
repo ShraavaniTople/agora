@@ -85,43 +85,44 @@ export default function OrbitalSphere() {
 
     /* ── Sphere ──────────────────────────────────────────── */
     const drawSphere = (cx: number, cy: number, R: number) => {
-      // Wide ambient halo
-      const halo = ctx.createRadialGradient(cx, cy, R * 0.6, cx, cy, R * 4.2);
-      halo.addColorStop(0,    `rgba(${PURPLE},0.28)`);
-      halo.addColorStop(0.35, `rgba(${PURPLE},0.09)`);
-      halo.addColorStop(0.70, `rgba(${TEAL},0.03)`);
+      // Wide ambient halo — large atmospheric glow
+      const halo = ctx.createRadialGradient(cx, cy, R * 0.5, cx, cy, R * 5.0);
+      halo.addColorStop(0,    `rgba(${PURPLE},0.45)`);
+      halo.addColorStop(0.25, `rgba(${PURPLE},0.18)`);
+      halo.addColorStop(0.55, `rgba(${TEAL},0.07)`);
       halo.addColorStop(1,    "rgba(0,0,0,0)");
-      ctx.beginPath(); ctx.arc(cx, cy, R * 4.2, 0, Math.PI * 2);
+      ctx.beginPath(); ctx.arc(cx, cy, R * 5.0, 0, Math.PI * 2);
       ctx.fillStyle = halo; ctx.fill();
 
-      // Sphere body gradient — dark core → purple mid → bright highlight
+      // Sphere body gradient — bright highlight → vivid purple → deep dark core
       const body = ctx.createRadialGradient(
-        cx - R * 0.28, cy - R * 0.28, R * 0.05,
+        cx - R * 0.32, cy - R * 0.32, R * 0.04,
         cx, cy, R,
       );
-      body.addColorStop(0,    "rgba(160, 85, 255, 0.95)");
-      body.addColorStop(0.22, "rgba(110, 40, 220, 0.90)");
-      body.addColorStop(0.58, "rgba(30, 10, 75, 0.96)");
-      body.addColorStop(1,    "rgba(6, 2, 18, 0.98)");
+      body.addColorStop(0,    "rgba(200,130,255,0.98)");
+      body.addColorStop(0.18, "rgba(140, 55, 250, 0.95)");
+      body.addColorStop(0.50, "rgba(50, 15, 120, 0.97)");
+      body.addColorStop(1,    "rgba(8, 3, 22, 0.99)");
       ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
       ctx.fillStyle = body; ctx.fill();
 
-      // Teal specular top-left
+      // Teal specular highlight — top-left bright spot
       const spec = ctx.createRadialGradient(
-        cx - R * 0.32, cy - R * 0.32, 0,
-        cx - R * 0.15, cy - R * 0.15, R * 0.60,
+        cx - R * 0.30, cy - R * 0.30, 0,
+        cx - R * 0.10, cy - R * 0.10, R * 0.55,
       );
-      spec.addColorStop(0,   `rgba(${TEAL},0.42)`);
-      spec.addColorStop(0.4, `rgba(${TEAL},0.10)`);
-      spec.addColorStop(1,   `rgba(${TEAL},0)`);
+      spec.addColorStop(0,    `rgba(${TEAL},0.65)`);
+      spec.addColorStop(0.35, `rgba(${TEAL},0.18)`);
+      spec.addColorStop(1,    `rgba(${TEAL},0)`);
       ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
       ctx.fillStyle = spec; ctx.fill();
 
-      // Purple rim light
-      const rim = ctx.createRadialGradient(cx, cy, R * 0.68, cx, cy, R);
-      rim.addColorStop(0, "rgba(160,90,255,0)");
-      rim.addColorStop(1, "rgba(160,90,255,0.52)");
-      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      // Purple rim light — strong edge glow
+      const rim = ctx.createRadialGradient(cx, cy, R * 0.62, cx, cy, R * 1.08);
+      rim.addColorStop(0,   "rgba(170,90,255,0)");
+      rim.addColorStop(0.7, "rgba(160,80,255,0.45)");
+      rim.addColorStop(1,   "rgba(140,60,255,0.72)");
+      ctx.beginPath(); ctx.arc(cx, cy, R * 1.08, 0, Math.PI * 2);
       ctx.fillStyle = rim; ctx.fill();
 
       // Sphere border stroke
@@ -230,9 +231,12 @@ export default function OrbitalSphere() {
       const W = canvas.width, H = canvas.height;
       ctx.clearRect(0, 0, W, H);
 
-      const cx = W * 0.50;
-      const cy = H * 0.52;
-      const sphereR = Math.min(W, H) * 0.145;
+      const isMob = W < 768;
+      const cx = isMob ? W * 0.50 : W * 0.68;
+      const cy = isMob ? H * 0.38 : H * 0.50;
+      const sphereR = isMob
+        ? Math.min(W, H) * 0.22
+        : Math.min(W * 0.22, H * 0.38);
 
       // Set ring radii relative to sphere
       rings[0].R = sphereR * 1.60;
