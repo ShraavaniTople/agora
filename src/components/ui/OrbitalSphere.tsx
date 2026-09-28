@@ -230,12 +230,9 @@ export default function OrbitalSphere() {
       const W = canvas.width, H = canvas.height;
       ctx.clearRect(0, 0, W, H);
 
-      const isMob  = W < 768;
-      const cx     = isMob ? W * 0.50 : W * 0.70;
-      const cy     = isMob ? H * 0.40 : H * 0.50;
-      const sphereR = isMob
-        ? Math.min(W, H) * 0.20
-        : Math.min(W * 0.18, H * 0.28);
+      const cx      = W * 0.50;
+      const cy      = H * 0.52;
+      const sphereR = Math.min(W, H) * 0.16;
 
       rings[0].R = sphereR * 1.55;
       rings[1].R = sphereR * 2.20;
