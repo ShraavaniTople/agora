@@ -20,7 +20,7 @@ export default function Process() {
   const lineH = useTransform(scrollYProgress, [0.1, 0.85], ["0%", "100%"]);
 
   return (
-    <section id="process" className="relative bg-[#0A0608] py-24 lg:py-32 overflow-hidden">
+    <section id="process" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "transparent" }}>
       <div className="absolute top-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(99,33,238,0.35), transparent)" }} />
       <div className="absolute inset-0 dot-grid-subtle opacity-60 pointer-events-none" />

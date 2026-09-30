@@ -11,7 +11,7 @@ const pressItems = [
 
 export default function Press() {
   return (
-    <section className="relative bg-[#0D0A0C] py-20 lg:py-24 overflow-hidden">
+    <section className="relative py-20 lg:py-24 overflow-hidden" style={{ background: "transparent" }}>
       <div className="absolute top-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(127,255,212,0.12), transparent)" }} />
 
@@ -44,7 +44,7 @@ export default function Press() {
             <motion.div
               key={i}
               variants={fadeUpVariants}
-              className="group rounded-2xl border border-white/[0.06] bg-[#0A0608] p-6 hover:border-white/[0.12] hover:-translate-y-0.5 transition-all duration-300"
+              className="group rounded-2xl border border-white/[0.06] p-6 hover:border-white/[0.12] hover:-translate-y-0.5 transition-all duration-300" style={{ background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)" }}
             >
               <span
                 className="text-[10px] font-black tracking-widest uppercase px-2 py-1 rounded-md bg-[#6321EE]/12 text-[#6321EE] mb-4 inline-block"

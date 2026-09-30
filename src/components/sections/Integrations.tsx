@@ -42,7 +42,7 @@ function Chip({ name }: { name: string }) {
 
 export default function Integrations() {
   return (
-    <section className="relative bg-[#0A0608] py-20 lg:py-24 overflow-hidden">
+    <section className="relative py-20 lg:py-24 overflow-hidden" style={{ background: "transparent" }}>
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(99,33,238,0.25), transparent)" }}
@@ -73,9 +73,9 @@ export default function Integrations() {
           </motion.p>
         </motion.div>
 
-        <div className="relative rounded-2xl overflow-hidden border border-white/[0.06] bg-[#0F0B0E] py-5">
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-[#0F0B0E] to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-[#0F0B0E] to-transparent" />
+        <div className="relative rounded-2xl overflow-hidden border border-white/[0.06] py-5" style={{ background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)" }}>
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 z-10" style={{ background: "linear-gradient(to right, #050210, transparent)" }} />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 z-10" style={{ background: "linear-gradient(to left, #050210, transparent)" }} />
 
           <div className="flex gap-3 mb-3" style={{ animation: "marquee 24s linear infinite" }}>
             {[...integrations, ...integrations].map((name, i) => (

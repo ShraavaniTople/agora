@@ -33,7 +33,7 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="relative bg-[#0A0608] py-24 lg:py-32 overflow-hidden">
+    <section id="faq" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "transparent" }}>
       <div className="absolute top-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(99,33,238,0.25), transparent)" }} />
       <div className="absolute inset-0 dot-grid-subtle opacity-40 pointer-events-none" />
