@@ -3,19 +3,15 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView, animate } from "framer-motion";
 
+const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
+const up = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+};
+
 function Counter({
-  target,
-  prefix = "",
-  suffix = "",
-  inView,
-  duration = 1.6,
-}: {
-  target: number;
-  prefix?: string;
-  suffix?: string;
-  inView: boolean;
-  duration?: number;
-}) {
+  target, prefix = "", suffix = "", inView, duration = 1.6,
+}: { target: number; prefix?: string; suffix?: string; inView: boolean; duration?: number }) {
   const [value, setValue] = useState(0);
   useEffect(() => {
     if (!inView) return;
@@ -29,239 +25,162 @@ function Counter({
   return <>{prefix}{value}{suffix}</>;
 }
 
-function SideCard({
-  label,
-  number,
-  subLabel,
-  description,
-  color,
-  glowColor,
-  borderColor,
-  delay,
-  icon,
-}: {
-  label: string;
-  number: React.ReactNode;
-  subLabel: string;
-  description: string;
-  color: string;
-  glowColor: string;
-  borderColor: string;
-  delay: number;
-  icon: React.ReactNode;
-}) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 48 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="relative rounded-2xl p-7 lg:p-8 overflow-hidden flex flex-col cursor-default"
-      style={{
-        minHeight: 320,
-        background: "linear-gradient(145deg, #151020 0%, #0F0C1A 50%, #0A0810 100%)",
-        border: `1px solid ${hovered ? borderColor : "rgba(255,255,255,0.08)"}`,
-        boxShadow: hovered
-          ? `0 24px 64px ${glowColor}, 0 0 0 1px ${borderColor}`
-          : "0 4px 32px rgba(0,0,0,0.6)",
-        transform: hovered ? "translateY(-8px)" : "translateY(0)",
-        transition: "transform 0.32s cubic-bezier(0.22,1,0.36,1), box-shadow 0.32s ease, border-color 0.32s ease",
-      }}
-    >
-      {/* Colored top bar */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[2px]"
-        style={{
-          background: `linear-gradient(90deg, transparent, ${color} 35%, ${color} 65%, transparent)`,
-          opacity: hovered ? 1 : 0.6,
-          transition: "opacity 0.3s ease",
-        }}
-      />
-      {/* Top bloom */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse at 50% 0%, ${glowColor} 0%, transparent 60%)`,
-          opacity: hovered ? 0.9 : 0.35,
-          transition: "opacity 0.3s ease",
-        }}
-      />
-
-      {/* Label */}
-      <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-white/35 relative z-10">
-        {label}
-      </p>
-
-      {/* Number */}
-      <div className="flex-1 flex flex-col justify-center py-6 relative z-10">
-        <div
-          className="font-black text-white tracking-[-0.05em] leading-none tabular-nums"
-          style={{ fontSize: "clamp(60px, 7.5vw, 84px)" }}
-        >
-          {number}
-        </div>
-        <p className="mt-2 font-semibold tracking-wide text-[14px]" style={{ color }}>
-          {subLabel}
-        </p>
-      </div>
-
-      {/* Bottom: description + icon */}
-      <div
-        className="mt-auto relative z-10"
-        style={{
-          borderTop: `1px solid ${hovered ? `${color}25` : "rgba(255,255,255,0.06)"}`,
-          paddingTop: "20px",
-          transition: "border-color 0.3s ease",
-        }}
-      >
-        {/* Description — always visible */}
-        <p className="text-[12px] text-white/40 leading-relaxed mb-4">{description}</p>
-
-        {/* Icon */}
-        <div
-          style={{
-            opacity: hovered ? 1 : 0.45,
-            transform: hovered ? "scale(1.1)" : "scale(1)",
-            transition: "opacity 0.3s ease, transform 0.3s ease",
-          }}
-        >
-          {icon}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+const stats = [
+  {
+    label: "Time Eliminated",
+    target: 6,
+    suffix: "+",
+    sublabel: "months ramp time",
+    desc: "Typical SDR ramp eliminated. AGORA agents deploy in days, not months.",
+    color: "#6321EE",
+    glow: "rgba(99,33,238,0.32)",
+    border: "rgba(99,33,238,0.42)",
+    delay: 0,
+    featured: false,
+  },
+  {
+    label: "Cost Avoided",
+    target: 150,
+    prefix: "$",
+    suffix: "K",
+    sublabel: "per head / year",
+    desc: "Salary, benefits, tools, and mgmt overhead — replaced with variable pods aligned to outcomes.",
+    color: "#7FFFD4",
+    glow: "rgba(127,255,212,0.28)",
+    border: "rgba(127,255,212,0.40)",
+    delay: 0.1,
+    featured: true,
+  },
+  {
+    label: "Revenue Impact",
+    target: 2,
+    prefix: "+",
+    suffix: "%",
+    sublabel: "conversion lift",
+    desc: "2% lift on a $10M pipeline = $200K added revenue. At scale, marginal gains compound fast.",
+    color: "#7ACCC8",
+    glow: "rgba(122,204,200,0.24)",
+    border: "rgba(122,204,200,0.38)",
+    delay: 0.2,
+    featured: false,
+  },
+];
 
 export default function Stats() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section
-      className="relative overflow-hidden py-24 lg:py-32"
-      style={{ background: "transparent" }}
-    >
+    <section className="relative overflow-hidden py-24 lg:py-36" style={{ background: "transparent" }}>
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(99,33,238,0.6), transparent)" }}
       />
 
+      {/* Section-local glow */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: "radial-gradient(ellipse 80% 50% at 50% 40%, rgba(99,33,238,0.10) 0%, transparent 70%)",
+      }} />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          variants={stagger}
           className="text-center mb-16 lg:mb-20"
         >
-          <p className="text-[11px] font-black tracking-[0.28em] uppercase text-[#6321EE] mb-4">
+          <motion.p variants={up} className="text-[11px] font-black tracking-[0.3em] uppercase text-[#6321EE] mb-4">
             Results
-          </p>
-          <h2
+          </motion.p>
+          <motion.h2
+            variants={up}
             className="font-black text-white tracking-[-0.03em] leading-none mb-4"
-            style={{ fontSize: "clamp(36px, 5vw, 60px)" }}
+            style={{ fontSize: "clamp(34px, 5vw, 64px)" }}
           >
             What you save vs.{" "}
             <span className="gradient-text">hiring in-house</span>
-          </h2>
-          <p className="text-white/35 text-[15px] max-w-md mx-auto">
+          </motion.h2>
+          <motion.p variants={up} style={{ color: "rgba(244,246,255,0.38)", fontSize: 15 }} className="max-w-md mx-auto leading-relaxed">
             Building an in-house SDR team means months of ramp time, six-figure salaries, and fixed overhead. AGORA replaces all of that.
-          </p>
+          </motion.p>
         </motion.div>
 
-        {/* Cards grid */}
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 items-stretch">
-
-          {/* Card 1: Time Eliminated */}
-          <SideCard
-            label="Time Eliminated"
-            number={<Counter target={6} suffix="+" inView={inView} />}
-            subLabel="months ramp time"
-            description="Typical SDR ramp eliminated. AGORA agents deploy in days, not months."
-            color="#6321EE"
-            glowColor="rgba(99,33,238,0.28)"
-            borderColor="rgba(99,33,238,0.5)"
-            delay={0}
-            icon={
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6321EE" strokeWidth="1.5" strokeLinecap="round">
-                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-              </svg>
-            }
-          />
-
-          {/* Card 2: Cost Avoided (featured) */}
-          <motion.div
-            initial={{ opacity: 0, y: 48 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="relative rounded-2xl p-7 lg:p-8 overflow-hidden flex flex-col cursor-default"
-            style={{ minHeight: 340, background: "#07040F", border: "1px solid rgba(127,255,212,0.3)" }}
-          >
-            {/* Animated mesh gradient blobs */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
-              <div className="stats-mesh-blob stats-mesh-blob-1" />
-              <div className="stats-mesh-blob stats-mesh-blob-2" />
-              <div className="stats-mesh-blob stats-mesh-blob-3" />
-              <div className="absolute inset-0" style={{ background: "rgba(7,4,15,0.38)" }} />
-            </div>
-
-            {/* Label */}
-            <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-white/50 relative z-10">
-              Cost Avoided
-            </p>
-
-            {/* Number */}
-            <div className="flex-1 flex flex-col justify-center py-6 relative z-10">
-              <div
-                className="font-black text-white tracking-[-0.05em] leading-none tabular-nums"
-                style={{ fontSize: "clamp(60px, 7.5vw, 84px)" }}
-              >
-                $<Counter target={150} suffix="K" inView={inView} duration={2} />
-              </div>
-              <p className="mt-2 font-semibold tracking-wide text-[14px]" style={{ color: "#7FFFD4" }}>
-                per head / year
-              </p>
-            </div>
-
-            {/* Bottom: always visible */}
-            <div
-              className="mt-auto pt-5 relative z-10"
-              style={{ borderTop: "1px solid rgba(127,255,212,0.15)" }}
+          {stats.map((s) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: s.delay }}
+              className="group relative rounded-2xl overflow-hidden flex flex-col"
+              style={{
+                padding: "40px 34px",
+                minHeight: s.featured ? 360 : 320,
+                background: s.featured
+                  ? `linear-gradient(145deg, ${s.glow.replace("0.28", "0.14")} 0%, rgba(8,4,18,0.96) 100%)`
+                  : "rgba(255,255,255,0.028)",
+                border: `1px solid ${s.border}`,
+                backdropFilter: "blur(14px)",
+                transition: "all 0.32s cubic-bezier(0.22,1,0.36,1)",
+              }}
+              whileHover={{ y: -6, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
             >
-              <p className="text-[12px] text-white/50 leading-relaxed mb-4">
-                Salary, benefits, tools, mgmt overhead, replaced with variable pods aligned to outcomes.
+              {/* Top bar */}
+              <div
+                className="absolute top-0 left-0 right-0 h-[2px]"
+                style={{
+                  background: `linear-gradient(90deg, transparent, ${s.color} 35%, ${s.color} 65%, transparent)`,
+                }}
+              />
+
+              {/* Bloom */}
+              <div
+                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+                style={{ background: `radial-gradient(ellipse at 50% 0%, ${s.glow} 0%, transparent 65%)` }}
+              />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `radial-gradient(ellipse at 50% 0%, ${s.glow.replace(s.featured ? "0.28" : "0.32", "0.18")} 0%, transparent 65%)`,
+                }}
+              />
+
+              {/* Featured mesh blobs */}
+              {s.featured && (
+                <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
+                  <div className="stats-mesh-blob stats-mesh-blob-1" />
+                  <div className="stats-mesh-blob stats-mesh-blob-2" />
+                  <div className="stats-mesh-blob stats-mesh-blob-3" />
+                  <div className="absolute inset-0" style={{ background: "rgba(7,4,15,0.38)" }} />
+                </div>
+              )}
+
+              <p className="text-[10px] font-bold tracking-[0.24em] uppercase relative z-10" style={{ color: "rgba(244,246,255,0.32)" }}>
+                {s.label}
               </p>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(127,255,212,0.65)" strokeWidth="1.5" strokeLinecap="round">
-                <line x1="12" y1="1" x2="12" y2="23"/>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-              </svg>
-            </div>
-          </motion.div>
 
-          {/* Card 3: Revenue Impact */}
-          <SideCard
-            label="Revenue Impact"
-            number={<>+<Counter target={2} suffix="%" inView={inView} duration={1.4} /></>}
-            subLabel="conversion lift"
-            description="2% lift on a $10M pipeline = $200K added revenue. At scale, marginal gains compound fast."
-            color="#7ACCC8"
-            glowColor="rgba(122,204,200,0.22)"
-            borderColor="rgba(122,204,200,0.5)"
-            delay={0.2}
-            icon={
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7ACCC8" strokeWidth="1.5" strokeLinecap="round">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                <polyline points="17 6 23 6 23 12"/>
-              </svg>
-            }
-          />
+              <div className="flex-1 flex flex-col justify-center py-6 relative z-10">
+                <div
+                  className="font-black text-white tracking-[-0.055em] leading-none tabular-nums"
+                  style={{ fontSize: "clamp(60px, 7.5vw, 92px)" }}
+                >
+                  <Counter target={s.target} prefix={s.prefix} suffix={s.suffix} inView={inView} />
+                </div>
+                <p className="mt-3 font-semibold tracking-wide text-[14px]" style={{ color: s.color }}>
+                  {s.sublabel}
+                </p>
+              </div>
 
+              <div
+                className="mt-auto relative z-10 pt-5"
+                style={{ borderTop: `1px solid ${s.color}20` }}
+              >
+                <p style={{ fontSize: 12, color: "rgba(244,246,255,0.38)", lineHeight: 1.65 }}>{s.desc}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 

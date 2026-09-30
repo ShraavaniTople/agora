@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
+import TrustMarquee from "@/components/sections/TrustMarquee";
 
 const AudienceSplit  = dynamic(() => import("@/components/sections/AudienceSplit"));
 const HowItWorks     = dynamic(() => import("@/components/sections/HowItWorks"));
@@ -16,6 +17,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <TrustMarquee />
       <AudienceSplit />
       <HowItWorks />
       <Stats />

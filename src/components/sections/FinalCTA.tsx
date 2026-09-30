@@ -2,55 +2,75 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { fadeUpVariants, staggerContainer } from "@/components/ui/SectionWrapper";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
+
+const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
+const up = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+};
 
 export default function FinalCTA() {
   return (
     <section
       id="book"
-      className="relative overflow-hidden py-28 lg:py-40"
-      style={{
-        /* Background gradient */
-        background: "linear-gradient(160deg, #6321EE 0%, #4A18B8 55%, #380F90 100%)",
-      }}
+      className="relative overflow-hidden py-28 lg:py-44"
+      style={{ background: "linear-gradient(170deg, #0A0618 0%, #120836 45%, #0E0525 100%)" }}
     >
-      {/* Grid lines overlay */}
+      {/* Animated mesh blobs */}
+      <div
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+        style={{ borderRadius: 0 }}
+      >
+        <div
+          className="absolute"
+          style={{
+            width: 800, height: 800,
+            top: "50%", left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "radial-gradient(circle, rgba(99,33,238,0.35) 0%, rgba(99,33,238,0.08) 45%, transparent 70%)",
+            filter: "blur(80px)",
+            animation: "blob-drift-1 10s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute"
+          style={{
+            width: 500, height: 500,
+            top: "-10%", right: "10%",
+            background: "radial-gradient(circle, rgba(127,255,212,0.18) 0%, transparent 65%)",
+            filter: "blur(60px)",
+            animation: "blob-drift-3 13s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute"
+          style={{
+            width: 400, height: 400,
+            bottom: "0%", left: "5%",
+            background: "radial-gradient(circle, rgba(122,204,200,0.12) 0%, transparent 65%)",
+            filter: "blur(50px)",
+            animation: "blob-drift-2 16s ease-in-out infinite",
+          }}
+        />
+      </div>
+
+      {/* Grid overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)
+            linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
-        }}
-      />
-
-      {/* Inner radial depth */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse at 50% 120%, rgba(30,8,80,0.7) 0%, transparent 65%)",
-        }}
-      />
-
-      {/* Top-left highlight bloom */}
-      <div
-        className="absolute -top-20 -left-20 pointer-events-none glow-orb-secondary"
-        style={{
-          width: "min(500px, 70vw)",
-          height: "min(500px, 70vw)",
-          background: "radial-gradient(ellipse, rgba(127,255,212,0.15) 0%, transparent 60%)",
-          borderRadius: "50%",
-          filter: "blur(60px)",
         }}
       />
 
       {/* Top separator */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(99,33,238,0.6), rgba(127,255,212,0.3), transparent)" }}
       />
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -58,27 +78,25 @@ export default function FinalCTA() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          variants={staggerContainer}
+          variants={stagger}
         >
           {/* Live badge */}
-          <motion.div
-            variants={fadeUpVariants}
-            className="inline-flex items-center gap-2.5 mb-10"
-          >
+          <motion.div variants={up} className="inline-flex items-center gap-2.5 mb-10">
             <div
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full"
               style={{
-                border: "1px solid rgba(255,255,255,0.3)",
-                background: "rgba(255,255,255,0.12)",
+                border: "1px solid rgba(127,255,212,0.3)",
+                background: "rgba(127,255,212,0.08)",
+                backdropFilter: "blur(8px)",
               }}
             >
               <motion.div
                 className="w-1.5 h-1.5 rounded-full bg-[#7FFFD4]"
                 animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
-                style={{ boxShadow: "0 0 6px #7FFFD4" }}
+                style={{ boxShadow: "0 0 8px #7FFFD4" }}
               />
-              <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/80">
+              <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#7FFFD4]/80">
                 Network live · Accepting new programs
               </span>
             </div>
@@ -86,15 +104,15 @@ export default function FinalCTA() {
 
           {/* Headline */}
           <motion.h2
-            variants={fadeUpVariants}
-            className="font-black text-white leading-[0.96] tracking-[-0.04em] mb-7"
-            style={{ fontSize: "clamp(40px, 7vw, 80px)" }}
+            variants={up}
+            className="font-black text-white leading-[0.94] tracking-[-0.04em] mb-7"
+            style={{ fontSize: "clamp(42px, 7vw, 86px)" }}
           >
             Add a sales team.
             <br />
             <span
               style={{
-                background: "linear-gradient(120deg, #FFFFFF 0%, #7FFFD4 100%)",
+                background: "linear-gradient(120deg, #FFFFFF 0%, #7FFFD4 60%, #7ACCC8 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -105,49 +123,51 @@ export default function FinalCTA() {
           </motion.h2>
 
           {/* Subheading */}
-          <motion.p
-            variants={fadeUpVariants}
-            className="text-white/70 text-[16px] max-w-lg mx-auto mb-14 leading-relaxed"
-          >
-            Book a call and we&apos;ll show you exactly how AGORA works for your business:
-            what the team looks like, how fast we can start, and what it costs.
+          <motion.p variants={up} className="text-white/60 text-[16px] max-w-lg mx-auto mb-14 leading-relaxed">
+            Book a call and we&apos;ll show you exactly how AGORA works — what the team looks like, how fast we can start, and what it costs.
           </motion.p>
 
           {/* CTAs */}
           <motion.div
-            variants={fadeUpVariants}
+            variants={up}
             className="flex flex-col sm:flex-row items-center justify-center gap-3"
           >
             <a
               href="https://calendly.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2.5 rounded-xl bg-white font-bold transition-all duration-300 w-full sm:w-auto justify-center"
+              className="group inline-flex items-center justify-center gap-2.5 rounded-xl font-bold text-white w-full sm:w-auto transition-all duration-300"
               style={{
-                padding: "15px 32px",
+                padding: "16px 34px",
                 fontSize: 15,
-                color: "#4A18B8",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.15)",
+                background: "linear-gradient(135deg, #ffffff 0%, #e8e8f8 100%)",
+                color: "#3A10CC",
+                boxShadow: "0 4px 30px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.12)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 36px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.2)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 8px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.2)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = "";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.15)";
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 4px 30px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.12)";
               }}
             >
+              <Zap size={15} />
               Book a Free Call
-              <ArrowRight size={17} className="group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
             </a>
+
             <Link
               href="/contact"
-              className="flex items-center gap-2 rounded-xl text-white font-semibold transition-all duration-300 w-full sm:w-auto justify-center hover:bg-white/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl text-white font-semibold transition-all duration-300 w-full sm:w-auto hover:bg-white/10"
               style={{
-                padding: "15px 32px",
+                padding: "16px 32px",
                 fontSize: 15,
-                border: "1px solid rgba(255,255,255,0.35)",
+                border: "1px solid rgba(255,255,255,0.28)",
+                backdropFilter: "blur(8px)",
               }}
             >
               Get Started
@@ -156,7 +176,6 @@ export default function FinalCTA() {
         </motion.div>
       </div>
 
-      {/* Bottom separator */}
       <div
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)" }}

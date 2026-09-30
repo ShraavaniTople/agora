@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import GlobalBackground from "@/components/ui/GlobalBackground";
+import CursorGlow from "@/components/ui/CursorGlow";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://shraavanitople.github.io/agora";
@@ -110,6 +111,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <GlobalBackground />
+        <CursorGlow />
         <div style={{ position: "relative", zIndex: 1 }}>
           <Navbar />
           <main>{children}</main>
