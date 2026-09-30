@@ -8,7 +8,6 @@ import { ArrowUpRight } from "lucide-react";
 const INDUSTRIES = ["Healthcare", "Recruiting"];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const EASE_SOFT = [0.16, 1, 0.3, 1] as const;
 
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef(null);
@@ -31,6 +30,7 @@ export default function Hero() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const id = setInterval(() => setIdx(i => (i + 1) % INDUSTRIES.length), 3200);
     return () => clearInterval(id);
@@ -39,7 +39,7 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex flex-col justify-center overflow-hidden"
-      style={{ background: "#080808" }}
+      style={{ background: "#050210" }}
     >
       {/* Grain texture — juncastudio uses paper.webp, we use CSS noise */}
       <div aria-hidden style={{
@@ -48,17 +48,36 @@ export default function Hero() {
         opacity: 0.7,
       }} />
 
-      {/* Very subtle purple tint at top — just a hint of brand color */}
-      <div aria-hidden style={{
-        position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
-        width: "110%", height: "55%", pointerEvents: "none", zIndex: 0,
-        background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,33,238,0.14) 0%, transparent 70%)",
-      }} />
+      {/* Brand aurora — purple glow from top */}
+      <motion.div
+        aria-hidden
+        style={{
+          position: "absolute", top: "-20%", left: "50%", transform: "translateX(-50%)",
+          width: 1100, height: 900, pointerEvents: "none", zIndex: 0,
+          borderRadius: "50%",
+          background: "radial-gradient(ellipse, rgba(99,33,238,0.48) 0%, rgba(99,33,238,0.12) 42%, transparent 68%)",
+          filter: "blur(80px)",
+        }}
+        animate={{ scale: [1, 1.08, 1], opacity: [0.8, 1, 0.8] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* Teal accent — lower left */}
+      <motion.div
+        aria-hidden
+        style={{
+          position: "absolute", bottom: "10%", left: "-8%", pointerEvents: "none", zIndex: 0,
+          width: 600, height: 600, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(127,255,212,0.07) 0%, transparent 70%)",
+          filter: "blur(80px)",
+        }}
+        animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+      />
 
       {/* Bottom fade */}
       <div aria-hidden style={{
         position: "absolute", bottom: 0, left: 0, right: 0, height: 200,
-        background: "linear-gradient(to bottom, transparent, #080808)",
+        background: "linear-gradient(to bottom, transparent, #050210)",
         pointerEvents: "none", zIndex: 1,
       }} />
 
