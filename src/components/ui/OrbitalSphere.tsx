@@ -231,8 +231,8 @@ export default function OrbitalSphere() {
       ctx.clearRect(0, 0, W, H);
 
       const cx      = W * 0.50;
-      const cy      = H * 0.52;
-      const sphereR = Math.min(W, H) * 0.16;
+      const cy      = H * 0.50;
+      const sphereR = Math.min(W, H) * 0.20;
 
       rings[0].R = sphereR * 1.55;
       rings[1].R = sphereR * 2.20;
