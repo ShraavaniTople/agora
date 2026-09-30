@@ -1,61 +1,58 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { fadeUpVariants, staggerContainer } from "@/components/ui/SectionWrapper";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 const pressItems = [
-  { outlet: "Tech Square Atlanta", headline: "How Joseph Lee turned campus observation into a sales platform", tag: "Founder Story" },
+  { outlet: "Tech Square Atlanta",  headline: "How Joseph Lee turned campus observation into a sales platform", tag: "Founder Story" },
   { outlet: "Georgia Tech CREATE-X", headline: "AGORA AI selected for Georgia Tech's flagship startup accelerator", tag: "Accelerator" },
   { outlet: "11 Alive · NBC Atlanta", headline: "Georgia Tech launches program to aid students with startups", tag: "News" },
 ];
 
 export default function Press() {
   return (
-    <section className="relative py-20 lg:py-24 overflow-hidden" style={{ background: "transparent" }}>
-      <div className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(127,255,212,0.12), transparent)" }} />
+    <section className="relative" style={{ background: "transparent" }}>
+      <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          variants={staggerContainer}
-          className="text-center mb-12"
+      <div className="px-8 sm:px-14 lg:px-20 xl:px-28 py-20 lg:py-28">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: EASE }}
+          style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(244,246,255,0.28)", marginBottom: 40 }}
         >
-          <motion.p variants={fadeUpVariants}
-            className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#6321EE] mb-3">
-            As Seen In
-          </motion.p>
-          <motion.h2 variants={fadeUpVariants}
-            className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Building in public since day one
-          </motion.h2>
-        </motion.div>
+          As Seen In
+        </motion.p>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 gap-3"
-        >
+        <div>
           {pressItems.map((item, i) => (
             <motion.div
               key={i}
-              variants={fadeUpVariants}
-              className="group rounded-2xl border border-white/[0.06] p-6 hover:border-white/[0.12] hover:-translate-y-0.5 transition-all duration-300" style={{ background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)" }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.7, delay: i * 0.07, ease: EASE }}
+              className="group flex items-center gap-6 py-6"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
             >
-              <span
-                className="text-[10px] font-black tracking-widest uppercase px-2 py-1 rounded-md bg-[#6321EE]/12 text-[#6321EE] mb-4 inline-block"
-              >
-                {item.tag}
+              <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(244,246,255,0.18)", letterSpacing: "0.06em", minWidth: 26 }}>
+                0{i + 1}
               </span>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-white/25 mb-2.5">{item.outlet}</p>
-              <p className="text-[14px] font-semibold text-white/80 leading-snug">{item.headline}</p>
+              <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8">
+                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#6321EE", minWidth: 160 }}>
+                  {item.outlet}
+                </span>
+                <p className="flex-1 font-medium text-white/70 group-hover:text-white transition-colors duration-300"
+                  style={{ fontSize: 14, letterSpacing: "-0.01em" }}>
+                  {item.headline}
+                </p>
+              </div>
+              <span style={{ fontSize: 14, color: "rgba(255,255,255,0.15)" }} className="hidden sm:block">→</span>
             </motion.div>
           ))}
-        </motion.div>
+          <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
+        </div>
       </div>
     </section>
   );

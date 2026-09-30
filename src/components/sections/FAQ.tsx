@@ -1,72 +1,110 @@
 "use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
-import { motion } from "framer-motion";
-import { fadeUpVariants, staggerContainer } from "@/components/ui/SectionWrapper";
-import Accordion from "@/components/ui/Accordion";
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 const faqs = [
-  {
-    question: "How long will it take for my business to onboard onto AGORA?",
-    answer: "Most clients are fully operational within one to two weeks of kickoff. The onboarding process involves aligning on targets, scripting, and routing rules, all of which we handle collaboratively. We move fast without cutting corners: the goal is a team that's calibrated and accountable from day one, not a slow-rolling implementation that takes months to show results.",
-  },
-  {
-    question: "Does AGORA replace my existing infrastructure?",
-    answer: "AGORA is designed to complement what you already have. We integrate with your CRM, communication tools, and calendar systems (including HubSpot, Pipedrive, Salesforce, Slack, Calendly, and more), so your team keeps full visibility without changing how they work. AGORA sits as an execution layer on top of your existing stack.",
-  },
-  {
-    question: "What use cases does AGORA support?",
-    answer: "AGORA is built for companies with an active pipeline that needs faster, more consistent execution. Our most common use cases include speed-to-lead follow-up, outbound prospecting, account reactivation, and expansion campaigns into new regions or segments.",
-  },
-  {
-    question: "How is performance measured and reported?",
-    answer: "Every engagement comes with full reporting: contact rates, booking rates, call quality scores, objection trend data, and revenue attribution. You'll have access to real-time dashboards and regular performance reviews, If something isn't working, we'll know before you do and we'll already be adjusting.",
-  },
-  {
-    question: "How do you make sure messaging matches our brand?",
-    answer: "Brand alignment is baked into onboarding. We work with you to develop and approve scripts, talk tracks, and objection-handling playbooks before a single call is made. Our coaching layer enforces consistency at scale, flagging deviations and scoring quality.",
-  },
-  {
-    question: "How does pricing work?",
-    answer: "AGORA uses a custom, performance-aligned pricing model. No rigid tiers or bloated packages. Pricing is built around your program size, campaign type, and volume. We offer variable pricing structures designed to tie our economics to your outcomes, not your headcount.",
-  },
+  { question: "How long will it take for my business to onboard onto AGORA?", answer: "Most clients are fully operational within one to two weeks of kickoff. The onboarding process involves aligning on targets, scripting, and routing rules, all of which we handle collaboratively. We move fast without cutting corners: the goal is a team that's calibrated and accountable from day one, not a slow-rolling implementation that takes months to show results." },
+  { question: "Does AGORA replace my existing infrastructure?", answer: "AGORA is designed to complement what you already have. We integrate with your CRM, communication tools, and calendar systems (including HubSpot, Pipedrive, Salesforce, Slack, Calendly, and more), so your team keeps full visibility without changing how they work. AGORA sits as an execution layer on top of your existing stack." },
+  { question: "What use cases does AGORA support?", answer: "AGORA is built for companies with an active pipeline that needs faster, more consistent execution. Our most common use cases include speed-to-lead follow-up, outbound prospecting, account reactivation, and expansion campaigns into new regions or segments." },
+  { question: "How is performance measured and reported?", answer: "Every engagement comes with full reporting: contact rates, booking rates, call quality scores, objection trend data, and revenue attribution. You'll have access to real-time dashboards and regular performance reviews. If something isn't working, we'll know before you do and we'll already be adjusting." },
+  { question: "How do you make sure messaging matches our brand?", answer: "Brand alignment is baked into onboarding. We work with you to develop and approve scripts, talk tracks, and objection-handling playbooks before a single call is made. Our coaching layer enforces consistency at scale, flagging deviations and scoring quality." },
+  { question: "How does pricing work?", answer: "AGORA uses a custom, performance-aligned pricing model. No rigid tiers or bloated packages. Pricing is built around your program size, campaign type, and volume. We offer variable pricing structures designed to tie our economics to your outcomes, not your headcount." },
 ];
 
 export default function FAQ() {
+  const [open, setOpen] = useState<number | null>(0);
+
   return (
-    <section id="faq" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "transparent" }}>
-      <div className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(99,33,238,0.25), transparent)" }} />
-      <div className="absolute inset-0 dot-grid-subtle opacity-40 pointer-events-none" />
+    <section id="faq" className="relative" style={{ background: "transparent" }}>
+      <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={staggerContainer}
-          className="text-center mb-14"
-        >
-          <motion.p variants={fadeUpVariants}
-            className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#7FFFD4] mb-3">
-            FAQ
-          </motion.p>
-          <motion.h2 variants={fadeUpVariants}
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
-            Got questions?
-          </motion.h2>
-          <motion.p variants={fadeUpVariants} className="text-white/40 text-[14px]">
-            Everything you need to know about working with AGORA.
-          </motion.p>
-        </motion.div>
+      <div className="px-8 sm:px-14 lg:px-20 xl:px-28 py-20 lg:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.55fr] gap-14 lg:gap-24">
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          variants={fadeUpVariants}
-        >
-          <Accordion items={faqs} />
-        </motion.div>
+          {/* ── Left — juncastudio-style contact block ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.9, ease: EASE }}
+          >
+            <div className="flex items-center gap-2.5 mb-8">
+              <div style={{ width: 7, height: 7, borderRadius: 2, background: "#6321EE", flexShrink: 0 }} />
+              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(244,246,255,0.30)" }}>
+                Let&apos;s keep in touch
+              </span>
+            </div>
+
+            <h2
+              className="font-black text-white"
+              style={{ fontSize: "clamp(40px, 5.5vw, 68px)", lineHeight: 0.92, letterSpacing: "-0.042em", marginBottom: 32 }}
+            >
+              Got a<br />question?<br />
+              <span style={{ color: "rgba(244,246,255,0.55)", fontWeight: 300 }}>We answer</span><br />
+              it here.
+            </h2>
+
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-xl font-semibold text-white hover:bg-white/[0.06] transition-all duration-200"
+              style={{ fontSize: 14, padding: "12px 24px", border: "1px solid rgba(255,255,255,0.16)" }}
+            >
+              Get in touch ↗
+            </Link>
+          </motion.div>
+
+          {/* ── Right — accordion ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.9, delay: 0.10, ease: EASE }}
+          >
+            {faqs.map((faq, i) => (
+              <div key={i} style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-6 py-5 text-left"
+                >
+                  <span style={{
+                    fontSize: 14, fontWeight: 500, lineHeight: 1.45, letterSpacing: "-0.01em",
+                    color: open === i ? "#fff" : "rgba(244,246,255,0.60)",
+                    transition: "color 0.2s",
+                  }}>
+                    {faq.question}
+                  </span>
+                  <span style={{
+                    fontSize: 22, lineHeight: 1, flexShrink: 0, fontWeight: 300,
+                    color: open === i ? "#6321EE" : "rgba(255,255,255,0.25)",
+                    transition: "color 0.2s",
+                  }}>
+                    {open === i ? "×" : "+"}
+                  </span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {open === i && (
+                    <motion.div
+                      key="body"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.32, ease: EASE }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <p style={{ fontSize: 13, color: "rgba(244,246,255,0.42)", lineHeight: 1.78, paddingBottom: 22 }}>
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+            <div style={{ height: 1, background: "rgba(255,255,255,0.08)" }} />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
