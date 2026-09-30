@@ -1,29 +1,15 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const HeroScene = dynamic(() => import("@/components/ui/HeroScene"), { ssr: false });
 
 const INDUSTRIES = ["Healthcare", "Recruiting"];
-
 const EASE = [0.22, 1, 0.36, 1] as const;
-
-function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.9, delay, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export default function Hero() {
   const [idx, setIdx]         = useState(0);
@@ -36,232 +22,182 @@ export default function Hero() {
     return () => clearInterval(id);
   }, []);
 
+  const stagger = (i: number) => ({ duration: 0.85, delay: 0.3 + i * 0.12, ease: EASE });
+
   return (
     <section
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+      className="relative min-h-screen overflow-hidden"
       style={{ background: "#050210" }}
     >
-      {/* Grain texture — juncastudio uses paper.webp, we use CSS noise */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1,
-        backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.055'/%3E%3C/svg%3E\")",
-        opacity: 0.7,
-      }} />
+      {/* ── Three.js globe — full-viewport canvas, globe on the right ── */}
+      {mounted && <HeroScene />}
 
-      {/* Brand aurora — purple glow from top */}
-      <motion.div
-        aria-hidden
-        style={{
-          position: "absolute", top: "-20%", left: "50%", transform: "translateX(-50%)",
-          width: 1100, height: 900, pointerEvents: "none", zIndex: 0,
-          borderRadius: "50%",
-          background: "radial-gradient(ellipse, rgba(99,33,238,0.48) 0%, rgba(99,33,238,0.12) 42%, transparent 68%)",
-          filter: "blur(80px)",
-        }}
-        animate={{ scale: [1, 1.08, 1], opacity: [0.8, 1, 0.8] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      {/* Teal accent — lower left */}
-      <motion.div
-        aria-hidden
-        style={{
-          position: "absolute", bottom: "10%", left: "-8%", pointerEvents: "none", zIndex: 0,
-          width: 600, height: 600, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(127,255,212,0.07) 0%, transparent 70%)",
-          filter: "blur(80px)",
-        }}
-        animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Bottom fade */}
+      {/* ── Bottom fade ── */}
       <div aria-hidden style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: 200,
+        position: "absolute", bottom: 0, left: 0, right: 0, height: 220,
         background: "linear-gradient(to bottom, transparent, #050210)",
-        pointerEvents: "none", zIndex: 1,
+        pointerEvents: "none", zIndex: 3,
       }} />
 
-      {/* ── Main content ── */}
+      {/* ── Left-side text ── */}
       <div
-        className="relative flex flex-col items-center text-center px-6"
-        style={{ zIndex: 2, paddingTop: 120, paddingBottom: 80 }}
+        className="relative flex items-center min-h-screen"
+        style={{ paddingTop: 68, zIndex: 5 }}
       >
-        {/* Label */}
-        {mounted && (
-          <Reveal delay={0.05}>
-            <div className="inline-flex items-center gap-2 mb-10" style={{
-              fontFamily: "var(--font-geist-sans, sans-serif)",
-              fontSize: 11, fontWeight: 500,
-              letterSpacing: "0.14em", textTransform: "uppercase",
-              color: "rgba(247,247,247,0.35)",
-            }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#7FFFD4", boxShadow: "0 0 6px #7FFFD4", display: "block", flexShrink: 0 }} />
-              Georgia Tech Backed · Sales Network
-            </div>
-          </Reveal>
-        )}
+        <div className="px-8 sm:px-12 lg:px-20 w-full max-w-[560px]">
 
-        {/* Headline — juncastudio style: medium weight, tight tracking, large */}
-        {mounted && (
-          <Reveal delay={0.12}>
-            <h1
-              className="select-none"
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={stagger(0)}
+            className="mb-8"
+          >
+            <span className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full" style={{
+              border: "1px solid rgba(99,33,238,0.40)",
+              background: "rgba(5,2,16,0.75)",
+              backdropFilter: "blur(16px)",
+              fontSize: 11, fontWeight: 700,
+              letterSpacing: "0.20em", textTransform: "uppercase",
+              color: "rgba(244,246,255,0.48)",
+            }}>
+              <motion.span
+                style={{ width: 5, height: 5, borderRadius: "50%", background: "#7FFFD4", boxShadow: "0 0 8px #7FFFD4", display: "block", flexShrink: 0 }}
+                animate={{ opacity: [1, 0.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              Georgia Tech Backed · Sales Network
+            </span>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 48 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={stagger(1)}
+            className="font-black text-white select-none"
+            style={{
+              fontSize: "clamp(44px, 6vw, 88px)",
+              lineHeight: 0.90,
+              letterSpacing: "-0.044em",
+              marginBottom: 28,
+            }}
+          >
+            Your
+            <br />
+            <span style={{ display: "inline-block", position: "relative" }}>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={INDUSTRIES[idx]}
+                  className="gradient-text inline-block"
+                  initial={{ y: 30, opacity: 0, filter: "blur(8px)" }}
+                  animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                  exit={{ y: -30, opacity: 0, filter: "blur(8px)" }}
+                  transition={{ duration: 0.44, ease: EASE }}
+                >
+                  {INDUSTRIES[idx]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+            <br />
+            team,
+            <br />
+            on demand.
+          </motion.h1>
+
+          {/* Subtext */}
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={stagger(2)}
+            style={{
+              fontSize: "clamp(15px, 1.2vw, 17px)",
+              maxWidth: 400,
+              color: "rgba(244,246,255,0.44)",
+              lineHeight: 1.75,
+              letterSpacing: "-0.01em",
+              marginBottom: 36,
+            }}
+          >
+            We recruit, train, and deploy sales reps for your campaigns.
+            No hiring. No managing. Live in two weeks.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={stagger(3)}
+            className="flex items-center gap-3 flex-wrap mb-12"
+          >
+            <a
+              href="https://calendly.com"
+              target="_blank" rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2.5 rounded-xl font-bold text-white hover:-translate-y-[2px] hover:brightness-110 transition-all duration-200 active:translate-y-0"
               style={{
-                fontFamily: "var(--font-geist-sans, sans-serif)",
-                fontSize: "clamp(52px, 9vw, 140px)",
-                fontWeight: 500,
-                lineHeight: 0.92,
-                letterSpacing: "-0.035em",
-                color: "#f7f7f7",
-                marginBottom: 40,
+                padding: "14px 32px", fontSize: 14,
+                background: "linear-gradient(135deg, #6321EE, #8040FF)",
+                boxShadow: "0 0 50px rgba(99,33,238,0.65), 0 0 100px rgba(99,33,238,0.18), inset 0 1px 0 rgba(255,255,255,0.18)",
               }}
             >
-              Your{" "}
-              <span style={{ display: "inline-block", minWidth: "3ch", verticalAlign: "bottom" }}>
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={INDUSTRIES[idx]}
-                    className="gradient-text"
-                    style={{ display: "inline-block" }}
-                    initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, y: -24, filter: "blur(8px)" }}
-                    transition={{ duration: 0.44, ease: EASE }}
-                  >
-                    {INDUSTRIES[idx]}
-                  </motion.span>
-                </AnimatePresence>
-              </span>
-              <br />
-              team, on demand.
-            </h1>
-          </Reveal>
-        )}
+              Book a Free Call
+              <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-xl font-semibold hover:-translate-y-[2px] transition-all duration-200"
+              style={{
+                padding: "14px 26px", fontSize: 14,
+                color: "rgba(244,246,255,0.52)",
+                border: "1px solid rgba(255,255,255,0.10)",
+                background: "rgba(255,255,255,0.03)",
+                backdropFilter: "blur(12px)",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(244,246,255,0.52)")}
+            >
+              Get Started
+            </Link>
+          </motion.div>
 
-        {/* Subtext */}
-        {mounted && (
-          <Reveal delay={0.24}>
-            <p style={{
-              fontSize: "clamp(15px, 1.3vw, 18px)",
-              fontWeight: 400,
-              lineHeight: 1.68,
-              color: "rgba(247,247,247,0.42)",
-              maxWidth: 480,
-              letterSpacing: "-0.015em",
-              marginBottom: 44,
-            }}>
-              We recruit, train, and deploy sales reps for your campaigns.
-              No hiring. No managing. Live in two weeks.
-            </p>
-          </Reveal>
-        )}
-
-        {/* CTAs */}
-        {mounted && (
-          <Reveal delay={0.32}>
-            <div className="flex items-center justify-center gap-3 flex-wrap mb-16">
-              <a
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 font-medium text-white"
-                style={{
-                  padding: "13px 28px",
-                  fontSize: 14,
-                  letterSpacing: "-0.01em",
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  borderRadius: 8,
-                  backdropFilter: "blur(8px)",
-                  transition: "background 0.2s, border-color 0.2s, transform 0.2s",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.13)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.22)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                }}
-              >
-                Book a Free Call
-                <ArrowUpRight size={13} style={{ opacity: 0.7, transition: "transform 0.2s" }} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 font-medium"
-                style={{
-                  padding: "13px 28px",
-                  fontSize: 14,
-                  letterSpacing: "-0.01em",
-                  color: "rgba(247,247,247,0.85)",
-                  background: "linear-gradient(135deg, #6321EE, #8040FF)",
-                  borderRadius: 8,
-                  boxShadow: "0 0 40px rgba(99,33,238,0.50), inset 0 1px 0 rgba(255,255,255,0.16)",
-                  transition: "transform 0.2s, box-shadow 0.2s",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 60px rgba(99,33,238,0.70), inset 0 1px 0 rgba(255,255,255,0.16)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 0 40px rgba(99,33,238,0.50), inset 0 1px 0 rgba(255,255,255,0.16)";
-                }}
-              >
-                Get Started
-              </Link>
-            </div>
-          </Reveal>
-        )}
-
-        {/* Divider */}
-        {mounted && (
-          <Reveal delay={0.40}>
-            <div style={{ width: "100%", maxWidth: 560, height: 1, background: "rgba(255,255,255,0.06)", marginBottom: 28 }} />
-          </Reveal>
-        )}
-
-        {/* Stats */}
-        {mounted && (
-          <Reveal delay={0.46}>
-            <div className="flex items-center justify-center gap-10 flex-wrap">
-              {[
-                { num: "6+",      label: "months ramp time saved" },
-                { num: "$150K",   label: "saved vs in-house" },
-                { num: "2 weeks", label: "to first call" },
-              ].map((s, i) => (
-                <div key={i} className="flex items-center gap-10">
-                  {i > 0 && <div style={{ width: 1, height: 22, background: "rgba(255,255,255,0.07)" }} className="hidden sm:block" />}
-                  <div className="text-center">
-                    <div style={{ fontSize: 17, fontWeight: 600, color: "#f7f7f7", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.num}</div>
-                    <div style={{ fontSize: 11, color: "rgba(247,247,247,0.25)", marginTop: 4, fontWeight: 400, letterSpacing: "0.04em", textTransform: "uppercase" }}>{s.label}</div>
-                  </div>
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={stagger(4)}
+            className="flex items-center gap-7 flex-wrap"
+          >
+            {[
+              { num: "6+",      label: "months ramp saved" },
+              { num: "$150K",   label: "saved vs in-house" },
+              { num: "2 weeks", label: "to first call" },
+            ].map((s, i) => (
+              <div key={i} className="flex items-center gap-7">
+                {i > 0 && <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)" }} className="hidden sm:block" />}
+                <div>
+                  <div style={{ fontSize: 18, fontWeight: 900, color: "#fff", letterSpacing: "-0.04em", lineHeight: 1 }}>{s.num}</div>
+                  <div style={{ fontSize: 10, color: "rgba(244,246,255,0.24)", marginTop: 3, fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase" }}>{s.label}</div>
                 </div>
-              ))}
-            </div>
-          </Reveal>
-        )}
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
       {/* Scroll cue */}
-      {mounted && (
+      <motion.div
+        className="absolute bottom-8 left-10 sm:left-14 lg:left-20"
+        style={{ zIndex: 5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 0.8 }}
+      >
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          style={{ zIndex: 2 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 0.8 }}
-        >
-          <motion.div
-            style={{ width: 1, height: 48, background: "linear-gradient(to bottom, transparent, rgba(247,247,247,0.25), transparent)" }}
-            animate={{ scaleY: [0.6, 1, 0.6], opacity: [0.3, 0.8, 0.3] }}
-            transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-      )}
+          style={{ width: 1, height: 44, background: "linear-gradient(to bottom, transparent, rgba(99,33,238,0.8), transparent)" }}
+          animate={{ scaleY: [0.6, 1, 0.6], opacity: [0.3, 0.9, 0.3] }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
     </section>
   );
 }
