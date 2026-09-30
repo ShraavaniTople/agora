@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import dynamic from "next/dynamic";
 
-const HeroScene = dynamic(() => import("@/components/ui/HeroScene"), { ssr: false });
+const HeroArtwork = dynamic(() => import("@/components/ui/HeroArtwork"), { ssr: false });
 
 const INDUSTRIES = ["Healthcare", "Recruiting"];
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -25,8 +25,8 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ height: "100vh", background: "#050210" }}>
 
-      {/* ── Three.js globe — full-viewport, sphere centre-right ── */}
-      {mounted && <HeroScene />}
+      {/* ── Faceted crystal artwork — full-viewport canvas ── */}
+      {mounted && <HeroArtwork />}
 
       {/* ── Film grain ── */}
       <div aria-hidden style={{
