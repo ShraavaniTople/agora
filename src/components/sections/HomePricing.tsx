@@ -59,20 +59,21 @@ export default function HomePricing() {
         >
           <motion.p
             variants={fadeUpVariants}
-            className="text-[11px] font-black tracking-[0.28em] uppercase text-[#7FFFD4] mb-4"
+            className="text-[11px] font-black tracking-[0.28em] uppercase mb-4"
+            style={{ color: "#6321EE" }}
           >
             Pricing
           </motion.p>
           <motion.div variants={fadeUpVariants} className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <h2
-              className="font-black text-white tracking-[-0.03em] leading-[1.02]"
-              style={{ fontSize: "clamp(36px, 5.5vw, 68px)" }}
+              className="font-black tracking-[-0.03em] leading-[1.02]"
+              style={{ fontSize: "clamp(36px, 5.5vw, 68px)", color: "#0d0d0d" }}
             >
               Custom pricing.
               <br />
               <span className="gradient-text">No rigid tiers.</span>
             </h2>
-            <p className="text-white/45 text-[15px] max-w-xs leading-relaxed sm:text-right pb-2">
+            <p className="text-[15px] max-w-xs leading-relaxed sm:text-right pb-2" style={{ color: "rgba(0,0,0,0.48)" }}>
               Pay for what you use. Variable programs built around your pipeline, not our package sizes.
             </p>
           </motion.div>
@@ -168,7 +169,8 @@ export default function HomePricing() {
           </a>
           <Link
             href="/pricing"
-            className="flex items-center gap-2 text-[14px] font-semibold text-white/50 hover:text-white transition-colors duration-200"
+            className="flex items-center gap-2 text-[14px] font-semibold hover:text-[#0d0d0d] transition-colors duration-200"
+            style={{ color: "rgba(0,0,0,0.45)" }}
           >
             See full pricing details
             <ArrowRight size={14} />

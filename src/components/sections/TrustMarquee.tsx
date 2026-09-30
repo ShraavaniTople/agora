@@ -20,9 +20,9 @@ export default function TrustMarquee() {
     <div
       className="relative overflow-hidden py-5"
       style={{
-        borderTop: "1px solid rgba(255,255,255,0.055)",
-        borderBottom: "1px solid rgba(255,255,255,0.055)",
-        background: "rgba(255,255,255,0.012)",
+        borderTop: "1px solid rgba(0,0,0,0.07)",
+        borderBottom: "1px solid rgba(0,0,0,0.07)",
+        background: "rgba(0,0,0,0.018)",
         maskImage: "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
         WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
       }}
@@ -33,14 +33,13 @@ export default function TrustMarquee() {
             <span
               style={{
                 width: 4, height: 4, borderRadius: "50%", flexShrink: 0, display: "inline-block",
-                background: i % 3 === 0 ? "#6321EE" : i % 3 === 1 ? "#7FFFD4" : "#7ACCC8",
-                boxShadow: i % 3 === 0 ? "0 0 6px #6321EE" : i % 3 === 1 ? "0 0 6px #7FFFD4" : "0 0 6px #7ACCC8",
+                background: i % 3 === 0 ? "#6321EE" : i % 3 === 1 ? "#00B386" : "#009EA8",
               }}
             />
             <span style={{
               fontSize: 11, fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "rgba(244,246,255,0.28)",
+              color: "rgba(0,0,0,0.38)",
             }}>
               {item}
             </span>

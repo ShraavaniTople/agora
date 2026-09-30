@@ -17,17 +17,19 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <TrustMarquee />
-      <AudienceSplit />
-      <HowItWorks />
-      <Stats />
-      <Services />
-      <Process />
-      <Benefits />
-      <HomePricing />
-      <Press />
-      <FAQ />
-      <FinalCTA />
+      <div style={{ background: "#f8f7f4", position: "relative" }}>
+        <TrustMarquee />
+        <AudienceSplit />
+        <HowItWorks />
+        <Stats />
+        <Services />
+        <Process />
+        <Benefits />
+        <HomePricing />
+        <Press />
+        <FAQ />
+        <FinalCTA />
+      </div>
     </>
   );
 }

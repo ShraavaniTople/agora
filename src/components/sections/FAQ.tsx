@@ -19,12 +19,12 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="relative" style={{ background: "transparent" }}>
-      <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
+      <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
 
       <div className="px-8 sm:px-14 lg:px-20 xl:px-28 py-20 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.55fr] gap-14 lg:gap-24">
 
-          {/* ── Left — juncastudio-style contact block ── */}
+          {/* ── Left ── */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -33,24 +33,24 @@ export default function FAQ() {
           >
             <div className="flex items-center gap-2.5 mb-8">
               <div style={{ width: 7, height: 7, borderRadius: 2, background: "#6321EE", flexShrink: 0 }} />
-              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(244,246,255,0.30)" }}>
+              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.32)" }}>
                 Let&apos;s keep in touch
               </span>
             </div>
 
             <h2
-              className="font-black text-white"
-              style={{ fontSize: "clamp(40px, 5.5vw, 68px)", lineHeight: 0.92, letterSpacing: "-0.042em", marginBottom: 32 }}
+              className="font-black"
+              style={{ fontSize: "clamp(40px, 5.5vw, 68px)", lineHeight: 0.92, letterSpacing: "-0.042em", marginBottom: 32, color: "#0d0d0d" }}
             >
               Got a<br />question?<br />
-              <span style={{ color: "rgba(244,246,255,0.55)", fontWeight: 300 }}>We answer</span><br />
+              <span style={{ color: "rgba(0,0,0,0.35)", fontWeight: 300 }}>We answer</span><br />
               it here.
             </h2>
 
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl font-semibold text-white hover:bg-white/[0.06] transition-all duration-200"
-              style={{ fontSize: 14, padding: "12px 24px", border: "1px solid rgba(255,255,255,0.16)" }}
+              className="inline-flex items-center gap-2 rounded-xl font-semibold hover:bg-black/[0.04] transition-all duration-200"
+              style={{ fontSize: 14, padding: "12px 24px", border: "1px solid rgba(0,0,0,0.16)", color: "#0d0d0d" }}
             >
               Get in touch ↗
             </Link>
@@ -64,21 +64,21 @@ export default function FAQ() {
             transition={{ duration: 0.9, delay: 0.10, ease: EASE }}
           >
             {faqs.map((faq, i) => (
-              <div key={i} style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+              <div key={i} style={{ borderTop: "1px solid rgba(0,0,0,0.09)" }}>
                 <button
                   onClick={() => setOpen(open === i ? null : i)}
                   className="w-full flex items-center justify-between gap-6 py-5 text-left"
                 >
                   <span style={{
                     fontSize: 14, fontWeight: 500, lineHeight: 1.45, letterSpacing: "-0.01em",
-                    color: open === i ? "#fff" : "rgba(244,246,255,0.60)",
+                    color: open === i ? "#0d0d0d" : "rgba(0,0,0,0.50)",
                     transition: "color 0.2s",
                   }}>
                     {faq.question}
                   </span>
                   <span style={{
                     fontSize: 22, lineHeight: 1, flexShrink: 0, fontWeight: 300,
-                    color: open === i ? "#6321EE" : "rgba(255,255,255,0.25)",
+                    color: open === i ? "#6321EE" : "rgba(0,0,0,0.28)",
                     transition: "color 0.2s",
                   }}>
                     {open === i ? "×" : "+"}
@@ -94,7 +94,7 @@ export default function FAQ() {
                       transition={{ duration: 0.32, ease: EASE }}
                       style={{ overflow: "hidden" }}
                     >
-                      <p style={{ fontSize: 13, color: "rgba(244,246,255,0.42)", lineHeight: 1.78, paddingBottom: 22 }}>
+                      <p style={{ fontSize: 13, color: "rgba(0,0,0,0.52)", lineHeight: 1.78, paddingBottom: 22 }}>
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -102,7 +102,7 @@ export default function FAQ() {
                 </AnimatePresence>
               </div>
             ))}
-            <div style={{ height: 1, background: "rgba(255,255,255,0.08)" }} />
+            <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
           </motion.div>
         </div>
       </div>

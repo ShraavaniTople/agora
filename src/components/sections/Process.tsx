@@ -34,22 +34,22 @@ export default function Process() {
           className="text-center mb-16 lg:mb-20"
         >
           <motion.p variants={fadeUpVariants}
-            className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#7FFFD4] mb-3">
+            className="text-[11px] font-bold tracking-[0.25em] uppercase mb-3" style={{ color: "#6321EE" }}>
             Process
           </motion.p>
           <motion.h2 variants={fadeUpVariants}
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4" style={{ color: "#0d0d0d" }}>
             Simple rollout.{" "}
             <span className="gradient-text">Measurable results.</span>
           </motion.h2>
-          <motion.p variants={fadeUpVariants} className="text-white/40 max-w-md mx-auto text-[15px]">
+          <motion.p variants={fadeUpVariants} className="max-w-md mx-auto text-[15px]" style={{ color: "rgba(0,0,0,0.45)" }}>
             From kickoff to a team making calls for you, in two weeks, not months.
           </motion.p>
         </motion.div>
 
         <div ref={ref} className="relative">
           {/* Vertical line */}
-          <div className="absolute left-[22px] top-6 bottom-6 w-px bg-white/[0.06] hidden sm:block">
+          <div className="absolute left-[22px] top-6 bottom-6 w-px hidden sm:block" style={{ background: "rgba(0,0,0,0.08)" }}>
             <motion.div
               className="w-full origin-top"
               style={{
@@ -72,7 +72,7 @@ export default function Process() {
               <motion.div
                 key={i}
                 variants={fadeUpVariants}
-                className="group flex gap-6 sm:gap-8 p-5 sm:p-6 rounded-2xl border border-transparent hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-300"
+                className="group flex gap-6 sm:gap-8 p-5 sm:p-6 rounded-2xl border border-transparent hover:border-black/[0.08] hover:bg-black/[0.03] transition-all duration-300"
               >
                 {/* Step dot */}
                 <div className="flex-shrink-0 relative z-10">
@@ -91,10 +91,10 @@ export default function Process() {
                 <div className="flex-1 pt-1.5">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-[11px] font-mono font-bold text-[#6321EE]">{step.n}</span>
-                    <div className="h-px flex-1 bg-white/[0.05]" />
+                    <div className="h-px flex-1" style={{ background: "rgba(0,0,0,0.08)" }} />
                   </div>
-                  <h3 className="text-[16px] font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-[13px] text-white/45 leading-relaxed">{step.desc}</p>
+                  <h3 className="text-[16px] font-bold mb-2" style={{ color: "#0d0d0d" }}>{step.title}</h3>
+                  <p className="text-[13px] leading-relaxed" style={{ color: "rgba(0,0,0,0.50)" }}>{step.desc}</p>
                 </div>
               </motion.div>
               );

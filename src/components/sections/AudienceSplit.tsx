@@ -52,13 +52,13 @@ export default function AudienceSplit() {
           variants={stagger}
           className="text-center mb-16"
         >
-          <motion.p variants={up} className="text-[11px] font-black tracking-[0.3em] uppercase mb-3" style={{ color: "rgba(244,246,255,0.28)" }}>
+          <motion.p variants={up} className="text-[11px] font-black tracking-[0.3em] uppercase mb-3" style={{ color: "rgba(0,0,0,0.32)" }}>
             Who uses AGORA
           </motion.p>
           <motion.h2
             variants={up}
-            className="font-black text-white tracking-[-0.03em]"
-            style={{ fontSize: "clamp(30px, 4.5vw, 54px)" }}
+            className="font-black tracking-[-0.03em]"
+            style={{ fontSize: "clamp(30px, 4.5vw, 54px)", color: "#0d0d0d" }}
           >
             Company or SDR — we have a path for you
           </motion.h2>
