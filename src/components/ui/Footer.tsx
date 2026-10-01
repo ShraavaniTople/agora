@@ -1,102 +1,149 @@
+"use client";
 import Link from "next/link";
-import Image from "next/image";
 
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const navLinks = [
+  { label: "Services",   href: "/#services" },
+  { label: "Process",    href: "/#process" },
+  { label: "Benefits",   href: "/#benefits" },
+  { label: "For SDRs",   href: "/for-agents" },
+  { label: "Pricing",    href: "/pricing" },
+  { label: "Careers",    href: "/careers" },
+];
 
-const cols = {
-  platform: [
-    { label: "Services", href: "/#services" },
-    { label: "Process", href: "/#process" },
-    { label: "Benefits", href: "/#benefits" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Careers", href: "/careers" },
-  ],
-  legal: [
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms & Conditions", href: "/terms-conditions" },
-    { label: "Abuse Policy", href: "/abuse-policy" },
-    { label: "Security Policy", href: "/security-policy" },
-  ],
-};
+const legalLinks = [
+  { label: "Privacy Policy",    href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-conditions" },
+  { label: "Abuse Policy",      href: "/abuse-policy" },
+  { label: "Security Policy",   href: "/security-policy" },
+];
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#070406] border-t border-white/[0.05] overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "linear-gradient(rgba(99,33,238,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(99,33,238,0.04) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }} />
+    <footer style={{ background: "#f8f7f4", borderTop: "1px solid rgba(0,0,0,0.09)" }}>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 relative">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16 mb-14">
+      {/* ── Massive CTA heading ── */}
+      <div
+        className="px-8 sm:px-14 lg:px-20 xl:px-28 pt-20 pb-16 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10"
+        style={{ borderBottom: "1px solid rgba(0,0,0,0.09)" }}
+      >
+        <h2
+          className="font-black"
+          style={{
+            fontSize: "clamp(52px, 9vw, 120px)",
+            lineHeight: 0.88,
+            letterSpacing: "-0.05em",
+            color: "#0d0d0d",
+          }}
+        >
+          GET IN<br />TOUCH.
+        </h2>
 
-          {/* Brand */}
-          <div className="col-span-2">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-5 group">
-              <Image
-                src={`${BASE}/agora-mark.png`}
-                alt="Agora"
-                width={34}
-                height={34}
-                className="rounded-full flex-shrink-0"
-              />
-              <span className="font-black text-[17px] text-white tracking-tight">AGORA</span>
-            </Link>
-
-            <p className="text-[13px] text-white/35 leading-relaxed max-w-xs mb-5">
-              Turn More Leads Into Revenue, Immediately.
-            </p>
-
-            {/* Georgia Tech badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.04]">
-              <Image src={`${BASE}/gt-logo.png`} alt="Georgia Tech" width={30} height={17} className="object-contain flex-shrink-0" />
-              <span className="text-[11px] font-semibold text-white/60 tracking-wide">Backed by Georgia Tech</span>
-            </div>
-          </div>
-
-          {/* Platform */}
-          <div>
-            <p className="text-[10px] font-black tracking-[0.2em] uppercase text-white/25 mb-5">Platform</p>
-            <ul className="space-y-3">
-              {cols.platform.map(l => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-[13px] text-white/40 hover:text-white transition-colors duration-200">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <p className="text-[10px] font-black tracking-[0.2em] uppercase text-white/25 mb-5">Legal</p>
-            <ul className="space-y-3">
-              {cols.legal.map(l => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-[13px] text-white/40 hover:text-white transition-colors duration-200">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[12px] text-white/20">© 2026 Agora AI LLC. All rights reserved.</p>
-          <div className="flex items-center gap-5">
-            <a href="https://app.agoraai.tech" target="_blank" rel="noopener noreferrer"
-              className="text-[12px] text-white/25 hover:text-white/60 transition-colors">
-              Company Login
+        <div style={{ maxWidth: 340, paddingTop: 8 }}>
+          <p style={{ fontSize: 14, color: "rgba(0,0,0,0.50)", lineHeight: 1.75, marginBottom: 28 }}>
+            AGORA is a sales-as-a-service platform that connects companies with proven outbound agents. Variable pods replace fixed SDR payroll.
+          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://calendly.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl font-bold text-white"
+              style={{ fontSize: 13, padding: "12px 22px", background: "#6321EE", boxShadow: "0 0 24px rgba(99,33,238,0.40)" }}
+            >
+              Book a Call ↗
             </a>
-            <Link href="/contact" className="text-[12px] font-bold text-[#7FFFD4] hover:text-white transition-colors">
-              Get Started →
+            <Link
+              href="/contact"
+              style={{ fontSize: 13, fontWeight: 600, color: "rgba(0,0,0,0.50)" }}
+            >
+              Or get started →
             </Link>
           </div>
         </div>
+      </div>
+
+      {/* ── Footer columns ── */}
+      <div className="px-8 sm:px-14 lg:px-20 xl:px-28 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
+
+        {/* Socials */}
+        <div>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 20 }}>
+            Socials
+          </p>
+          <div className="flex flex-col gap-3">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+              style={{ fontSize: 13, color: "#0d0d0d", fontWeight: 500 }}>LinkedIn ↗</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+              style={{ fontSize: 13, color: "#0d0d0d", fontWeight: 500 }}>X (Twitter) ↗</a>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <div>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 20 }}>
+            Navigation
+          </p>
+          <ul className="flex flex-col gap-3">
+            {navLinks.map(l => (
+              <li key={l.href}>
+                <Link href={l.href} style={{ fontSize: 13, color: "rgba(0,0,0,0.55)", fontWeight: 500 }}
+                  className="hover:text-[#0d0d0d] transition-colors">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 20 }}>
+            Contact
+          </p>
+          <div className="flex flex-col gap-3">
+            <a href="mailto:hello@agoraai.tech" style={{ fontSize: 13, color: "rgba(0,0,0,0.55)", fontWeight: 500 }}>
+              hello@agoraai.tech
+            </a>
+            <a href="https://app.agoraai.tech" target="_blank" rel="noopener noreferrer"
+              style={{ fontSize: 13, color: "rgba(0,0,0,0.55)", fontWeight: 500 }}>
+              Company Login ↗
+            </a>
+            <a href="https://calendly.com" target="_blank" rel="noopener noreferrer"
+              style={{ fontSize: 13, color: "#6321EE", fontWeight: 600 }}>
+              Book a call ↗
+            </a>
+          </div>
+        </div>
+
+        {/* Legal */}
+        <div>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 20 }}>
+            Legal
+          </p>
+          <ul className="flex flex-col gap-3">
+            {legalLinks.map(l => (
+              <li key={l.href}>
+                <Link href={l.href} style={{ fontSize: 13, color: "rgba(0,0,0,0.55)", fontWeight: 500 }}
+                  className="hover:text-[#0d0d0d] transition-colors">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* ── Bottom strip ── */}
+      <div
+        className="px-8 sm:px-14 lg:px-20 xl:px-28 py-5 flex flex-col sm:flex-row items-center justify-between gap-3"
+        style={{ borderTop: "1px solid rgba(0,0,0,0.09)" }}
+      >
+        <p style={{ fontSize: 11, color: "rgba(0,0,0,0.32)", fontWeight: 500 }}>
+          © 2026 Agora AI LLC. All rights reserved.
+        </p>
+        <p style={{ fontSize: 11, color: "rgba(0,0,0,0.28)", fontWeight: 500 }}>
+          Backed by Georgia Tech CREATE-X
+        </p>
       </div>
     </footer>
   );

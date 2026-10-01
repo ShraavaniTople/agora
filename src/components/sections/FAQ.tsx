@@ -1,9 +1,51 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import Link from "next/link";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const CHARS = "!<>-_\\/[]{}—=+*^?#ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+function ScrambleText({ text, inView }: { text: string; inView: boolean }) {
+  const [display, setDisplay] = useState(text);
+  const rafRef = useRef<number | null>(null);
+  const startedRef = useRef(false);
+
+  useEffect(() => {
+    if (!inView || startedRef.current) return;
+    startedRef.current = true;
+
+    let frame = 0;
+    const totalFrames = 22;
+
+    const tick = () => {
+      frame++;
+      const progress = frame / totalFrames;
+      const next = text
+        .split("")
+        .map((char, i) => {
+          if (char === " " || char === "'" || char === "?") return char;
+          const reveal = (progress - (i / text.length) * 0.5) / 0.5;
+          if (reveal >= 1) return char;
+          return CHARS[Math.floor(Math.random() * CHARS.length)];
+        })
+        .join("");
+      setDisplay(next);
+      if (frame < totalFrames) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        setDisplay(text);
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [inView, text]);
+
+  return <>{display}</>;
+}
 
 const faqs = [
   { question: "How long will it take for my business to onboard onto AGORA?", answer: "Most clients are fully operational within one to two weeks of kickoff. The onboarding process involves aligning on targets, scripting, and routing rules, all of which we handle collaboratively. We move fast without cutting corners: the goal is a team that's calibrated and accountable from day one, not a slow-rolling implementation that takes months to show results." },
@@ -15,16 +57,18 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section id="faq" className="relative" style={{ background: "transparent" }}>
       <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
 
-      <div className="px-8 sm:px-14 lg:px-20 xl:px-28 py-20 lg:py-32">
+      <div ref={ref} className="px-8 sm:px-14 lg:px-20 xl:px-28 py-20 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.55fr] gap-14 lg:gap-24">
 
-          {/* ── Left ── */}
+          {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -38,13 +82,17 @@ export default function FAQ() {
               </span>
             </div>
 
+            {/* Scrambling heading */}
             <h2
               className="font-black"
               style={{ fontSize: "clamp(40px, 5.5vw, 68px)", lineHeight: 0.92, letterSpacing: "-0.042em", marginBottom: 32, color: "#0d0d0d" }}
             >
-              Got a<br />question?<br />
-              <span style={{ color: "rgba(0,0,0,0.35)", fontWeight: 300 }}>We answer</span><br />
-              it here.
+              <ScrambleText text="Got a" inView={inView} /><br />
+              <ScrambleText text="question?" inView={inView} /><br />
+              <span style={{ color: "rgba(0,0,0,0.35)", fontWeight: 300 }}>
+                <ScrambleText text="We answer" inView={inView} />
+              </span><br />
+              <ScrambleText text="it here." inView={inView} />
             </h2>
 
             <Link
@@ -56,7 +104,7 @@ export default function FAQ() {
             </Link>
           </motion.div>
 
-          {/* ── Right — accordion ── */}
+          {/* Right — accordion */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
