@@ -9,7 +9,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export default function AudienceSplit() {
   return (
     <section className="relative" style={{ background: "transparent" }}>
-      <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
+      <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
 
       <div className="px-8 sm:px-14 lg:px-20 xl:px-28 py-20 lg:py-28">
         {/* ── Label ── */}
@@ -18,7 +18,7 @@ export default function AudienceSplit() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 40 }}
+          style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 40 }}
         >
           Who uses AGORA
         </motion.p>

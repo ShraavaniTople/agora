@@ -121,7 +121,7 @@ export default function HowItWorks() {
 
   return (
     <section id="process" className="relative" style={{ background: "transparent" }}>
-      <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
+      <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
 
       {/* Header */}
       <div className="px-8 sm:px-14 lg:px-20 xl:px-28 pt-20 pb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8">
@@ -131,7 +131,7 @@ export default function HowItWorks() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.9, ease: EASE }}
           className="font-black"
-          style={{ fontSize: "clamp(54px, 8.5vw, 110px)", lineHeight: 0.88, letterSpacing: "-0.048em", color: "#0d0d0d" }}
+          style={{ fontSize: "clamp(54px, 8.5vw, 110px)", lineHeight: 0.88, letterSpacing: "-0.048em", color: "#ffffff" }}
         >
           How it<br />works.
         </motion.h2>
@@ -140,7 +140,7 @@ export default function HowItWorks() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
-          style={{ fontSize: 14, color: "rgba(0,0,0,0.45)", maxWidth: 280, lineHeight: 1.7 }}
+          style={{ fontSize: 14, color: "rgba(255,255,255,0.45)", maxWidth: 280, lineHeight: 1.7 }}
         >
           From first conversation to a team actively working your pipeline — in two weeks.
         </motion.p>
@@ -202,9 +202,9 @@ export default function HowItWorks() {
               onClick={() => setActive(i)}
               className="text-left w-full"
               style={{
-                borderTop: "1px solid rgba(0,0,0,0.09)",
+                borderTop: "1px solid rgba(255,255,255,0.07)",
                 padding: "24px 0 24px 28px",
-                borderBottom: i === steps.length - 1 ? "1px solid rgba(0,0,0,0.09)" : "none",
+                borderBottom: i === steps.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
                 transition: "background 0.2s",
               }}
             >
@@ -214,7 +214,7 @@ export default function HowItWorks() {
                   fontWeight: 900,
                   letterSpacing: "-0.045em",
                   lineHeight: 1,
-                  color: active === i ? "#0d0d0d" : "rgba(0,0,0,0.20)",
+                  color: active === i ? "#ffffff" : "rgba(255,255,255,0.18)",
                   transition: "color 0.3s",
                 }}>
                   {s.title}
@@ -235,11 +235,11 @@ export default function HowItWorks() {
                         <span style={{ fontSize: 10, fontWeight: 700, color: "#6321EE", letterSpacing: "0.12em" }}>
                           {s.label}
                         </span>
-                        <span style={{ fontSize: 10, color: "rgba(0,0,0,0.28)", letterSpacing: "0.10em" }}>
+                        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.28)", letterSpacing: "0.10em" }}>
                           · {s.duration}
                         </span>
                       </div>
-                      <p style={{ fontSize: 13, color: "rgba(0,0,0,0.50)", lineHeight: 1.75, maxWidth: 340 }}>
+                      <p style={{ fontSize: 13, color: "rgba(255,255,255,0.48)", lineHeight: 1.75, maxWidth: 340 }}>
                         {s.body}
                       </p>
                     </div>

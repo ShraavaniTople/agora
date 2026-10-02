@@ -17,14 +17,14 @@ export default function IntroStatement() {
             fontSize: "clamp(34px, 5.5vw, 74px)",
             lineHeight: 1.06,
             letterSpacing: "-0.042em",
-            color: "#0d0d0d",
+            color: "rgba(255,255,255,0.88)",
             maxWidth: "78vw",
           }}
         >
           At AGORA, we build high-performance sales teams for the world&apos;s most ambitious companies.
         </motion.h2>
       </div>
-      <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
+      <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
     </section>
   );
 }

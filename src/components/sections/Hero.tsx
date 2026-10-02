@@ -68,33 +68,6 @@ export default function Hero() {
           maxWidth: "clamp(340px, 54%, 720px)",
         }}
       >
-        {/* Georgia Tech badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.05, ease: EASE }}
-          style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            background: "rgba(255,255,255,0.07)",
-            border: "1px solid rgba(255,255,255,0.14)",
-            borderRadius: 100,
-            padding: "5px 14px 5px 8px",
-            marginBottom: 28,
-          }}
-        >
-          <div style={{
-            width: 18, height: 18, borderRadius: 4,
-            background: "#EEB400",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0,
-          }}>
-            <span style={{ fontSize: 8, fontWeight: 900, color: "#003057", letterSpacing: "-0.02em" }}>GT</span>
-          </div>
-          <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(244,246,255,0.55)" }}>
-            Backed by Georgia Tech CREATE-X
-          </span>
-        </motion.div>
-
         {/* Line 1 — "Your" italic */}
         <div style={{ overflow: "hidden", marginBottom: 0 }}>
           <motion.div custom={0} variants={lineVariant}>

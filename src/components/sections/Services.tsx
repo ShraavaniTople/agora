@@ -148,7 +148,7 @@ function ReportingVisual() {
 export default function Services() {
   return (
     <section id="services" className="relative" style={{ background: "transparent" }}>
-      <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
+      <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
 
       <div className="px-8 sm:px-14 lg:px-20 xl:px-28 py-20 lg:py-28">
 
@@ -160,12 +160,12 @@ export default function Services() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.9, ease: EASE }}
           >
-            <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 16 }}>
+            <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 16 }}>
               What we offer
             </p>
             <h2
               className="font-black"
-              style={{ fontSize: "clamp(52px, 6.5vw, 88px)", lineHeight: 0.9, letterSpacing: "-0.048em", color: "#0d0d0d" }}
+              style={{ fontSize: "clamp(52px, 6.5vw, 88px)", lineHeight: 0.9, letterSpacing: "-0.048em", color: "#ffffff" }}
             >
               What<br />we offer.
             </h2>
@@ -181,7 +181,7 @@ export default function Services() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl font-semibold hover:bg-black/[0.06] transition-all duration-200"
-              style={{ fontSize: 13, padding: "11px 24px", border: "1px solid rgba(0,0,0,0.18)", color: "#0d0d0d" }}
+              style={{ fontSize: 13, padding: "11px 24px", border: "1px solid rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.82)" }}
             >
               Book a call ↗
             </a>

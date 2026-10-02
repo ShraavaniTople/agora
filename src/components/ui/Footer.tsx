@@ -19,12 +19,12 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#f8f7f4", borderTop: "1px solid rgba(0,0,0,0.09)" }}>
+    <footer style={{ background: "transparent", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
 
       {/* ── Massive CTA heading ── */}
       <div
         className="px-8 sm:px-14 lg:px-20 xl:px-28 pt-20 pb-16 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10"
-        style={{ borderBottom: "1px solid rgba(0,0,0,0.09)" }}
+        style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
       >
         <h2
           className="font-black"
@@ -32,14 +32,14 @@ export default function Footer() {
             fontSize: "clamp(52px, 9vw, 120px)",
             lineHeight: 0.88,
             letterSpacing: "-0.05em",
-            color: "#0d0d0d",
+            color: "#ffffff",
           }}
         >
           GET IN<br />TOUCH.
         </h2>
 
         <div style={{ maxWidth: 340, paddingTop: 8 }}>
-          <p style={{ fontSize: 14, color: "rgba(0,0,0,0.50)", lineHeight: 1.75, marginBottom: 28 }}>
+          <p style={{ fontSize: 14, color: "rgba(255,255,255,0.42)", lineHeight: 1.75, marginBottom: 28 }}>
             AGORA is a sales-as-a-service platform that connects companies with proven outbound agents. Variable pods replace fixed SDR payroll.
           </p>
           <div className="flex items-center gap-4">
@@ -54,7 +54,7 @@ export default function Footer() {
             </a>
             <Link
               href="/contact"
-              style={{ fontSize: 13, fontWeight: 600, color: "rgba(0,0,0,0.50)" }}
+              style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.45)" }}
             >
               Or get started →
             </Link>
@@ -67,27 +67,27 @@ export default function Footer() {
 
         {/* Socials */}
         <div>
-          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 20 }}>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 20 }}>
             Socials
           </p>
           <div className="flex flex-col gap-3">
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: 13, color: "#0d0d0d", fontWeight: 500 }}>LinkedIn ↗</a>
+              style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", fontWeight: 500 }}>LinkedIn ↗</a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: 13, color: "#0d0d0d", fontWeight: 500 }}>X (Twitter) ↗</a>
+              style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", fontWeight: 500 }}>X (Twitter) ↗</a>
           </div>
         </div>
 
         {/* Navigation */}
         <div>
-          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 20 }}>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 20 }}>
             Navigation
           </p>
           <ul className="flex flex-col gap-3">
             {navLinks.map(l => (
               <li key={l.href}>
-                <Link href={l.href} style={{ fontSize: 13, color: "rgba(0,0,0,0.55)", fontWeight: 500 }}
-                  className="hover:text-[#0d0d0d] transition-colors">
+                <Link href={l.href} style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", fontWeight: 500 }}
+                  className="hover:text-white transition-colors">
                   {l.label}
                 </Link>
               </li>
@@ -97,15 +97,15 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 20 }}>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 20 }}>
             Contact
           </p>
           <div className="flex flex-col gap-3">
-            <a href="mailto:hello@agoraai.tech" style={{ fontSize: 13, color: "rgba(0,0,0,0.55)", fontWeight: 500 }}>
+            <a href="mailto:hello@agoraai.tech" style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", fontWeight: 500 }}>
               hello@agoraai.tech
             </a>
             <a href="https://app.agoraai.tech" target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: 13, color: "rgba(0,0,0,0.55)", fontWeight: 500 }}>
+              style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", fontWeight: 500 }}>
               Company Login ↗
             </a>
             <a href="https://calendly.com" target="_blank" rel="noopener noreferrer"
@@ -117,14 +117,14 @@ export default function Footer() {
 
         {/* Legal */}
         <div>
-          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 20 }}>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 20 }}>
             Legal
           </p>
           <ul className="flex flex-col gap-3">
             {legalLinks.map(l => (
               <li key={l.href}>
-                <Link href={l.href} style={{ fontSize: 13, color: "rgba(0,0,0,0.55)", fontWeight: 500 }}
-                  className="hover:text-[#0d0d0d] transition-colors">
+                <Link href={l.href} style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", fontWeight: 500 }}
+                  className="hover:text-white transition-colors">
                   {l.label}
                 </Link>
               </li>
@@ -136,12 +136,12 @@ export default function Footer() {
       {/* ── Bottom strip ── */}
       <div
         className="px-8 sm:px-14 lg:px-20 xl:px-28 py-5 flex flex-col sm:flex-row items-center justify-between gap-3"
-        style={{ borderTop: "1px solid rgba(0,0,0,0.09)" }}
+        style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
       >
-        <p style={{ fontSize: 11, color: "rgba(0,0,0,0.32)", fontWeight: 500 }}>
+        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.28)", fontWeight: 500 }}>
           © 2026 Agora AI LLC. All rights reserved.
         </p>
-        <p style={{ fontSize: 11, color: "rgba(0,0,0,0.28)", fontWeight: 500 }}>
+        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.22)", fontWeight: 500 }}>
           Backed by Georgia Tech CREATE-X
         </p>
       </div>

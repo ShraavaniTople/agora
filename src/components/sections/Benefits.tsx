@@ -13,21 +13,19 @@ const benefits = [
 export default function Benefits() {
   return (
     <section id="benefits" className="relative" style={{ background: "transparent" }}>
-      <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
+      <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
 
       <div className="px-8 sm:px-14 lg:px-20 xl:px-28 py-20 lg:py-28">
-        {/* ── Section label ── */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 48 }}
+          style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 48 }}
         >
           Why choose us
         </motion.p>
 
-        {/* ── Two-column layout ── */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-6 lg:gap-10 items-start">
 
           {/* Left: numbered list */}
@@ -40,20 +38,20 @@ export default function Benefits() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.65, delay: i * 0.08, ease: EASE }}
                 className="group flex items-center gap-6 py-5"
-                style={{ borderTop: "1px solid rgba(0,0,0,0.09)" }}
+                style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
               >
-                <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(0,0,0,0.18)", letterSpacing: "0.06em", minWidth: 26, flexShrink: 0 }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.18)", letterSpacing: "0.06em", minWidth: 26, flexShrink: 0 }}>
                   {b.num}
                 </span>
                 <h3
                   className="font-semibold group-hover:text-[#6321EE] transition-colors duration-300"
-                  style={{ fontSize: 16, letterSpacing: "-0.01em", color: "#0d0d0d" }}
+                  style={{ fontSize: 16, letterSpacing: "-0.01em", color: "rgba(255,255,255,0.82)" }}
                 >
                   {b.title}
                 </h3>
               </motion.div>
             ))}
-            <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
+            <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
           </div>
 
           {/* Right: dark feature panel */}
@@ -62,15 +60,15 @@ export default function Benefits() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
+            whileHover={{ y: -5, boxShadow: "0 24px 80px rgba(99,33,238,0.28)", transition: { duration: 0.25 } }}
             className="rounded-2xl flex flex-col justify-between"
             style={{
-              background: "#0d0d0d",
+              background: "rgba(255,255,255,0.04)",
               padding: "44px 40px",
               minHeight: 320,
-              border: "1px solid rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.08)",
             }}
           >
-            {/* Top badge */}
             <div className="flex items-center gap-2 mb-auto">
               <motion.span
                 style={{ width: 6, height: 6, borderRadius: "50%", background: "#6321EE", boxShadow: "0 0 10px rgba(99,33,238,0.8)", display: "inline-block" }}
@@ -82,7 +80,6 @@ export default function Benefits() {
               </span>
             </div>
 
-            {/* Headline */}
             <div style={{ marginTop: 48 }}>
               <h3
                 className="font-black text-white"
@@ -95,7 +92,6 @@ export default function Benefits() {
               </p>
             </div>
 
-            {/* Stat row */}
             <div
               className="flex items-center gap-8 mt-10 pt-8"
               style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}

@@ -49,7 +49,7 @@ export default function Navbar() {
           borderBottom: scrolled ? "1px solid rgba(0,0,0,0.07)" : "none",
         }}
       >
-        <div className="flex items-center justify-between h-[60px] px-8 sm:px-14 lg:px-20 xl:px-28">
+        <div className="flex items-center h-[60px] px-8 sm:px-14 lg:px-20 xl:px-28">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
             <Image
@@ -68,10 +68,40 @@ export default function Navbar() {
             </span>
           </Link>
 
+          {/* GT badge — center */}
+          <div className="flex-1 flex justify-center">
+            <div
+              className="hidden sm:inline-flex items-center gap-2"
+              style={{
+                background: scrolled ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.08)",
+                border: scrolled ? "1px solid rgba(0,0,0,0.12)" : "1px solid rgba(255,255,255,0.14)",
+                borderRadius: 100,
+                padding: "5px 14px 5px 8px",
+                transition: "all 0.4s ease",
+              }}
+            >
+              <div style={{
+                width: 18, height: 18, borderRadius: 4,
+                background: "#EEB400",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0,
+              }}>
+                <span style={{ fontSize: 8, fontWeight: 900, color: "#003057", letterSpacing: "-0.02em" }}>GT</span>
+              </div>
+              <span style={{
+                fontSize: 10, fontWeight: 600, letterSpacing: "0.11em", textTransform: "uppercase",
+                color: scrolled ? "rgba(0,0,0,0.50)" : "rgba(255,255,255,0.55)",
+                transition: "color 0.4s ease",
+              }}>
+                Backed by Georgia Tech CREATE-X
+              </span>
+            </div>
+          </div>
+
           {/* Hamburger */}
           <button
             onClick={() => setOpen(true)}
-            className="flex flex-col gap-[5px] p-2 transition-opacity hover:opacity-60"
+            className="flex flex-col gap-[5px] p-2 transition-opacity hover:opacity-60 flex-shrink-0"
             aria-label="Open menu"
           >
             <span className="block w-5 h-[1.5px] transition-colors duration-300"

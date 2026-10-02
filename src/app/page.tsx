@@ -17,21 +17,17 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      {/* Smooth gradient bridge from dark hero (#050210) to warm white (#f8f7f4) */}
-      <div style={{ height: 56, background: "linear-gradient(to bottom, #050210, #f8f7f4)" }} />
-      <div style={{ background: "#f8f7f4", position: "relative" }}>
-        <IntroStatement />
-        <TrustMarquee />
-        <AudienceSplit />
-        <ShowcaseScroll />
-        <Services />
-        <HowItWorks />
-        <Stats />
-        <Benefits />
-        <Press />
-        <FAQ />
-        <FinalCTA />
-      </div>
+      <IntroStatement />
+      <TrustMarquee />
+      <AudienceSplit />
+      <ShowcaseScroll />
+      <Services />
+      <HowItWorks />
+      <Stats />
+      <Benefits />
+      <Press />
+      <FAQ />
+      <FinalCTA />
     </>
   );
 }

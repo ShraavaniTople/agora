@@ -60,7 +60,7 @@ export default function ShowcaseScroll() {
 
   return (
     <section className="relative overflow-hidden" style={{ background: "transparent" }}>
-      <div style={{ height: 1, background: "rgba(0,0,0,0.09)" }} />
+      <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
 
       <div className="py-20 lg:py-28">
         {/* Header */}
@@ -71,12 +71,12 @@ export default function ShowcaseScroll() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.9, ease: EASE }}
           >
-            <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.30)", marginBottom: 12 }}>
+            <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: 12 }}>
               Industries we serve
             </p>
             <h2
               className="font-black"
-              style={{ fontSize: "clamp(44px, 6vw, 78px)", lineHeight: 0.90, letterSpacing: "-0.046em", color: "#0d0d0d" }}
+              style={{ fontSize: "clamp(44px, 6vw, 78px)", lineHeight: 0.90, letterSpacing: "-0.046em", color: "#ffffff" }}
             >
               Built for<br />every vertical.
             </h2>
@@ -86,7 +86,7 @@ export default function ShowcaseScroll() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
-            style={{ fontSize: 13.5, color: "rgba(0,0,0,0.45)", maxWidth: 260, lineHeight: 1.75 }}
+            style={{ fontSize: 13.5, color: "rgba(255,255,255,0.42)", maxWidth: 260, lineHeight: 1.75 }}
           >
             AGORA agents are trained on your specific industry, not generic scripts.
           </motion.p>
