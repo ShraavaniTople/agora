@@ -2,6 +2,81 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
+/* Chrome-purple matcap — gives the "liquid metal" look without HDR env maps */
+function buildMatcap(): THREE.Texture {
+  const size = 512;
+  const c = document.createElement("canvas");
+  c.width = c.height = size;
+  const ctx = c.getContext("2d")!;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+  ctx.clip();
+
+  /* Base — deep space purple */
+  ctx.fillStyle = "rgb(6,3,22)";
+  ctx.fillRect(0, 0, size, size);
+
+  /* Hot-white primary highlight, top-left (chrome catching daylight) */
+  const h1 = ctx.createRadialGradient(size * 0.27, size * 0.22, 0, size * 0.27, size * 0.22, size * 0.44);
+  h1.addColorStop(0,    "rgba(255,252,255,1.0)");
+  h1.addColorStop(0.10, "rgba(238,215,255,0.96)");
+  h1.addColorStop(0.28, "rgba(160,88,255,0.72)");
+  h1.addColorStop(0.55, "rgba(80,18,190,0.28)");
+  h1.addColorStop(1.0,  "rgba(0,0,0,0)");
+  ctx.fillStyle = h1;
+  ctx.fillRect(0, 0, size, size);
+
+  /* Purple body — midtone glow */
+  const h2 = ctx.createRadialGradient(size * 0.60, size * 0.54, 0, size * 0.60, size * 0.54, size * 0.42);
+  h2.addColorStop(0,    "rgba(88,22,228,0.80)");
+  h2.addColorStop(0.44, "rgba(52,10,152,0.42)");
+  h2.addColorStop(1.0,  "rgba(0,0,0,0)");
+  ctx.fillStyle = h2;
+  ctx.fillRect(0, 0, size, size);
+
+  /* Teal reflection — bottom-right */
+  const h3 = ctx.createRadialGradient(size * 0.82, size * 0.77, 0, size * 0.82, size * 0.77, size * 0.24);
+  h3.addColorStop(0,    "rgba(127,255,212,0.74)");
+  h3.addColorStop(0.45, "rgba(60,200,170,0.34)");
+  h3.addColorStop(1.0,  "rgba(0,0,0,0)");
+  ctx.fillStyle = h3;
+  ctx.fillRect(0, 0, size, size);
+
+  /* Cool rim — right edge */
+  const h4 = ctx.createRadialGradient(size * 0.90, size * 0.38, 0, size * 0.90, size * 0.38, size * 0.20);
+  h4.addColorStop(0,   "rgba(205,225,255,0.54)");
+  h4.addColorStop(1.0, "rgba(0,0,0,0)");
+  ctx.fillStyle = h4;
+  ctx.fillRect(0, 0, size, size);
+
+  /* Shadow pool — bottom */
+  const h5 = ctx.createRadialGradient(size * 0.46, size * 0.90, 0, size * 0.46, size * 0.90, size * 0.26);
+  h5.addColorStop(0,   "rgba(14,4,48,0.78)");
+  h5.addColorStop(1.0, "rgba(0,0,0,0)");
+  ctx.fillStyle = h5;
+  ctx.fillRect(0, 0, size, size);
+
+  ctx.restore();
+  return new THREE.CanvasTexture(c);
+}
+
+function buildGlowSpriteTex(r: number, g: number, b: number, peak = 0.60): THREE.Texture {
+  const s = 256;
+  const c = document.createElement("canvas");
+  c.width = c.height = s;
+  const ctx = c.getContext("2d")!;
+  const grad = ctx.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);
+  grad.addColorStop(0,    `rgba(${r},${g},${b},${peak})`);
+  grad.addColorStop(0.32, `rgba(${r},${g},${b},${peak * 0.42})`);
+  grad.addColorStop(0.65, `rgba(${r},${g},${b},${peak * 0.12})`);
+  grad.addColorStop(1.0,  "rgba(0,0,0,0)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, s, s);
+  return new THREE.CanvasTexture(c);
+}
+
 export default function HeroArtwork() {
   const ref = useRef<HTMLCanvasElement>(null);
 
@@ -13,21 +88,18 @@ export default function HeroArtwork() {
     const W = window.innerWidth;
     const H = window.innerHeight;
 
-    // ── Renderer ────────────────────────────────────────────────
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(W, H);
     renderer.setClearColor(0x050210, 1);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.6;
+    renderer.toneMappingExposure = 1.35;
 
-    // ── Camera ───────────────────────────────────────────────────
-    const camera = new THREE.PerspectiveCamera(46, W / H, 0.1, 1000);
-    camera.position.set(0, 0, 9);
+    const camera = new THREE.PerspectiveCamera(44, W / H, 0.1, 1000);
+    camera.position.set(0, 0, 12);
 
     const scene = new THREE.Scene();
 
-    // ── Mouse ────────────────────────────────────────────────────
     const mouse = { x: 0, y: 0 };
     const onMove = (e: MouseEvent) => {
       mouse.x = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -35,11 +107,12 @@ export default function HeroArtwork() {
     };
     window.addEventListener("mousemove", onMove, { passive: true });
 
-    // ── Stars ─────────────────────────────────────────────────────
+    /* Stars */
     {
-      const pos = new Float32Array(3000 * 3);
-      for (let i = 0; i < 3000; i++) {
-        const r = 70 + Math.random() * 60;
+      const n = 2800;
+      const pos = new Float32Array(n * 3);
+      for (let i = 0; i < n; i++) {
+        const r = 85 + Math.random() * 65;
         const t = Math.random() * Math.PI * 2;
         const p = Math.acos(2 * Math.random() - 1);
         pos[i * 3]     = r * Math.sin(p) * Math.cos(t);
@@ -49,74 +122,70 @@ export default function HeroArtwork() {
       const g = new THREE.BufferGeometry();
       g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
       scene.add(new THREE.Points(g,
-        new THREE.PointsMaterial({ color: 0xffffff, size: 0.20, transparent: true, opacity: 0.50, sizeAttenuation: true })
+        new THREE.PointsMaterial({ color: 0xffffff, size: 0.17, transparent: true, opacity: 0.42, sizeAttenuation: true })
       ));
     }
 
-    // ── Main group — right-centre ─────────────────────────────────
+    /* Purple glow aura behind knot */
+    const purpleGlow = new THREE.Sprite(
+      new THREE.SpriteMaterial({
+        map: buildGlowSpriteTex(99, 33, 238, 0.58),
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      })
+    );
+    purpleGlow.scale.set(28, 28, 1);
+    purpleGlow.position.set(2.6, 0.1, -2);
+    scene.add(purpleGlow);
+
+    /* Teal accent glow */
+    const tealGlow = new THREE.Sprite(
+      new THREE.SpriteMaterial({
+        map: buildGlowSpriteTex(127, 255, 212, 0.38),
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      })
+    );
+    tealGlow.scale.set(15, 15, 1);
+    tealGlow.position.set(5.5, -2.2, -1);
+    scene.add(tealGlow);
+
+    /* Main group — chrome knot, right side */
     const group = new THREE.Group();
-    group.position.set(1.9, 0.1, 0);
+    group.position.set(2.5, 0, 0);
     scene.add(group);
 
-    // Torus knot — trefoil (p=2, q=3): absolutely nothing like a sphere
-    const knotGeo  = new THREE.TorusKnotGeometry(2.4, 0.62, 240, 38, 2, 3);
-    const knotMat  = new THREE.MeshStandardMaterial({
-      color:              new THREE.Color(0x120040),
-      emissive:           new THREE.Color(0x5218cc),
-      emissiveIntensity:  0.30,
-      metalness:          0.98,
-      roughness:          0.06,
-    });
-    const knot = new THREE.Mesh(knotGeo, knotMat);
+    const matcap = buildMatcap();
+    const knot = new THREE.Mesh(
+      new THREE.TorusKnotGeometry(2.85, 0.74, 360, 52, 2, 3),
+      new THREE.MeshMatcapMaterial({ matcap })
+    );
     group.add(knot);
 
-    // Thin wireframe halo on the knot itself (not a sphere)
+    /* Hair-thin wireframe overlay — barely visible, adds depth */
     group.add(new THREE.Mesh(
-      new THREE.TorusKnotGeometry(2.44, 0.65, 100, 18, 2, 3),
-      new THREE.MeshBasicMaterial({ color: 0x7B35FF, wireframe: true, transparent: true, opacity: 0.07 })
+      new THREE.TorusKnotGeometry(2.90, 0.76, 120, 26, 2, 3),
+      new THREE.MeshBasicMaterial({ color: 0xAA70FF, wireframe: true, transparent: true, opacity: 0.036 })
     ));
 
-    // Floating dust particles (cloud around the knot — not a ring or sphere)
+    /* Dust cloud */
     {
-      const n = 700;
+      const n = 480;
       const pos = new Float32Array(n * 3);
       for (let i = 0; i < n; i++) {
-        // Random points in a box around the knot, biased toward the center
-        pos[i * 3]     = (Math.random() - 0.5) * 12;
-        pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
-        pos[i * 3 + 2] = (Math.random() - 0.5) * 6;
+        pos[i * 3]     = (Math.random() - 0.5) * 15;
+        pos[i * 3 + 1] = (Math.random() - 0.5) * 15;
+        pos[i * 3 + 2] = (Math.random() - 0.5) * 7;
       }
       const g = new THREE.BufferGeometry();
       g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
       group.add(new THREE.Points(g,
-        new THREE.PointsMaterial({ color: 0x9940FF, size: 0.040, transparent: true, opacity: 0.60, sizeAttenuation: true })
+        new THREE.PointsMaterial({ color: 0xAA70FF, size: 0.030, transparent: true, opacity: 0.45, sizeAttenuation: true })
       ));
     }
 
-    // ── Lighting ─────────────────────────────────────────────────
-    scene.add(new THREE.AmbientLight(0xffffff, 0.03));
-
-    // Purple key — top-left, strong
-    const key = new THREE.PointLight(0x8833FF, 22, 26);
-    key.position.set(-2, 6, 7);
-    scene.add(key);
-
-    // Teal fill — bottom-right
-    const fill = new THREE.PointLight(0x7FFFD4, 12, 22);
-    fill.position.set(5, -4, 4);
-    scene.add(fill);
-
-    // White rim — behind-right (makes edges pop from dark bg)
-    const rim = new THREE.PointLight(0xffffff, 7, 20);
-    rim.position.set(4, 3, -3);
-    scene.add(rim);
-
-    // Deep purple back glow
-    const back = new THREE.PointLight(0x6321EE, 6, 16);
-    back.position.set(-3, 0, -5);
-    scene.add(back);
-
-    // ── Resize ───────────────────────────────────────────────────
     const resize = () => {
       const w = window.innerWidth, h = window.innerHeight;
       renderer.setSize(w, h);
@@ -125,24 +194,24 @@ export default function HeroArtwork() {
     };
     window.addEventListener("resize", resize);
 
-    // ── Animate ───────────────────────────────────────────────────
     let curY = 0, curX = 0, frame = 0, raf = 0;
 
     const tick = () => {
       if (destroyed) return;
       frame++;
 
-      const tY = frame * 0.0028 + mouse.x * 0.08;
-      const tX = -mouse.y * 0.05;
-      curY += (tY - curY) * 0.028;
-      curX += (tX - curX) * 0.028;
+      const tY = frame * 0.0020 + mouse.x * 0.10;
+      const tX = -mouse.y * 0.06;
+      curY += (tY - curY) * 0.022;
+      curX += (tX - curX) * 0.022;
 
       group.rotation.y = curY;
       group.rotation.x = curX;
-      // Gentle vertical float
-      group.position.y = 0.1 + Math.sin(frame * 0.0065) * 0.16;
-      // Subtle breathing light
-      key.intensity = 22 + Math.sin(frame * 0.020) * 3.5;
+      group.position.y = Math.sin(frame * 0.0058) * 0.22;
+
+      /* Breathing glow */
+      const pulse = 1 + Math.sin(frame * 0.016) * 0.10;
+      purpleGlow.scale.set(28 * pulse, 28 * pulse, 1);
 
       renderer.render(scene, camera);
       raf = requestAnimationFrame(tick);
@@ -155,6 +224,7 @@ export default function HeroArtwork() {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", resize);
       renderer.dispose();
+      matcap.dispose();
     };
   }, []);
 

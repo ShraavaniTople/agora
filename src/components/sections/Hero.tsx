@@ -11,6 +11,14 @@ const HeroArtwork = dynamic(() => import("@/components/ui/HeroArtwork"), { ssr: 
 const INDUSTRIES = ["Healthcare", "Recruiting"];
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+const lineVariant = {
+  hidden: { opacity: 0, y: 48, skewY: 1.5 },
+  visible: (i: number) => ({
+    opacity: 1, y: 0, skewY: 0,
+    transition: { duration: 1.0, delay: 0.25 + i * 0.13, ease: EASE },
+  }),
+};
+
 export default function Hero() {
   const [idx, setIdx]         = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -25,100 +33,175 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ height: "100vh", background: "#050210" }}>
 
-      {/* ── Faceted crystal artwork — full-viewport canvas ── */}
       {mounted && <HeroArtwork />}
 
-      {/* ── Film grain ── */}
+      {/* Film grain */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none",
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.06'/%3E%3C/svg%3E")`,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.055'/%3E%3C/svg%3E")`,
         mixBlendMode: "overlay",
       }} />
 
-      {/* ── Bottom vignette so text is always readable ── */}
+      {/* Bottom gradient — fades scene to #050210 at the bottom edge */}
       <div aria-hidden style={{
-        position: "absolute", bottom: 0, left: 0, right: 0,
-        height: "62vh",
-        background: "linear-gradient(to top, rgba(5,2,16,0.96) 0%, rgba(5,2,16,0.55) 45%, transparent 100%)",
+        position: "absolute", bottom: 0, left: 0, right: 0, height: "68vh",
+        background: "linear-gradient(to top, #050210 0%, rgba(5,2,16,0.75) 36%, transparent 100%)",
         pointerEvents: "none", zIndex: 3,
       }} />
 
-      {/* ── Left-side vignette so text block doesn't fight the sphere ── */}
+      {/* Left gradient so text always readable */}
       <div aria-hidden style={{
-        position: "absolute", top: 0, bottom: 0, left: 0,
-        width: "52%",
-        background: "linear-gradient(to right, rgba(5,2,16,0.55) 0%, transparent 100%)",
+        position: "absolute", top: 0, bottom: 0, left: 0, width: "58%",
+        background: "linear-gradient(to right, rgba(5,2,16,0.80) 0%, rgba(5,2,16,0.30) 65%, transparent 100%)",
         pointerEvents: "none", zIndex: 3,
       }} />
 
-      {/* ── Headline block — bottom-left, juncastudio-style ── */}
+      {/* ── Headline — bottom-left, staggered per line ── */}
       <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.1, delay: 0.35, ease: EASE }}
+        initial="hidden"
+        animate="visible"
         style={{
           position: "absolute",
-          bottom: "13%",
+          bottom: "11%",
           left: "clamp(28px, 8%, 140px)",
           zIndex: 6,
-          maxWidth: "clamp(320px, 48%, 640px)",
+          maxWidth: "clamp(340px, 54%, 720px)",
         }}
       >
-        <h1
+        {/* Georgia Tech badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.05, ease: EASE }}
           style={{
-            fontSize: "clamp(46px, 6.5vw, 88px)",
-            fontWeight: 800,
-            lineHeight: 0.92,
-            letterSpacing: "-0.038em",
-            color: "#fff",
-            marginBottom: "clamp(18px, 2.4vw, 32px)",
+            display: "inline-flex", alignItems: "center", gap: 8,
+            background: "rgba(255,255,255,0.07)",
+            border: "1px solid rgba(255,255,255,0.14)",
+            borderRadius: 100,
+            padding: "5px 14px 5px 8px",
+            marginBottom: 28,
           }}
         >
-          <span style={{ color: "rgba(244,246,255,0.50)", fontWeight: 300 }}>Your</span>
-          {" "}
-          <span style={{ display: "inline-block", position: "relative" }}>
+          <div style={{
+            width: 18, height: 18, borderRadius: 4,
+            background: "#EEB400",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+          }}>
+            <span style={{ fontSize: 8, fontWeight: 900, color: "#003057", letterSpacing: "-0.02em" }}>GT</span>
+          </div>
+          <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(244,246,255,0.55)" }}>
+            Backed by Georgia Tech CREATE-X
+          </span>
+        </motion.div>
+
+        {/* Line 1 — "Your" italic */}
+        <div style={{ overflow: "hidden", marginBottom: 0 }}>
+          <motion.div custom={0} variants={lineVariant}>
+            <span style={{
+              display: "block",
+              fontSize: "clamp(50px, 7vw, 96px)",
+              fontWeight: 900,
+              lineHeight: 0.88,
+              letterSpacing: "-0.045em",
+              color: "rgba(244,246,255,0.45)",
+              fontStyle: "italic",
+            }}>
+              Your
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Line 2 — cycling industry word */}
+        <div style={{ overflow: "hidden", height: "clamp(44px, 6.4vw, 88px)", marginBottom: 2 }}>
+          <motion.div custom={1} variants={lineVariant}>
             <AnimatePresence mode="wait">
               <motion.span
                 key={INDUSTRIES[idx]}
                 className="gradient-text"
-                style={{ display: "inline-block" }}
-                initial={{ y: 32, opacity: 0, filter: "blur(10px)" }}
-                animate={{ y: 0,  opacity: 1, filter: "blur(0px)" }}
-                exit={{ y: -32, opacity: 0, filter: "blur(10px)" }}
-                transition={{ duration: 0.44, ease: EASE }}
+                style={{
+                  display: "block",
+                  fontSize: "clamp(50px, 7vw, 96px)",
+                  fontWeight: 900,
+                  lineHeight: 0.88,
+                  letterSpacing: "-0.045em",
+                }}
+                initial={{ y: "110%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-110%", opacity: 0 }}
+                transition={{ duration: 0.48, ease: EASE }}
               >
                 {INDUSTRIES[idx]}
               </motion.span>
             </AnimatePresence>
-          </span>
-          <br />
-          team,
-          <br />
-          <span style={{ color: "rgba(244,246,255,0.70)", fontWeight: 700 }}>on demand.</span>
-        </h1>
+          </motion.div>
+        </div>
+
+        {/* Line 3 — "team," */}
+        <div style={{ overflow: "hidden" }}>
+          <motion.div custom={2} variants={lineVariant}>
+            <span style={{
+              display: "block",
+              fontSize: "clamp(50px, 7vw, 96px)",
+              fontWeight: 900,
+              lineHeight: 0.88,
+              letterSpacing: "-0.045em",
+              color: "#ffffff",
+            }}>
+              team,
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Line 4 — "on demand." */}
+        <div style={{ overflow: "hidden", marginBottom: "clamp(20px, 2.4vw, 36px)" }}>
+          <motion.div custom={3} variants={lineVariant}>
+            <span style={{
+              display: "block",
+              fontSize: "clamp(50px, 7vw, 96px)",
+              fontWeight: 300,
+              lineHeight: 0.92,
+              letterSpacing: "-0.045em",
+              color: "rgba(244,246,255,0.60)",
+              fontStyle: "italic",
+            }}>
+              on demand.
+            </span>
+          </motion.div>
+        </div>
 
         {/* Subtext */}
-        <p style={{
-          fontSize: "clamp(13px, 1.1vw, 15px)",
-          color: "rgba(244,246,255,0.38)",
-          lineHeight: 1.8,
-          letterSpacing: "-0.01em",
-          marginBottom: 24,
-          maxWidth: 340,
-        }}>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9, delay: 1.0, ease: EASE }}
+          style={{
+            fontSize: "clamp(13px, 1.05vw, 15px)",
+            color: "rgba(244,246,255,0.36)",
+            lineHeight: 1.85,
+            letterSpacing: "-0.01em",
+            marginBottom: 28,
+            maxWidth: 340,
+          }}
+        >
           We recruit, train, and deploy sales reps for your campaigns.
           No hiring. No managing. Live in two weeks.
-        </p>
+        </motion.p>
 
-        {/* CTAs — minimal, text-link style */}
-        <div className="flex items-center gap-5">
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.15, ease: EASE }}
+          className="flex items-center gap-5"
+        >
           <a
             href="https://calendly.com"
             target="_blank" rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 font-bold text-white hover:opacity-80 transition-opacity"
+            className="group inline-flex items-center gap-2 font-bold text-white hover:brightness-110 transition-all duration-200"
             style={{
               fontSize: 13,
-              padding: "11px 22px",
+              padding: "12px 24px",
               background: "linear-gradient(135deg, #6321EE, #8040FF)",
               borderRadius: 10,
               boxShadow: "0 0 36px rgba(99,33,238,0.55), inset 0 1px 0 rgba(255,255,255,0.16)",
@@ -129,62 +212,46 @@ export default function Hero() {
           </a>
           <Link
             href="/contact"
-            className="font-medium hover:text-white transition-colors"
+            className="font-medium hover:text-white transition-colors duration-200"
             style={{ fontSize: 13, color: "rgba(244,246,255,0.42)" }}
           >
             Get Started →
           </Link>
-        </div>
+        </motion.div>
       </motion.div>
 
-      {/* ── Bottom strip — full width, juncastudio footer bar style ── */}
+      {/* ── Bottom-left status pill ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.9, ease: EASE }}
+        transition={{ duration: 1, delay: 1.4, ease: EASE }}
         style={{
-          position: "absolute", bottom: 0, left: 0, right: 0,
-          zIndex: 6,
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "14px clamp(28px, 8%, 140px)",
-          borderTop: "1px solid rgba(255,255,255,0.05)",
+          position: "absolute", bottom: 46, left: "clamp(28px, 8%, 140px)",
+          zIndex: 6, display: "flex", alignItems: "center", gap: 8,
         }}
       >
-        {/* Left — badge */}
-        <div className="flex items-center gap-2.5">
-          <motion.span
-            style={{
-              width: 4, height: 4, borderRadius: "50%",
-              background: "#7FFFD4", boxShadow: "0 0 6px #7FFFD4",
-              display: "inline-block",
-            }}
-            animate={{ opacity: [1, 0.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <span style={{
-            fontSize: 10, fontWeight: 600, letterSpacing: "0.18em",
-            textTransform: "uppercase", color: "rgba(244,246,255,0.28)",
-          }}>
-            Georgia Tech Backed · Sales Network
-          </span>
-        </div>
+        <motion.span
+          style={{ width: 5, height: 5, borderRadius: "50%", background: "#6321EE", boxShadow: "0 0 8px rgba(99,33,238,0.8)", display: "inline-block" }}
+          animate={{ opacity: [1, 0.25, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+        <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(244,246,255,0.26)" }}>
+          Georgia Tech Backed · Sales Network
+        </span>
+      </motion.div>
 
-        {/* Right — stats */}
-        <div className="hidden sm:flex items-center gap-7">
-          {[
-            { num: "6+",      label: "months ramp saved" },
-            { num: "$150K",   label: "saved vs in-house" },
-            { num: "2 weeks", label: "to first call" },
-          ].map((s, i) => (
-            <div key={i} className="flex items-center gap-7">
-              {i > 0 && <div style={{ width: 1, height: 20, background: "rgba(255,255,255,0.07)" }} />}
-              <div className="text-right">
-                <div style={{ fontSize: 14, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.num}</div>
-                <div style={{ fontSize: 9, color: "rgba(244,246,255,0.22)", marginTop: 2, fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase" }}>{s.label}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* ── Scroll indicator — thin line bouncing ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.6 }}
+        style={{ position: "absolute", bottom: 42, right: "clamp(28px, 8%, 140px)", zIndex: 6 }}
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          style={{ width: 1, height: 44, background: "linear-gradient(to bottom, rgba(255,255,255,0.45), rgba(255,255,255,0))" }}
+        />
       </motion.div>
 
     </section>
