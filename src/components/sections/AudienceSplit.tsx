@@ -10,14 +10,21 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 function tiltMove(e: React.MouseEvent<HTMLDivElement>) {
   const el = e.currentTarget;
   const r = el.getBoundingClientRect();
-  const x = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-  const y = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-  el.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) scale3d(1.02,1.02,1.02)`;
+  const x = e.clientX - r.left;
+  const y = e.clientY - r.top;
+  const nx = (x - r.width  / 2) / (r.width  / 2);
+  const ny = (y - r.height / 2) / (r.height / 2);
+  el.style.transform = `perspective(900px) rotateY(${nx * 9}deg) rotateX(${-ny * 9}deg) scale3d(1.025,1.025,1.025)`;
   el.style.transition = "transform 0.06s linear";
+  el.style.setProperty("--mouse-x", `${x}px`);
+  el.style.setProperty("--mouse-y", `${y}px`);
 }
 function tiltLeave(e: React.MouseEvent<HTMLDivElement>) {
-  e.currentTarget.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
-  e.currentTarget.style.transition = "transform 0.55s cubic-bezier(0.22,1,0.36,1)";
+  const el = e.currentTarget;
+  el.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
+  el.style.transition = "transform 0.55s cubic-bezier(0.22,1,0.36,1)";
+  el.style.setProperty("--mouse-x", "-999px");
+  el.style.setProperty("--mouse-y", "-999px");
 }
 
 export default function AudienceSplit() {
@@ -50,7 +57,7 @@ export default function AudienceSplit() {
             <div
               onMouseMove={tiltMove}
               onMouseLeave={tiltLeave}
-              className="group relative rounded-2xl overflow-hidden h-full"
+              className="group relative rounded-2xl overflow-hidden h-full spot-parent"
               style={{
                 minHeight: 420,
                 background: "#0d0d0d",
@@ -60,6 +67,7 @@ export default function AudienceSplit() {
               }}
             >
               <div className="absolute inset-0" style={{ background: "linear-gradient(145deg, rgba(99,33,238,0.25) 0%, transparent 55%)" }} />
+              <div className="spot-overlay" />
 
               <div className="relative z-10 flex flex-col h-full p-10 lg:p-12">
                 <div className="flex items-center justify-between mb-auto">
@@ -122,7 +130,7 @@ export default function AudienceSplit() {
             <div
               onMouseMove={tiltMove}
               onMouseLeave={tiltLeave}
-              className="group relative rounded-2xl overflow-hidden h-full"
+              className="group relative rounded-2xl overflow-hidden h-full spot-parent"
               style={{
                 minHeight: 420,
                 background: "#0d0d0d",
@@ -132,6 +140,7 @@ export default function AudienceSplit() {
               }}
             >
               <div className="absolute inset-0" style={{ background: "linear-gradient(145deg, rgba(99,33,238,0.15) 0%, transparent 55%)" }} />
+              <div className="spot-overlay" />
 
               <div className="relative z-10 flex flex-col h-full p-10">
                 <div className="flex items-center justify-between mb-auto">

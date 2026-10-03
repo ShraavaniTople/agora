@@ -155,7 +155,7 @@ export default function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.9, ease: EASE }}
-          className="rounded-2xl overflow-hidden relative"
+          className="rounded-2xl overflow-hidden relative hiw-float"
           style={{ background: "#0d0d0d", border: "1px solid rgba(255,255,255,0.07)", minHeight: 420 }}
         >
           {/* Gradient wash */}
@@ -284,6 +284,11 @@ export default function HowItWorks() {
           </motion.div>
         ))}
       </div>
+
+      <style>{`
+        @keyframes hiw-bob { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .hiw-float { animation: hiw-bob 7s ease-in-out infinite; }
+      `}</style>
     </section>
   );
 }

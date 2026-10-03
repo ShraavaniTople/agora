@@ -43,20 +43,27 @@ const services = [
   },
 ];
 
-/* ── 3D tilt helpers ──────────────────────────────────── */
+/* ── 3D tilt + cursor spotlight ─────────────────────────── */
 function tiltMove(e: React.MouseEvent<HTMLDivElement>) {
   const el = e.currentTarget;
   const r = el.getBoundingClientRect();
-  const x = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-  const y = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-  el.style.transform = `perspective(850px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale3d(1.035,1.035,1.035)`;
+  const x = e.clientX - r.left;
+  const y = e.clientY - r.top;
+  const nx = (x - r.width  / 2) / (r.width  / 2);
+  const ny = (y - r.height / 2) / (r.height / 2);
+  el.style.transform = `perspective(800px) rotateY(${nx * 13}deg) rotateX(${-ny * 13}deg) scale3d(1.045,1.045,1.045)`;
   el.style.transition = "transform 0.06s linear";
   el.style.zIndex = "10";
+  el.style.setProperty("--mouse-x", `${x}px`);
+  el.style.setProperty("--mouse-y", `${y}px`);
 }
 function tiltLeave(e: React.MouseEvent<HTMLDivElement>) {
-  e.currentTarget.style.transform = "perspective(850px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
-  e.currentTarget.style.transition = "transform 0.55s cubic-bezier(0.22,1,0.36,1)";
-  e.currentTarget.style.zIndex = "";
+  const el = e.currentTarget;
+  el.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
+  el.style.transition = "transform 0.55s cubic-bezier(0.22,1,0.36,1)";
+  el.style.zIndex = "";
+  el.style.setProperty("--mouse-x", "-999px");
+  el.style.setProperty("--mouse-y", "-999px");
 }
 
 /* ── Visual mockups ──────────────────────────────────── */
@@ -243,11 +250,11 @@ export default function Services() {
             >
               {/* Float wrapper — CSS gentle bob */}
               <div className={`svc-float-${i}`} style={{ height: "100%" }}>
-                {/* Tilt wrapper — native mouse events */}
+                {/* Tilt + spotlight wrapper */}
                 <div
                   onMouseMove={tiltMove}
                   onMouseLeave={tiltLeave}
-                  className="flex flex-col rounded-2xl overflow-hidden h-full svc-card"
+                  className="flex flex-col rounded-2xl overflow-hidden h-full svc-card spot-parent"
                   style={{
                     background: "rgba(255,255,255,0.04)",
                     border: "1px solid rgba(255,255,255,0.08)",
@@ -257,6 +264,7 @@ export default function Services() {
                     position: "relative",
                   }}
                 >
+                  <div className="spot-overlay" />
                   {/* Hover shimmer */}
                   <div className="svc-shimmer" style={{
                     position: "absolute", inset: 0, pointerEvents: "none", zIndex: 20,

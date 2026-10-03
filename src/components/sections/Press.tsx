@@ -34,16 +34,23 @@ const pressItems = [
 function tiltMove(e: React.MouseEvent<HTMLDivElement>) {
   const el = e.currentTarget;
   const r = el.getBoundingClientRect();
-  const x = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-  const y = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-  el.style.transform = `perspective(800px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) scale3d(1.03,1.03,1.03)`;
+  const x = e.clientX - r.left;
+  const y = e.clientY - r.top;
+  const nx = (x - r.width  / 2) / (r.width  / 2);
+  const ny = (y - r.height / 2) / (r.height / 2);
+  el.style.transform = `perspective(800px) rotateY(${nx * 12}deg) rotateX(${-ny * 12}deg) scale3d(1.04,1.04,1.04)`;
   el.style.transition = "transform 0.06s linear";
   el.style.zIndex = "10";
+  el.style.setProperty("--mouse-x", `${x}px`);
+  el.style.setProperty("--mouse-y", `${y}px`);
 }
 function tiltLeave(e: React.MouseEvent<HTMLDivElement>) {
-  e.currentTarget.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
-  e.currentTarget.style.transition = "transform 0.55s cubic-bezier(0.22,1,0.36,1)";
-  e.currentTarget.style.zIndex = "";
+  const el = e.currentTarget;
+  el.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
+  el.style.transition = "transform 0.55s cubic-bezier(0.22,1,0.36,1)";
+  el.style.zIndex = "";
+  el.style.setProperty("--mouse-x", "-999px");
+  el.style.setProperty("--mouse-y", "-999px");
 }
 
 export default function Press() {
@@ -88,7 +95,7 @@ export default function Press() {
               <div
                 onMouseMove={tiltMove}
                 onMouseLeave={tiltLeave}
-                className="group rounded-2xl overflow-hidden flex flex-col h-full"
+                className="group rounded-2xl overflow-hidden flex flex-col h-full spot-parent"
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.07)",
@@ -97,6 +104,7 @@ export default function Press() {
                   willChange: "transform",
                 }}
               >
+                <div className="spot-overlay" />
                 {/* Card image area */}
                 <div
                   className="relative flex-shrink-0"

@@ -313,6 +313,30 @@ body {
   50%       { transform: translate(28px,60px) scale(1.09); }
 }
 
+/* ── Cursor spotlight card effect ───────────────────────── */
+.spot-parent {
+  position: relative;
+  isolation: isolate;
+}
+.spot-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(99,33,238,0.22) 0%,
+    rgba(99,33,238,0.06) 50%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.38s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.spot-parent:hover .spot-overlay {
+  opacity: 1;
+}
+
 /* ── Reduced motion ──────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
