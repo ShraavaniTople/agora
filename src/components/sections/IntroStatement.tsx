@@ -21,7 +21,7 @@ export default function IntroStatement() {
             maxWidth: "78vw",
           }}
         >
-          At AGORA, we build high-performance sales teams for the world&apos;s most ambitious companies.
+          At AGORA, we build the sales teams that the world&apos;s most ambitious companies actually want to run.
         </motion.h2>
       </div>
       <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />

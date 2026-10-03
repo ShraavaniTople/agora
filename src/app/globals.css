@@ -18,7 +18,7 @@
 html { scroll-behavior: smooth; background: #050210; }
 
 body {
-  background: transparent;
+  background: #050210;
   color: #F4F6FF;
   font-family: var(--font-geist-sans), 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;

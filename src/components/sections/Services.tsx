@@ -7,8 +7,8 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const services = [
   {
     tag: "Inbound",
-    title: "Speed-to-Lead\nFollow-Up",
-    desc: "Around-the-clock inbound coverage so leads don't go cold while your team is busy.",
+    title: "Speed to Lead\nResponse",
+    desc: "Around-the-clock inbound coverage so leads never go cold while your team is offline.",
     Visual: SpeedVisual,
     // enters from bottom-left
     initial: { opacity: 0, x: -48, y: 64 },
@@ -241,36 +241,69 @@ export default function Services() {
               viewport={{ once: true, margin: "-40px" }}
               transition={transition}
             >
-              {/* Tilt wrapper — native mouse events, separate from entrance */}
-              <div
-                onMouseMove={tiltMove}
-                onMouseLeave={tiltLeave}
-                className="flex flex-col rounded-2xl overflow-hidden h-full"
-                style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  cursor: "default",
-                  transformStyle: "preserve-3d",
-                  willChange: "transform",
-                }}
-              >
-                <Visual />
-                <div style={{ padding: "20px 22px 24px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#6321EE", display: "block", marginBottom: 10 }}>
-                    {tag}
-                  </span>
-                  <h3 className="font-semibold text-white" style={{ fontSize: 14, letterSpacing: "-0.01em", lineHeight: 1.3, whiteSpace: "pre-line", marginBottom: 10 }}>
-                    {title}
-                  </h3>
-                  <p style={{ fontSize: 11.5, color: "rgba(255,255,255,0.40)", lineHeight: 1.70 }}>
-                    {desc}
-                  </p>
+              {/* Float wrapper — CSS gentle bob */}
+              <div className={`svc-float-${i}`} style={{ height: "100%" }}>
+                {/* Tilt wrapper — native mouse events */}
+                <div
+                  onMouseMove={tiltMove}
+                  onMouseLeave={tiltLeave}
+                  className="flex flex-col rounded-2xl overflow-hidden h-full svc-card"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    cursor: "default",
+                    transformStyle: "preserve-3d",
+                    willChange: "transform",
+                    position: "relative",
+                  }}
+                >
+                  {/* Hover shimmer */}
+                  <div className="svc-shimmer" style={{
+                    position: "absolute", inset: 0, pointerEvents: "none", zIndex: 20,
+                    background: "linear-gradient(135deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0) 80%)",
+                    transform: "translateX(-120%)", borderRadius: "inherit",
+                  }} />
+                  <Visual />
+                  <div style={{ padding: "20px 22px 24px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                    <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "#6321EE", display: "block", marginBottom: 10 }}>
+                      {tag}
+                    </span>
+                    <h3 className="font-semibold text-white" style={{ fontSize: 14, letterSpacing: "-0.01em", lineHeight: 1.3, whiteSpace: "pre-line", marginBottom: 10 }}>
+                      {title}
+                    </h3>
+                    <p style={{ fontSize: 11.5, color: "rgba(255,255,255,0.40)", lineHeight: 1.70 }}>
+                      {desc}
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        .svc-float-0 { animation: svc-float-a 6.2s 0.0s ease-in-out infinite; }
+        .svc-float-1 { animation: svc-float-b 7.0s 0.7s ease-in-out infinite; }
+        .svc-float-2 { animation: svc-float-c 5.8s 1.3s ease-in-out infinite; }
+        .svc-float-3 { animation: svc-float-a 6.8s 0.4s ease-in-out infinite; }
+
+        @keyframes svc-float-a { 0%,100% { transform: translateY(0px);  } 50% { transform: translateY(-8px);  } }
+        @keyframes svc-float-b { 0%,100% { transform: translateY(-3px); } 50% { transform: translateY(-11px); } }
+        @keyframes svc-float-c { 0%,100% { transform: translateY(-1px); } 50% { transform: translateY(-9px);  } }
+
+        .svc-card:hover .svc-shimmer {
+          animation: svc-shimmer 0.65s ease forwards;
+        }
+        @keyframes svc-shimmer {
+          from { transform: translateX(-120%); }
+          to   { transform: translateX(220%);  }
+        }
+        .svc-card:hover {
+          box-shadow: 0 24px 70px rgba(99,33,238,0.30), 0 0 0 1px rgba(99,33,238,0.18) !important;
+          border-color: rgba(99,33,238,0.25) !important;
+        }
+      `}</style>
     </section>
   );
 }

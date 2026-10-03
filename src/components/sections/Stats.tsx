@@ -15,9 +15,9 @@ function Counter({ target, prefix = "", suffix = "", inView }: { target: number;
 }
 
 const stats = [
-  { label: "months ramp saved",   target: 6,   prefix: "",  suffix: "+",  color: "#6321EE", desc: "Typical SDR ramp eliminated. AGORA agents deploy in days, not months." },
-  { label: "saved vs in-house",   target: 150, prefix: "$", suffix: "K",  color: "#7FFFD4", desc: "Salary, benefits, tools, and management overhead — replaced with variable pods aligned to outcomes." },
-  { label: "conversion lift",     target: 2,   prefix: "+", suffix: "%",  color: "#9B65FF", desc: "2% lift on a $10M pipeline = $200K added revenue. At scale, marginal gains compound fast." },
+  { label: "months of ramp time cut",  target: 6,   prefix: "",  suffix: "+",  color: "#6321EE", desc: "The typical SDR onboarding curve disappears. AGORA teams are briefed and working within days." },
+  { label: "saved over in-house teams", target: 150, prefix: "$", suffix: "K",  color: "#7FFFD4", desc: "Salary, benefits, tools and management overhead go away. You pay for results, not headcount." },
+  { label: "pipeline conversion lift",  target: 2,   prefix: "+", suffix: "%",  color: "#9B65FF", desc: "A 2 percent lift on a ten million dollar pipeline adds two hundred thousand in revenue. Gains compound." },
 ];
 
 export default function Stats() {

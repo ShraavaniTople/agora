@@ -43,10 +43,10 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
-          background: scrolled ? "rgba(248,247,244,0.96)" : "transparent",
+          background: scrolled ? "rgba(5,2,16,0.95)" : "transparent",
           backdropFilter: scrolled ? "blur(24px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(24px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(0,0,0,0.07)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.07)" : "none",
         }}
       >
         <div className="flex items-center h-[60px] px-8 sm:px-14 lg:px-20 xl:px-28">
@@ -62,7 +62,7 @@ export default function Navbar() {
             />
             <span
               className="font-black text-[16px] tracking-tight transition-colors duration-300"
-              style={{ color: scrolled ? "#0d0d0d" : "#ffffff" }}
+              style={{ color: "#ffffff" }}
             >
               AGORA
             </span>
@@ -73,8 +73,8 @@ export default function Navbar() {
             <div
               className="hidden sm:inline-flex items-center gap-2"
               style={{
-                background: scrolled ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.08)",
-                border: scrolled ? "1px solid rgba(0,0,0,0.12)" : "1px solid rgba(255,255,255,0.14)",
+                background: "rgba(255,255,255,0.08)",
+                border: "1px solid rgba(255,255,255,0.14)",
                 borderRadius: 100,
                 padding: "5px 14px 5px 8px",
                 transition: "all 0.4s ease",
@@ -90,7 +90,7 @@ export default function Navbar() {
               </div>
               <span style={{
                 fontSize: 10, fontWeight: 600, letterSpacing: "0.11em", textTransform: "uppercase",
-                color: scrolled ? "rgba(0,0,0,0.50)" : "rgba(255,255,255,0.55)",
+                color: "rgba(255,255,255,0.60)",
                 transition: "color 0.4s ease",
               }}>
                 Backed by Georgia Tech CREATE-X
@@ -105,9 +105,9 @@ export default function Navbar() {
             aria-label="Open menu"
           >
             <span className="block w-5 h-[1.5px] transition-colors duration-300"
-              style={{ background: scrolled ? "#0d0d0d" : "#ffffff" }} />
+              style={{ background: "#ffffff" }} />
             <span className="block w-5 h-[1.5px] transition-colors duration-300"
-              style={{ background: scrolled ? "#0d0d0d" : "#ffffff" }} />
+              style={{ background: "#ffffff" }} />
           </button>
         </div>
       </motion.nav>
@@ -138,20 +138,21 @@ export default function Navbar() {
               className="fixed top-0 right-0 bottom-0 z-[61] flex flex-col"
               style={{
                 width: "min(520px, 100vw)",
-                background: "#f8f7f4",
+                background: "#08041a",
                 padding: "32px 44px 40px",
+                borderLeft: "1px solid rgba(255,255,255,0.07)",
               }}
             >
               {/* Panel header */}
               <div className="flex items-center justify-between mb-14">
-                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(0,0,0,0.32)" }}>
+                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
                   Navigation
                 </span>
                 <button
                   onClick={() => setOpen(false)}
-                  className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-black/[0.06] transition-colors"
+                  className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-white/[0.06] transition-colors"
                   aria-label="Close menu"
-                  style={{ fontSize: 22, color: "#0d0d0d", lineHeight: 1 }}
+                  style={{ fontSize: 22, color: "rgba(255,255,255,0.80)", lineHeight: 1 }}
                 >
                   ×
                 </button>
@@ -165,20 +166,20 @@ export default function Navbar() {
                     initial={{ opacity: 0, x: 24 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.055, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
+                    style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
                   >
                     <Link
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="group flex items-center justify-between py-4 font-black hover:text-[#6321EE] transition-colors duration-200"
-                      style={{ fontSize: "clamp(26px, 5vw, 38px)", color: "#0d0d0d", letterSpacing: "-0.03em" }}
+                      className="group flex items-center justify-between py-4 font-black hover:text-[#9B65FF] transition-colors duration-200"
+                      style={{ fontSize: "clamp(26px, 5vw, 38px)", color: "#ffffff", letterSpacing: "-0.03em" }}
                     >
                       {link.label}
-                      <span className="text-[rgba(0,0,0,0.15)] group-hover:text-[#6321EE] text-xl transition-colors">↗</span>
+                      <span className="text-[rgba(255,255,255,0.18)] group-hover:text-[#9B65FF] text-xl transition-colors">↗</span>
                     </Link>
                   </motion.div>
                 ))}
-                <div style={{ height: 1, background: "rgba(0,0,0,0.08)" }} />
+                <div style={{ height: 1, background: "rgba(255,255,255,0.07)" }} />
               </nav>
 
               {/* Footer */}
@@ -187,9 +188,9 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
                 className="mt-10 pt-8"
-                style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
+                style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
               >
-                <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(0,0,0,0.32)", marginBottom: 18 }}>
+                <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.20em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 18 }}>
                   Get in touch
                 </p>
                 <div className="flex items-center gap-6">
@@ -206,7 +207,7 @@ export default function Navbar() {
                     href="https://app.agoraai.tech"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ fontSize: 13, color: "rgba(0,0,0,0.45)", fontWeight: 500 }}
+                    style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", fontWeight: 500 }}
                   >
                     Login
                   </a>
